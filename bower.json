@@ -1,0 +1,36 @@
+{
+  "name": "diretodafont",
+  "authors": [
+    "Eric Reis Figueiredo <eric_reisfig@poli.ufrj.br>"
+  ],
+  "description": "An internship and cientific iniciation offer web site.",
+  "main": "src/main/webapp/index.html",
+  "keywords": [
+    "java",
+    "maven",
+    "angularjs",
+    "offer"
+  ],
+  "license": "MIT",
+  "homepage": "bigu.tech",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/main/webapp/content",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.5.8",
+    "angular-loader": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "angular": "^1.5.8",
+    "angular-mocks": "^1.5.8",
+    "angular-bootstrap": "^2.2.0",
+    "angular-toastr": "^2.1.1",
+    "ngstorage": "^0.3.11",
+    "bootstrap": "^3.3.7"
+  }
+}

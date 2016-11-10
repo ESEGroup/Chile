@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <title>Template App</title>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="content/css/style.css">
+</head>
+<body ng-controller="MenuController as menuCtrl">
+
+<nav class="navbar navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navNotLogged,#navLogged" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0)" ng-click="menuCtrl.goToHome()">Direto da Fonte</a>
+        </div>
+        <div class="navbar-collapse collapse test" ng-if="!menuCtrl.isLogged()" id="navNotLogged">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="javascript:void(0)" ng-click="menuCtrl.userLogin()"><span class="loginButton">ENTRAR</span></a></li>
+                <li><a href="javascript:void(0)" ng-click="menuCtrl.userRegister()"><span class="registerButton">INSCREVA-SE</span></a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-collapse collapse test" ng-if="menuCtrl.isLogged()" id="navLogged">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown"><b><span class="navbar-profile-icon center-block"></span></b></a>
+                    <ul id="profileMenu" class="dropdown-menu">
+                        <li>
+                            <div class="row">
+                                <div class="profileButton bottom text-left">
+                                    <i class="fa fa-user fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Perfil
+                                </div>
+                                <div class="profileButton bottom text-left">
+                                    <i class="fa fa-briefcase fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Vagas
+                                </div>
+
+                                <uib-accordion class="organizationAccordion">
+                                    <div uib-accordion-group class="profileButton bottom text-left" >
+                                        <uib-accordion-heading>
+                                            <i class="fa fa-building-o fa-fw" aria-hidden="true" style="vertical-align: middle;"></i> Organização <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                        </uib-accordion-heading>
+                                        <div class="profileButton bottom text-left" ng-click="menuCtrl.createOrganization()">
+                                            <i class="fa fa-plus fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Criar
+                                        </div>
+                                    </div>
+                                </uib-accordion>
+
+                                <div ng-click="menuCtrl.signOut()" class="profileButton bottom text-left">
+                                    <i class="fa fa-sign-out fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Sair
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+
+<ng-view autoscroll="true"></ng-view>
+
+<!-- jquery -->
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+
+<!-- bootstrap -->
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- angular js -->
+<script src="vendor/angular/angular.min.js"></script>
+<script src="vendor/angular-loader/angular-loader.min.js"></script>
+<script src="vendor/angular-mocks/angular-mocks.js"></script>
+<script src="vendor/angular-route/angular-route.min.js"></script>
+<script src="vendor/angular-animate/angular-animate.min.js"></script>
+<script src="vendor/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<!-- angular storage -->
+<script src="vendor/ngstorage/ngStorage.min.js"></script>
+
+<!-- app global config -->
+<script src="public/app/config/app-specific.config.js"></script>
+
+<!-- app config -->
+<script src="public/app/config/app.module.js"></script>
+<script src="public/app/config/app.config.js"></script>
+
+<!-- data services base -->
+<script src="public/app/services/http/base/http.service.js"></script>
+
+<!-- util services -->
+<script src="public/app/services/util/log.service.js"></script>
+
+<!-- data services -->
+<script src="public/app/services/http/home.data-service.js"></script>
+<script src="public/app/services/http/user.data-service.js"></script>
+<script src="public/app/services/http/login.data-service.js"></script>
+
+<!-- components base -->
+<script src="public/app/components/base.controller.js"></script>
+
+<!-- components -->
+<script src="public/app/components/home/home.controller.js"></script>
+<script src="public/app/components/home/modals/modal.controller.js"></script>
+<script src="public/app/components/register/register.controller.js"></script>
+<script src="public/app/components/menu/menu.controller.js"></script>
+<script src="public/app/components/login/login.controller.js"></script>
+<script src="public/app/components/organization/organization.controller.js"></script>
+<script src="public/app/components/organization/new-organization.controller.js"></script>
+<script src="public/app/components/menu/accordion/accordion.controller.js"></script>
+
+<!--<script src="js/controllers.js"></script>-->
+<!--<script src="js/filters.js"></script>-->
+<!--<script src="js/routes.js"></script>-->
+<!--<script src="js/services.js"></script>-->
+
+</body>
+</html>

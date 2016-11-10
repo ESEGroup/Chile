@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <title>Template App</title>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="content/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Direto da Fonte</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b><span class="navbar-profile-icon center-block"></span></b></a>
+                    <ul id="profileMenu" class="dropdown-menu">
+                        <li>
+                            <div class="row">
+
+                                <div class="profileButton bottom text-left">
+                                    <i class="fa fa-user fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Perfil
+                                </div>
+
+                                <div class="profileButton bottom text-left">
+                                    <i class="fa fa-briefcase fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Vagas
+                                </div>
+
+                                <div class="profileButton bottom text-left">
+                                    <i class="fa fa-sign-out fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Sair
+                                </div>
+
+
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+<div class="container">
+
+    
+
+</div>
+
+<!-- jquery -->
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+
+<!-- bootstrap -->
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- angular js -->
+<script src="vendor/angular/angular.min.js"></script>
+<script src="vendor/angular-route/angular-route.min.js"></script>
+
+<!-- app global config -->
+<script src="public/app/config/app-specific.config.js"></script>
+
+<!-- app config -->
+<script src="public/app/config/app.module.js"></script>
+<script src="public/app/config/app.config.js"></script>
+
+<!-- data services base -->
+<script src="public/app/services/http/base/http.service.js"></script>
+
+<!-- util services -->
+
+
+<!-- data services -->
+<script src="public/app/services/http/home.data-service.js"></script>
+
+<!-- components base -->
+<script src="public/app/components/base.controller.js"></script>
+
+<!-- components -->
+<script src="public/app/components/home/home.controller.js"></script>
+<script src="public/app/components/register/register.controller.js"></script>
+
+<!--<script src="js/controllers.js"></script>-->
+<!--<script src="js/filters.js"></script>-->
+<!--<script src="js/routes.js"></script>-->
+<!--<script src="js/services.js"></script>-->
+
+</body>
+</html>

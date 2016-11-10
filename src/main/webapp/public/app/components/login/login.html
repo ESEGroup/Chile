@@ -1,0 +1,29 @@
+<div class="headerOverlay">
+    <div class="boxOverlay">
+        <div>
+            <p class="title">Entrar</p>
+            <div class="registrationBox">
+
+                <form class="" method="post" ng-submit="loginCtrl.login()">
+
+                    <div class="">
+                        <label for="username" class="">USUÁRIO OU EMAIL</label>
+                        <input ng-model="loginCtrl.username" type="text" class="form-control" name="username" id="username"  placeholder="" required>
+                    </div>
+
+                    <div class="">
+                        <label for="password" class="">SENHA</label>
+                        <input ng-model="loginCtrl.password" type="password" class="form-control" name="password" id="password"  placeholder="" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-create">ENTRAR</button>
+
+                    <p class="terms">Não possui uma conta? <a href="javascript:void(0)" ng-click="loginCtrl.goToRegistration()"><i>Inscreva-se.</i></a></p>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="imageOverlay"></div>
+</div>
