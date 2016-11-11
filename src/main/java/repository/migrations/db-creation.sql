@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`User` (
   `name` VARCHAR(255) NOT NULL,
   `cpf` CHAR(11) NOT NULL,
   `rg` CHAR(9) NOT NULL,
-  `issuer` VARCHAR(45) NOT NULL,
+  `rgIssuer` VARCHAR(45) NOT NULL,
   `employee_id` CHAR(7) NOT NULL,
   `password` CHAR(60) NOT NULL,
   `birth_date` DATETIME NOT NULL,

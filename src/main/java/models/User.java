@@ -11,7 +11,7 @@ public class User
     private String name;
     private String cpf;
     private String rg;
-    private String issuer;
+    private String rgIssuer;
     private String employeeId;
     private String password;
     private Date birthDate;
@@ -61,14 +61,14 @@ public class User
         this.rg = rg;
     }
 
-    public String getIssuer()
+    public String getRgIssuer()
     {
-        return issuer;
+        return rgIssuer;
     }
 
-    public void setIssuer(String issuer)
+    public void setRgIssuer(String rgIssuer)
     {
-        this.issuer = issuer;
+        this.rgIssuer = rgIssuer;
     }
 
     public void setEmployeeId(String employeeId)

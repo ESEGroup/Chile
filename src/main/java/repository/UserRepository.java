@@ -39,7 +39,7 @@ public class UserRepository extends BaseRepository
             user.setName(rs.getString("name"));
             user.setCpf(rs.getString("cpf"));
             user.setRg(rs.getString("rg"));
-            user.setIssuer(rs.getString("issuer"));
+            user.setRgIssuer(rs.getString("rg_issuer"));
             user.setEmployeeId(rs.getString("employee_id"));
             user.setPassword(rs.getString("password"));
             user.setBirthDate(rs.getDate("birth_date"));
