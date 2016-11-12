@@ -2,17 +2,14 @@ namespace App.Interfaces {
 
     export interface IUser {
         id: number;
-        firstName: string;
-        lastName: string;
-        username: string;
+        name: string;
+        cpf: string;
+        rg: string;
+        issuer: string;
+        employeeId: string;
         password: string;
-        email: string;
-        educationalInstitution: string;
-        academicEducation: string;
-        telephone: string;
-        creationDate: Date;
         birthDate: Date;
-        curriculumVitaePath: string;
+        isAdmin: boolean;
     }
 
 }

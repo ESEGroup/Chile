@@ -2,6 +2,7 @@ namespace App.Services.Http {
     "use strict";
     import IUser = App.Interfaces.IUser;
     import IResponse = App.Interfaces.IResponse;
+    import ILoginDTO = App.Interfaces.ILoginDTO;
 
     export class LoginDataService extends Base.HttpService {
 
@@ -12,9 +13,9 @@ namespace App.Services.Http {
             super('login', $http, $q);
         }
 
-        public login(username: string, password: string): ng.IPromise<IResponse> {
-            var loginData = {
-                username: username,
+        public login(employeeId: string, password: string): ng.IPromise<IResponse> {
+            var loginData: ILoginDTO = {
+                employeeId: employeeId,
                 password: password
             };
             return super.post("login", loginData);

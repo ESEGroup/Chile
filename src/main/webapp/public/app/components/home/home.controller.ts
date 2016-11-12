@@ -1,36 +1,27 @@
 namespace App.Components.Home {
 
-    import HomeDataService = App.Services.Http.HomeDataService;
+	import LogService = App.Services.Util.LogService;
+    import IUser = App.Interfaces.IUser;
 
-	export class HomeController extends BaseController {
+    export class HomeController extends BaseController {
 
-		public exampleParam: string;
+        private user: IUser;
 
-		public static $inject: string[] = ['$uibModal', 'HomeDataService'];
+		public static $inject: string[] = ['$localStorage', '$location', 'LogService'];
 
-		constructor(private $uibModal: ng.ui.bootstrap.IModalService, private homeDataService: HomeDataService) {
+		constructor(private $localStorage : angular.storage.IStorageService,
+                    private $location : ng.ILocationService,
+                    private logService: LogService) {
 			super();
 
-			this.homeDataService.get().then((data) => {
-				this.exampleParam = data.exampleParam;
-			});
+            this.checkLogin();
 		}
 
-		public openModal() {
-            console.log("openModal");
-            var modalOptions = {
-                templateUrl: 'public/app/components/home/modals/modal.html',
-                controller: App.Components.Home.Modals.ModalController,
-                controllerAs: 'modalCtrl',
-                backdrop: 'static'
-            };
-
-            this.$uibModal.open(modalOptions).result.then(
-                (data) => {
-                    console.log("Resolved: ", data);
-                }, (dismissed) => {
-                    console.log("Dismissed: ", dismissed);
-                });
+		public checkLogin() {
+            this.user = this.$localStorage['user'];
+            if (this.user == null || this.user == undefined) {
+                this.$location.path('/login');
+            }
         }
 	}
 

@@ -8,69 +8,184 @@
     <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/admin-lte/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="vendor/admin-lte/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="content/css/style.css">
 </head>
-<body ng-controller="MenuController as menuCtrl">
+<body class="sidebar-mini skin-blue" ng-controller="MenuController as menuCtrl">
 
-<nav class="navbar navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navNotLogged,#navLogged" aria-expanded="false" aria-controls="navbar">
+<div class="wrapper">
+
+    <header class="main-header" ng-if="menuCtrl.isLogged()">
+
+        <!-- Logo -->
+        <a href="javascript:void(0)" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>A</b>LT</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Admin</b>LTE</span>
+        </a>
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="javascript:void(0)" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="javascript:void(0)" ng-click="menuCtrl.goToHome()">Direto da Fonte</a>
-        </div>
-        <div class="navbar-collapse collapse test" ng-if="!menuCtrl.isLogged()" id="navNotLogged">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="javascript:void(0)" ng-click="menuCtrl.userLogin()"><span class="loginButton">ENTRAR</span></a></li>
-                <li><a href="javascript:void(0)" ng-click="menuCtrl.userRegister()"><span class="registerButton">INSCREVA-SE</span></a></li>
-            </ul>
-        </div>
-
-        <div class="navbar-collapse collapse test" ng-if="menuCtrl.isLogged()" id="navLogged">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown"><b><span class="navbar-profile-icon center-block"></span></b></a>
-                    <ul id="profileMenu" class="dropdown-menu">
-                        <li>
-                            <div class="row">
-                                <div class="profileButton bottom text-left">
-                                    <i class="fa fa-user fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Perfil
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 10 notifications</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
+                                    <ul class="menu" style="overflow: hidden; width: 100%;">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 195.122px;"></div>
+                                    <div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
                                 </div>
-                                <div class="profileButton bottom text-left">
-                                    <i class="fa fa-briefcase fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Vagas
-                                </div>
-
-                                <uib-accordion class="organizationAccordion">
-                                    <div uib-accordion-group class="profileButton bottom text-left" >
-                                        <uib-accordion-heading>
-                                            <i class="fa fa-building-o fa-fw" aria-hidden="true" style="vertical-align: middle;"></i> Organização <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                                        </uib-accordion-heading>
-                                        <div class="profileButton bottom text-left" ng-click="menuCtrl.createOrganization()">
-                                            <i class="fa fa-plus fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Criar
-                                        </div>
+                            </li>
+                            <li class="footer"><a href="javascript:void(0)">View all</a></li>
+                        </ul>
+                    </li>
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/vendor/admin-lte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{ menuCtrl.user.name }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="/vendor/admin-lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <p>
+                                    {{ menuCtrl.user.name }} - Web Developer
+                                    <small>Member since Nov. 2012</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="javascript:void(0)">Followers</a>
                                     </div>
-                                </uib-accordion>
-
-                                <div ng-click="menuCtrl.signOut()" class="profileButton bottom text-left">
-                                    <i class="fa fa-sign-out fa-fw" aria-hidden="true" style="vertical-align: middle;"></i>  Sair
+                                    <div class="col-xs-4 text-center">
+                                        <a href="javascript:void(0)">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="javascript:void(0)">Friends</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <a href="javascript:void(0)" class="btn btn-default btn-flat" ng-click="menuCtrl.signOut()">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
+        </nav>
+
+    </header>
+
+    <aside class="main-sidebar" ng-if="menuCtrl.isLogged()">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="/vendor/admin-lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{ menuCtrl.user.name }}</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header">MENU PRINCIPAL</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
                     </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>Layout Options</span>
+                        <span class="pull-right-container">
+                            <span class="label label-primary pull-right">4</span>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Boxed</a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Fixed</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-th"></i> <span>Widgets</span>
+                        <span class="pull-right-container">
+                            <small class="label pull-right bg-green">new</small>
+                        </span>
+                    </a>
+                </li>
             </ul>
-        </div>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <div class="content-wrapper" style="min-height: 1126px;" ng-style="{ 'margin-left': !menuCtrl.isLogged() && '0px' }">
+
+        <ng-view autoscroll="true"></ng-view>
 
     </div>
-</nav>
 
+    <footer class="main-footer" ng-style="{ 'margin-left': !menuCtrl.isLogged() && '0px' }">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+        <strong>Copyright © 2014-2016 <a href="http://ufrj.br">Universidade Federal do Rio de Janeiro - UFRJ</a>.</strong> All rights reserved.
+    </footer>
 
-<ng-view autoscroll="true"></ng-view>
+</div>
 
 <!-- jquery -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
@@ -89,6 +204,9 @@
 
 <!-- angular storage -->
 <script src="vendor/ngstorage/ngStorage.min.js"></script>
+
+<!-- admin lte -->
+<script src="vendor/admin-lte/dist/js/app.min.js"></script>
 
 <!-- app global config -->
 <script src="public/app/config/app-specific.config.js"></script>
@@ -113,13 +231,8 @@
 
 <!-- components -->
 <script src="public/app/components/home/home.controller.js"></script>
-<script src="public/app/components/home/modals/modal.controller.js"></script>
-<script src="public/app/components/register/register.controller.js"></script>
 <script src="public/app/components/menu/menu.controller.js"></script>
 <script src="public/app/components/login/login.controller.js"></script>
-<script src="public/app/components/organization/organization.controller.js"></script>
-<script src="public/app/components/organization/new-organization.controller.js"></script>
-<script src="public/app/components/menu/accordion/accordion.controller.js"></script>
 
 <!--<script src="js/controllers.js"></script>-->
 <!--<script src="js/filters.js"></script>-->

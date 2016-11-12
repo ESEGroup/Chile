@@ -1,6 +1,9 @@
 namespace App.Components.Menu {
 
+    import IUser = App.Interfaces.IUser;
     export class MenuController extends BaseController {
+
+        private user: IUser;
 
         public static $inject: string[] = ['$localStorage', '$location'];
 
@@ -9,8 +12,8 @@ namespace App.Components.Menu {
         }
 
         public isLogged() {
-            var user: any = this.$localStorage['user'];
-            return !(user == null || user == undefined);
+            this.user = this.$localStorage['user'];
+            return !(this.user == null || this.user == undefined);
         }
 
         public userRegister() {
@@ -26,7 +29,7 @@ namespace App.Components.Menu {
 
         public signOut() {
             this.$localStorage.$reset();
-            this.$location.path('/');
+            this.$location.path('/login');
         }
 
         public goToHome() {

@@ -6,7 +6,7 @@ namespace App.Components.Login {
 
     export class LoginController extends BaseController {
 
-        public username: string;
+        public employeeId: string;
         public password: string;
 
         public user: IUser;
@@ -20,37 +20,16 @@ namespace App.Components.Login {
             super();
         }
 
-        public goToRegistration() {
-            this.$location.path('/register');
-        }
-
         public login() {
-            this.loginDataService.login(this.username, this.password).then(
+            this.loginDataService.login(this.employeeId, this.password).then(
                 (data) => {
-                    switch (data.status) {
-                        case 1:
-                            this.user = data.user;
-                            this.logService.success('Login realizado com sucesso.');
-                            this.$localStorage['user'] = this.user;
-                            this.$location.path("/");
-                            break;
-                        case -1:
-                            this.logService.error('Erro no login.');
-                            this.password = null;
-                            break;
-                        case -2:
-                            this.logService.warning('Senha não confere.');
-                            this.password = null;
-                            break;
-                        case -3:
-                            this.logService.warning('Usuário não cadastrado.');
-                            this.password = null;
-                            break;
-                    }
-
+                    this.user = data.user;
+                    this.logService.success(data.message);
+                    this.$localStorage['user'] = this.user;
+                    this.$location.path("/");
                 },
                 (error) => {
-                    this.logService.error(error);
+                    this.logService.error(error.data.message);
                     this.password = null;
                 }
             )
