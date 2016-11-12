@@ -25,7 +25,10 @@ public class UserRepository extends BaseRepository
         this.params = new HashMap<>();
         this.params.put("employee_id", employeeId);
 
-        this.query = "select * from User where employee_id = :employee_id";
+        this.query = "SELECT * FROM User u " +
+                     "JOIN Role r ON u.role_id = r.role_id " +
+                     "JOIN Department d on u.department_id = d.department_id " +
+                     "WHERE employee_id = :employee_id";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -35,15 +38,22 @@ public class UserRepository extends BaseRepository
         while(this.rs.next())
         {
             user = new User();
-            user.setId(rs.getInt("user_id"));
-            user.setName(rs.getString("name"));
-            user.setCpf(rs.getString("cpf"));
-            user.setRg(rs.getString("rg"));
-            user.setRgIssuer(rs.getString("rg_issuer"));
-            user.setEmployeeId(rs.getString("employee_id"));
-            user.setPassword(rs.getString("password"));
-            user.setBirthDate(rs.getDate("birth_date"));
-            user.setAdmin(rs.getBoolean("is_admin"));
+            user.setId(this.rs.getInt("user_id"));
+            user.setEmployeeId(this.rs.getString("employee_id"));
+            user.setCpf(this.rs.getString("cpf"));
+            user.setRg(this.rs.getString("rg"));
+            user.setRgIssuer(this.rs.getString("rg_issuer"));
+            user.setName(this.rs.getString("u.name"));
+            user.setPassword(this.rs.getString("password"));
+            user.setBirthDate(this.rs.getDate("birth_date"));
+            user.setCreationDate(this.rs.getDate("creation_date"));
+            user.setDeleted(this.rs.getBoolean("is_deleted"));
+
+            user.getRole().setId(this.rs.getInt("role_id"));
+            user.getRole().setName(this.rs.getString("r.name"));
+
+            user.getDepartment().setId(this.rs.getInt("department_id"));
+            user.getDepartment().setName(this.rs.getString("d.name"));
         }
 
         return user;

@@ -9,7 +9,11 @@ namespace App.Interfaces {
         employeeId: string;
         password: string;
         birthDate: Date;
-        isAdmin: boolean;
+        creationDate: Date;
+        isDeleted: boolean;
+
+        role: IRole;
+        department: IDepartment;
     }
 
 }

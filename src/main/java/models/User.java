@@ -8,17 +8,23 @@ import java.util.Date;
 public class User
 {
     private int id;
-    private String name;
+    private String employeeId;
     private String cpf;
     private String rg;
     private String rgIssuer;
-    private String employeeId;
+    private String name;
     private String password;
     private Date birthDate;
-    private boolean isAdmin;
+    private Date creationDate;
+    private boolean isDeleted;
+
+    private Role role;
+    private Department department;
 
     public User()
     {
+        this.role = new Role();
+        this.department = new Department();
     }
 
     public int getId()
@@ -31,14 +37,14 @@ public class User
         this.id = id;
     }
 
-    public String getName()
+    public String getEmployeeId()
     {
-        return name;
+        return employeeId;
     }
 
-    public void setName(String name)
+    public void setEmployeeId(String employeeId)
     {
-        this.name = name;
+        this.employeeId = employeeId;
     }
 
     public String getCpf()
@@ -71,9 +77,14 @@ public class User
         this.rgIssuer = rgIssuer;
     }
 
-    public void setEmployeeId(String employeeId)
+    public String getName()
     {
-        this.employeeId = employeeId;
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
     public String getPassword()
@@ -96,19 +107,43 @@ public class User
         this.birthDate = birthDate;
     }
 
-    public String getEmployeeId()
+    public Date getCreationDate()
     {
-        return employeeId;
+        return creationDate;
     }
 
-    public boolean isAdmin()
+    public void setCreationDate(Date creationDate)
     {
-        return isAdmin;
+        this.creationDate = creationDate;
     }
 
-    public void setAdmin(boolean admin)
+    public boolean isDeleted()
     {
-        isAdmin = admin;
+        return isDeleted;
     }
 
+    public void setDeleted(boolean deleted)
+    {
+        isDeleted = deleted;
+    }
+
+    public Role getRole()
+    {
+        return role;
+    }
+
+    public void setRole(Role role)
+    {
+        this.role = role;
+    }
+
+    public Department getDepartment()
+    {
+        return department;
+    }
+
+    public void setDepartment(Department department)
+    {
+        this.department = department;
+    }
 }

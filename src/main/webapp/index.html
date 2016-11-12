@@ -71,8 +71,8 @@
                             <li class="user-header">
                                 <img src="/vendor/admin-lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                 <p>
-                                    {{ menuCtrl.user.name }} - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    {{ menuCtrl.user.name }} - {{ menuCtrl.user.role.name }}
+                                    <small>Membro desde {{ menuCtrl.user.creationDate | date : "d/MMM/yyyy"}}</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
