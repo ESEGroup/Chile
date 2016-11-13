@@ -44,7 +44,7 @@ public class LoginController
             {
                 response.setStatus(Response.Status.OK.getStatusCode());
                 response.setMessage("Login successful.");
-                response.setUser(user);
+                response.setData(user);
             }
             else
             {

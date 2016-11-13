@@ -5,6 +5,10 @@ namespace App.Components.Menu {
 
         private user: IUser;
 
+        private GENERAL_ADMIN: number = 1;
+        private DEPARTMENT_ADMIN: number = 1;
+        private EMPLOYEE: number = 1;
+
         public static $inject: string[] = ['$localStorage', '$location'];
 
         constructor(private $localStorage : angular.storage.IStorageService, private $location : ng.ILocationService) {
@@ -16,28 +20,13 @@ namespace App.Components.Menu {
             return !(this.user == null || this.user == undefined);
         }
 
-        public userRegister() {
-            this.$location.path('/register');
+        public goToUserConfiguration() {
+            this.$location.path('/configuration/user');
         }
-
-        public userLogin() {
-            this.$location.path('/login')
-        }
-        // public login() {
-        //     this.$location.path('/login');
-        // }
 
         public signOut() {
             this.$localStorage.$reset();
             this.$location.path('/login');
-        }
-
-        public goToHome() {
-            this.$location.path('/');
-        }
-
-        public createOrganization() {
-            this.$location.path('/organization/new');
         }
     }
 

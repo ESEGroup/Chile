@@ -17,6 +17,12 @@
 				controller: App.Components.Login.LoginController,
 				controllerAs: 'loginCtrl'
 			})
+			// Configuration
+			.when('/configuration/user', {
+				templateUrl: 'public/app/components/configuration/user/user-configuration.html',
+				controller: App.Components.Configuration.User.UserConfigurationController,
+				controllerAs: 'userConfigCtrl'
+			})
 			.otherwise({
 	            redirectTo: '/'
 	        });

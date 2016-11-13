@@ -9,7 +9,7 @@ public class HttpResponse
 {
     private int status;
     private String message;
-    private User user;
+    private Object data;
 
     public int getStatus()
     {
@@ -31,13 +31,13 @@ public class HttpResponse
         this.message = message;
     }
 
-    public User getUser()
+    public Object getData()
     {
-        return this.user;
+        return this.data;
     }
 
-    public void setUser(User user)
+    public void setData(Object data)
     {
-        this.user = user;
+        this.data = data;
     }
 }

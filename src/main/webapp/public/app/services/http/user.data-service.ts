@@ -1,6 +1,6 @@
 namespace App.Services.Http {
     "use strict";
-    import IUser = App.Interfaces.IUser;
+    import IResponse = App.Interfaces.IResponse;
 
     export class UserDataService extends Base.HttpService {
 
@@ -11,12 +11,8 @@ namespace App.Services.Http {
             super('user', $http, $q);
         }
 
-        public get(): ng.IPromise<any> {
-            return super.get("get");
-        }
-
-        public create(user: IUser): ng.IPromise<any> {
-            return super.post("create", user);
+        public getAll(): ng.IPromise<IResponse> {
+            return super.get("getAll");
         }
 
     }
