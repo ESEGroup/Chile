@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendor/admin-lte/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="vendor/admin-lte/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="vendor/devextreme/css/dx.common.css">
+    <link rel="stylesheet" href="vendor/devextreme/css/dx.light.css">
+    <link rel="stylesheet" href="content/css/data-grid.css">
     <link rel="stylesheet" href="content/css/style.css">
 </head>
 <body class="sidebar-mini skin-blue" ng-controller="MenuController as menuCtrl">
@@ -133,16 +136,19 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="header">MENU PRINCIPAL</li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <li class="treeview" ng-if="menuCtrl.user.role.id <= menuCtrl.DEPARTMENT_ADMIN">
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-dashboard"></i> <span>Configuração</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                        <li ng-if="menuCtrl.user.role.id <= menuCtrl.GENERAL_ADMIN">
+                            <a href="#/configuration/user"> <!--ng-click="menuCtrl.goToUserConfiguration()"-->
+                                <i class="fa fa-circle-o"></i> Usuários
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -199,14 +205,22 @@
 <script src="vendor/angular-mocks/angular-mocks.js"></script>
 <script src="vendor/angular-route/angular-route.min.js"></script>
 <script src="vendor/angular-animate/angular-animate.min.js"></script>
+<script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="vendor/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<!-- globalize -->
+<!--<script src="vendor/globalize/dist/globalize.js"></script>-->
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
 
 <!-- angular storage -->
 <script src="vendor/ngstorage/ngStorage.min.js"></script>
 
 <!-- admin lte -->
 <script src="vendor/admin-lte/dist/js/app.min.js"></script>
+
+<!-- dev extreme -->
+<script src="vendor/devextreme/js/dx.all.js"></script>
 
 <!-- app global config -->
 <script src="public/app/config/app-specific.config.js"></script>
@@ -233,6 +247,11 @@
 <script src="public/app/components/home/home.controller.js"></script>
 <script src="public/app/components/menu/menu.controller.js"></script>
 <script src="public/app/components/login/login.controller.js"></script>
+<script src="public/app/components/configuration/user/user-configuration.controller.js"></script>
+
+<!-- directives -->
+<script src="public/app/directives/data-grid/sta-dx-grid.controller.js"></script>
+<script src="public/app/directives/data-grid/sta-dx-grid.directive.js"></script>
 
 <!--<script src="js/controllers.js"></script>-->
 <!--<script src="js/filters.js"></script>-->

@@ -5,6 +5,8 @@
 		'ui.bootstrap',
 		'ngStorage',
 		'toastr',
+        'ngSanitize',
+		'dx'
 	]);
 	
 })();

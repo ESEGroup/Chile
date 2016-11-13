@@ -5,10 +5,13 @@ import models.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by ericreis on 11/10/16.
  */
+@SuppressWarnings("Duplicates")
 public class UserRepository extends BaseRepository
 {
     private String query;
@@ -28,14 +31,14 @@ public class UserRepository extends BaseRepository
         this.query = "SELECT * FROM User u " +
                      "JOIN Role r ON u.role_id = r.role_id " +
                      "JOIN Department d on u.department_id = d.department_id " +
-                     "WHERE employee_id = :employee_id";
+                     "WHERE employee_id = :employee_id AND is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
 
         this.rs = this.namedStmt.executeQuery();
 
         User user = null;
-        while(this.rs.next())
+        while (this.rs.next())
         {
             user = new User();
             user.setId(this.rs.getInt("user_id"));
@@ -57,5 +60,46 @@ public class UserRepository extends BaseRepository
         }
 
         return user;
+    }
+
+    public List<User> getAll() throws SQLException
+    {
+        this.params = new HashMap<>();
+
+        this.query = "SELECT * FROM User u " +
+                     "JOIN Role r ON u.role_id = r.role_id " +
+                     "JOIN Department d on u.department_id = d.department_id " +
+                     "WHERE is_deleted = 0";
+
+        this.createNamedParameterStatement(this.query, this.params);
+
+        this.rs = this.namedStmt.executeQuery();
+
+        List<User> users = new LinkedList<>();
+        User user = null;
+        while (this.rs.next())
+        {
+            user = new User();
+            user.setId(this.rs.getInt("user_id"));
+            user.setEmployeeId(this.rs.getString("employee_id"));
+            user.setCpf(this.rs.getString("cpf"));
+            user.setRg(this.rs.getString("rg"));
+            user.setRgIssuer(this.rs.getString("rg_issuer"));
+            user.setName(this.rs.getString("u.name"));
+            user.setPassword(this.rs.getString("password"));
+            user.setBirthDate(this.rs.getDate("birth_date"));
+            user.setCreationDate(this.rs.getDate("creation_date"));
+            user.setDeleted(this.rs.getBoolean("is_deleted"));
+
+            user.getRole().setId(this.rs.getInt("role_id"));
+            user.getRole().setName(this.rs.getString("r.name"));
+
+            user.getDepartment().setId(this.rs.getInt("department_id"));
+            user.getDepartment().setName(this.rs.getString("d.name"));
+
+            users.add(user);
+        }
+
+        return users;
     }
 }

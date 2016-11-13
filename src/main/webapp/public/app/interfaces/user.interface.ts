@@ -5,7 +5,7 @@ namespace App.Interfaces {
         name: string;
         cpf: string;
         rg: string;
-        issuer: string;
+        rgIssuer: string;
         employeeId: string;
         password: string;
         birthDate: Date;

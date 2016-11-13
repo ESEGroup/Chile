@@ -23,7 +23,7 @@ namespace App.Components.Login {
         public login() {
             this.loginDataService.login(this.employeeId, this.password).then(
                 (data) => {
-                    this.user = data.user;
+                    this.user = data.data;
                     this.logService.success(data.message);
                     this.$localStorage['user'] = this.user;
                     this.$location.path("/");

@@ -2,6 +2,7 @@ package api.config;
 
 
 import api.controllers.LoginController;
+import api.controllers.UserController;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -31,6 +32,7 @@ public class WebApiConfig extends Application
     private void addRestResourceClasses(final Set<Class<?>> resources)
     {
         resources.add(LoginController.class);
+        resources.add(UserController.class);
     }
 
 }
