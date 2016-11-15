@@ -6,7 +6,8 @@
 		'ngStorage',
 		'toastr',
         'ngSanitize',
-		'dx'
+		'dx',
+		'ngMessages'
 	]);
 	
 })();

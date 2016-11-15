@@ -1,7 +1,9 @@
 package api.config;
 
 
+import api.controllers.DepartmentController;
 import api.controllers.LoginController;
+import api.controllers.RoleController;
 import api.controllers.UserController;
 
 import javax.ws.rs.ApplicationPath;
@@ -33,6 +35,8 @@ public class WebApiConfig extends Application
     {
         resources.add(LoginController.class);
         resources.add(UserController.class);
+        resources.add(RoleController.class);
+        resources.add(DepartmentController.class);
     }
 
 }

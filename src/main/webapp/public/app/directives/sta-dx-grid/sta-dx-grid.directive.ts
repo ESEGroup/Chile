@@ -1,4 +1,4 @@
-namespace App.Directives.DataGrid {
+namespace App.Directives.STADxGrid {
 
     export class STADxGridDirective implements ng.IDirective {
 
@@ -47,8 +47,8 @@ namespace App.Directives.DataGrid {
                     applyFilter: '@',
                     onExportedFunction: '=',
                 },
-                templateUrl: 'public/app/directives/data-grid/sta-dx-grid.html',
-                controller: App.Directives.DataGrid.STADxGridController,
+                templateUrl: 'public/app/directives/sta-dx-grid/sta-dx-grid.html',
+                controller: App.Directives.STADxGrid.STADxGridController,
                 controllerAs: 'staDxGridCtrl'
             };
 
