@@ -1,4 +1,4 @@
-namespace App.Directives.DataGrid {
+namespace App.Directives.STADxGrid {
 
     export class STADxGridController extends App.Components.BaseController {
 
@@ -6,6 +6,8 @@ namespace App.Directives.DataGrid {
         private gridFieldOptions: any;
         private hideTotal: boolean;
         private total: number;
+
+        private grid: DevExpress.ui.dxDataGrid;
 
         public static $inject: string[] = ['$compile', '$scope'];
 
@@ -313,7 +315,7 @@ namespace App.Directives.DataGrid {
                 wordWrapEnabled: wordWrapEnabled,
                 onRowInserting: onRowInserting,
                 onRowUpdating: onRowUpdating,
-                summary: summary
+                summary: summary,
             };
             this.hideTotal = this.$scope.hideTotal;
 

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="vendor/admin-lte/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="vendor/devextreme/css/dx.common.css">
     <link rel="stylesheet" href="vendor/devextreme/css/dx.light.css">
+    <link rel="stylesheet" href="vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="content/css/data-grid.css">
     <link rel="stylesheet" href="content/css/style.css">
 </head>
@@ -145,7 +146,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li ng-if="menuCtrl.user.role.id <= menuCtrl.GENERAL_ADMIN">
-                            <a href="#/configuration/user"> <!--ng-click="menuCtrl.goToUserConfiguration()"-->
+                            <a href="#/configuration/users">
                                 <i class="fa fa-circle-o"></i> Usuários
                             </a>
                         </li>
@@ -188,7 +189,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0.0
         </div>
-        <strong>Copyright © 2014-2016 <a href="http://ufrj.br">Universidade Federal do Rio de Janeiro - UFRJ</a>.</strong> All rights reserved.
+        <strong>Copyright © 2016 <a href="http://ufrj.br">Universidade Federal do Rio de Janeiro - UFRJ</a>.</strong> All rights reserved.
     </footer>
 
 </div>
@@ -208,6 +209,7 @@
 <script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="vendor/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="vendor/angular-messages/angular-messages.min.js"></script>
 
 <!-- globalize -->
 <!--<script src="vendor/globalize/dist/globalize.js"></script>-->
@@ -221,6 +223,12 @@
 
 <!-- dev extreme -->
 <script src="vendor/devextreme/js/dx.all.js"></script>
+
+<!-- moment -->
+<script src="vendor/moment/min/moment.min.js"></script>
+
+<!-- bootstrap datepicker -->
+<script src="vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
 
 <!-- app global config -->
 <script src="public/app/config/app-specific.config.js"></script>
@@ -239,6 +247,8 @@
 <script src="public/app/services/http/home.data-service.js"></script>
 <script src="public/app/services/http/user.data-service.js"></script>
 <script src="public/app/services/http/login.data-service.js"></script>
+<script src="public/app/services/http/role.data-service.js"></script>
+<script src="public/app/services/http/department.data-service.js"></script>
 
 <!-- components base -->
 <script src="public/app/components/base.controller.js"></script>
@@ -247,11 +257,16 @@
 <script src="public/app/components/home/home.controller.js"></script>
 <script src="public/app/components/menu/menu.controller.js"></script>
 <script src="public/app/components/login/login.controller.js"></script>
+<script src="public/app/components/configuration/user/users-configuration.controller.js"></script>
 <script src="public/app/components/configuration/user/user-configuration.controller.js"></script>
 
 <!-- directives -->
-<script src="public/app/directives/data-grid/sta-dx-grid.controller.js"></script>
-<script src="public/app/directives/data-grid/sta-dx-grid.directive.js"></script>
+<script src="public/app/directives/sta-dx-grid/sta-dx-grid.controller.js"></script>
+<script src="public/app/directives/sta-dx-grid/sta-dx-grid.directive.js"></script>
+
+<script src="public/app/directives/sta-date-picker/sta-date-picker.controller.js"></script>
+<script src="public/app/directives/sta-date-picker/sta-date-picker.directive.js"></script>
+
 
 <!--<script src="js/controllers.js"></script>-->
 <!--<script src="js/filters.js"></script>-->

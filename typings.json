@@ -12,6 +12,7 @@
     "angular-ui-bootstrap": "registry:dt/angular-ui-bootstrap#0.13.3+20160919090501",
     "angular-toastr": "registry:dt/angular-toastr#1.6.0+20160330162121",
     "ngstorage": "registry:dt/ngstorage#0.3.10+20160711132043",
-    "jquery": "registry:dt/jquery#1.10.0+20160929162922"
+    "jquery": "registry:dt/jquery#1.10.0+20160929162922",
+    "moment": "registry:dt/moment#2.11.1+20161010105546"
   }
 }
