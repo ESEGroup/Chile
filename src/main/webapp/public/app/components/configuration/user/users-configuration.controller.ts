@@ -4,10 +4,9 @@ namespace App.Components.Configuration.User {
     import IUser = App.Interfaces.IUser;
     import UserDataService = App.Services.Http.UserDataService;
     import LogService = App.Services.Util.LogService;
+    import dxDataGridRow = DevExpress.ui.dxDataGridRow;
 
-    export class UserConfigurationController extends BaseController {
-
-        public user: IUser;
+    export class UsersConfigurationController extends BaseController {
 
         public fieldList: any;
         public columnList: any;
@@ -35,8 +34,14 @@ namespace App.Components.Configuration.User {
         private init() {
             this.columnList = [
                 {
+                    alignment: 'center',
+                    dataField: 'id',
+                    caption: 'Id',
+                    visible: false,
+                },
+                {
                     isEditCommand: true,
-                    // editFunction: self.edit
+                    editFunction: this.editFunc
                 },
                 {
                     dataField: 'name',
@@ -61,10 +66,14 @@ namespace App.Components.Configuration.User {
                 {
                     dataField: 'birthDate',
                     caption: 'Data de Nascimento',
+                    dataType: 'date',
+                    format: 'dd/MM/yyyy'
                 },
                 {
                     dataField: 'creationDate',
                     caption: 'Data de Criação',
+                    dataType: 'date',
+                    format: 'dd/MM/yyyy'
                 },
                 {
                     dataField: 'role.name',
@@ -76,9 +85,33 @@ namespace App.Components.Configuration.User {
                 },
                 {
                     isDeleteCommand: true,
-                    // deleteFunction: self.delete
+                    deleteFunction: this.deleteFunc
                 }
             ];
+        }
+
+        public editFunc = (row) => {
+            this.$location.path('/configuration/user/' + row.id);
+        };
+
+        public deleteFunc = (row) => {
+            this.userDataService.delete(row.id).then(
+                (data) => {
+                    this.removeObjFromArrayById(this.fieldList, row.id);
+                    this.logService.success(data.message);
+                },
+                (error) => {
+                    this.logService.error(error.data.message);
+                }
+            )
+        };
+
+        private removeObjFromArrayById(array: any[], id: number) {
+            for (var i = 0; i <= array.length; i++) {
+                if (array[i].id == id) {
+                    array.splice(i, 1);
+                }
+            }
         }
 
         public goToNewUser() {
@@ -87,5 +120,5 @@ namespace App.Components.Configuration.User {
 
     }
 
-    angular.module(App.Config.MODULE_NAME).controller('UserConfigurationController', UserConfigurationController);
+    angular.module(App.Config.MODULE_NAME).controller('UsersConfigurationController', UsersConfigurationController);
 }
