@@ -24,7 +24,7 @@ namespace App.Components.Login {
             this.loginDataService.login(this.employeeId, this.password).then(
                 (data) => {
                     this.user = data.data;
-                    this.user.birthDate = new Date(this.user.birthDate.toString());
+                    this.user.birthDate = this.user.birthDate != null ? new Date(this.user.birthDate.toString()) : null;
                     this.user.creationDate = new Date(this.user.creationDate.toString());
                     this.logService.success(data.message);
                     this.$localStorage['user'] = this.user;
