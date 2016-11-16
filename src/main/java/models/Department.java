@@ -7,6 +7,7 @@ public class Department
 {
     private int id;
     private String name;
+	private String admin;
 
     public Department()
     {
@@ -31,4 +32,14 @@ public class Department
     {
         this.name = name;
     }
+
+	public String getAdmin()
+	{
+		return admin;
+	}
+	
+	public void setAdmin(String admin)
+	{
+		this.admin = admin;
+	}
 }

@@ -1,22 +1,197 @@
 <section class="content-header">
     <h1>
-        Usuários
+        Novo Usuário
         <small>it all starts here</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Configuração</li>
-        <li class="active">Usuário</li>
+        <li><a href="#/configuration/user"> Usuário</a></li>
+        <li class="active">Novo</li>
     </ol>
 </section>
 
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            <div class="portlet">
-                <div class="portlet-body form">
-                    <div class="form-body">
-                        <sta-dx-grid field-list="userConfigCtrl.fieldList" column-list="userConfigCtrl.columnList" filtering="true"></sta-dx-grid>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ userConfigCtrl.title }}</h3>
+                </div>
+                <div class="portlet">
+                    <div class="portlet-body form">
+                        <div class="form-body">
+                            <form class="form-horizontal" name="userConfigurationForm" method="post" ng-submit="userConfigCtrl.submit()" novalidate>
+
+                                <div class="box-body" style="display: block;">
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.employeeId.$touched && userConfigurationForm.employeeId.$invalid }">
+                                        <label for="employeeId" class="col-sm-2 control-label">ID Funcionário</label>
+                                        <div class="col-sm-9">
+                                            <input ng-model="userConfigCtrl.user.employeeId"
+                                                   ng-minlength="7"
+                                                   ng-maxlength="7"
+                                                   ng-pattern="userConfigCtrl.numbersOnlyRegex"
+                                                   ng-readonly="userConfigCtrl.userId != undefined"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="employeeId"
+                                                   name="employeeId"
+                                                   placeholder="ID Funcionário"
+                                                   required>
+                                            <div class="help-block" ng-messages="userConfigurationForm.employeeId.$error" ng-if="userConfigurationForm.employeeId.$touched">
+                                                <p ng-message="pattern">ID Funcionário somente aceita números.</p>
+                                                <p ng-message="minlength">ID Funcionário muito curto.</p>
+                                                <p ng-message="maxlength">ID Funcionário muito longo.</p>
+                                                <p ng-message="required">ID Funcionário obrigatório.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.name.$touched && userConfigurationForm.name.$invalid }">
+                                        <label for="name" class="col-sm-2 control-label">Nome</label>
+                                        <div class="col-sm-9">
+                                            <input ng-model="userConfigCtrl.user.name"
+                                               type="text"
+                                               class="form-control"
+                                               id="name"
+                                               name="name"
+                                               placeholder="Nome"
+                                               required>
+                                            <div class="help-block" ng-messages="userConfigurationForm.name.$error" ng-if="userConfigurationForm.name.$touched">
+                                                <p ng-message="required">Nome obrigatório.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.cpf.$touched && userConfigurationForm.cpf.$invalid }">
+                                        <label for="cpf" class="col-sm-2 control-label">CPF</label>
+                                        <div class="col-sm-9">
+                                            <input ng-model="userConfigCtrl.user.cpf"
+                                                   ng-minlength="11"
+                                                   ng-maxlength="11"
+                                                   ng-pattern="userConfigCtrl.numbersOnlyRegex"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="cpf"
+                                                   name="cpf"
+                                                   placeholder="CPF"
+                                                   required>
+                                            <div class="help-block" ng-messages="userConfigurationForm.cpf.$error" ng-if="userConfigurationForm.cpf.$touched">
+                                                <p ng-message="pattern">CPF somente aceita números.</p>
+                                                <p ng-message="minlength">CPF muito curto.</p>
+                                                <p ng-message="maxlength">CPF muito longo.</p>
+                                                <p ng-message="required">CPF obrigatório.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.rg.$touched && userConfigurationForm.rg.$invalid }">
+                                        <label for="rg" class="col-sm-2 control-label">RG</label>
+                                        <div class="col-sm-9">
+                                            <input ng-model="userConfigCtrl.user.rg"
+                                               ng-minlength="9"
+                                               ng-maxlength="9"
+                                               ng-pattern="userConfigCtrl.numbersOnlyRegex"
+                                               type="text"
+                                               class="form-control"
+                                               id="rg"
+                                               name="rg"
+                                               placeholder="RG"
+                                               required>
+                                            <div class="help-block" ng-messages="userConfigurationForm.rg.$error" ng-if="userConfigurationForm.rg.$touched">
+                                                <p ng-message="pattern">RG somente aceita números.</p>
+                                                <p ng-message="minlength">RG muito curto.</p>
+                                                <p ng-message="maxlength">RG muito longo.</p>
+                                                <p ng-message="required">RG obrigatório.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.rgIssuer.$touched && userConfigurationForm.rgIssuer.$invalid }">
+                                        <label for="rgIssuer" class="col-sm-2 control-label">Emissão RG</label>
+                                        <div class="col-sm-9">
+                                            <input ng-model="userConfigCtrl.user.rgIssuer"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="rgIssuer"
+                                                   name="rgIssuer"
+                                                   placeholder="Emissão RG"
+                                                   required>
+                                            <div class="help-block" ng-messages="userConfigurationForm.rg.$error" ng-if="userConfigurationForm.rg.$touched">
+                                                <p ng-message="required">Emissão RG obrigatório.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.password.$touched && userConfigurationForm.password.$invalid }">
+                                        <label for="password" class="col-sm-2 control-label">Senha</label>
+                                        <div class="col-sm-9">
+                                            <input ng-model="userConfigCtrl.user.password"
+                                               ng-minlength="5"
+                                               type="password"
+                                               class="form-control"
+                                               id="password"
+                                               name="password"
+                                               placeholder="Senha"
+                                               required>
+                                            <div class="help-block" ng-messages="userConfigurationForm.password.$error" ng-if="userConfigurationForm.password.$touched">
+                                                <p ng-message="minlength">Senha muito curta.</p>
+                                                <p ng-message="required">Senha obrigatória.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.password.$touched && userConfigurationForm.password.$invalid }">
+                                        <label for="birthDate" class="col-sm-2 control-label">Data de Nascimento</label>
+                                        <div class="col-sm-9">
+                                            <sta-date-picker ng-model="userConfigCtrl.user.birthDate" id="birthDate"></sta-date-picker>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.role.$touched && userConfigurationForm.role.$invalid }">
+                                        <label for="role" class="col-sm-2 control-label">Cargo</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                ng-model="userConfigCtrl.user.role"
+                                                ng-options="role as role.name for role in userConfigCtrl.roles track by role.id"
+                                                id="role"
+                                                name="role"
+                                                required>
+                                                <option value='' disabled selected>Cargo</option>
+                                            </select>
+                                            <div class="help-block" ng-messages="userConfigurationForm.role.$error" ng-if="userConfigurationForm.role.$touched">
+                                                <p ng-message="required">Cargo obrigatório.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.department.$touched && userConfigurationForm.department.$invalid }">
+                                        <label for="department" class="col-sm-2 control-label">Departamento</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control"
+                                                ng-model="userConfigCtrl.user.department"
+                                                ng-options="department as department.name for department in userConfigCtrl.departments track by department.id"
+                                                id="department"
+                                                name="department"
+                                                required>
+                                                <option value='' disabled selected>Departamento</option>
+                                            </select>
+                                            <div class="help-block" ng-messages="userConfigurationForm.department.$error" ng-if="userConfigurationForm.department.$touched">
+                                                <p ng-message="required">Departamento obrigatório.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="box-footer">
+                                    <button ng-click="userConfigCtrl.back()" class="btn btn-default"><i class="fa fa-arrow-left"></i> Voltar</button>
+                                    <button type="submit" ng-disabled="userConfigurationForm.$invalid" class="btn btn-success pull-right"><i class="fa fa-check"></i> Confirmar</button>
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

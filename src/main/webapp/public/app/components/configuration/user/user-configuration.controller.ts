@@ -4,82 +4,102 @@ namespace App.Components.Configuration.User {
     import IUser = App.Interfaces.IUser;
     import UserDataService = App.Services.Http.UserDataService;
     import LogService = App.Services.Util.LogService;
+    import RoleDataService = App.Services.Http.RoleDataService;
+    import DepartmentDataService = App.Services.Http.DepartmentDataService;
+    import IRole = App.Interfaces.IRole;
+    import IDepartment = App.Interfaces.IDepartment;
+    import IRouteParamsService = angular.route.IRouteParamsService;
 
     export class UserConfigurationController extends BaseController {
 
-        public employeeId: string;
-        public password: string;
-
+        public title: string;
         public user: IUser;
+        public roles: IRole[];
+        public departments: IDepartment[];
 
-        public fieldList: any;
-        public columnList: any;
+        public numbersOnlyRegex: RegExp;
 
-        public static $inject: string[] = ['LogService', 'UserDataService'];
+        private userId: number;
 
-        constructor(private logService : LogService, private userDataService : UserDataService) {
+        public static $inject: string[] = ['$routeParams', '$location', 'LogService', 'UserDataService', 'RoleDataService', 'DepartmentDataService'];
+
+        constructor(private $routeParam : IRouteParamsService,
+                    private $location : ng.ILocationService,
+                    private logService : LogService,
+                    private userDataService : UserDataService,
+                    private roleDataService: RoleDataService,
+                    private departmentDataService : DepartmentDataService) {
             super();
 
-            this.init();
+            this.title = "Criação de novo usuário";
+            this.numbersOnlyRegex = /^\d+$/;
 
-            this.userDataService.getAll().then(
+            this.userId = this.$routeParam['id'];
+
+            this.init();
+        }
+
+        private init() {
+            if (this.userId != undefined) {
+                this.userDataService.getById(this.userId).then(
+                    (data) => {
+                        this.user = data.data;
+                        this.user.birthDate = this.user.birthDate != null ? new Date(this.user.birthDate.toString()) : null;
+                        this.user.creationDate = new Date(this.user.creationDate.toString());
+                        this.logService.success(data.message);
+                    },
+                    (error) => {
+                        this.logService.error(error.data.message);
+                    }
+                )
+            }
+
+            this.roleDataService.getAll().then(
                 (data) => {
-                    this.fieldList = data.data;
+                    this.roles = data.data;
                     this.logService.success(data.message);
                 },
                 (error) => {
                     this.logService.error(error.data.message);
                 }
-            )
+            );
+
+            this.departmentDataService.getAll().then(
+                (data) => {
+                    this.departments = data.data;
+                    this.logService.success(data.message);
+                },
+                (error) => {
+                    this.logService.error(error.data.message);
+                }
+            );
         }
 
-        private init() {
-            this.columnList = [
-                {
-                    isEditCommand: true,
-                    // editFunction: self.edit
-                },
-                {
-                    dataField: 'name',
-                    caption: 'Nome',
-                },
-                {
-                    dataField: 'cpf',
-                    caption: 'CPF',
-                },
-                {
-                    dataField: 'rg',
-                    caption: 'RG',
-                },
-                {
-                    dataField: 'rgIssuer',
-                    caption: 'Emissão',
-                },
-                {
-                    dataField: 'employeeId',
-                    caption: 'ID Funcionário',
-                },
-                {
-                    dataField: 'birthDate',
-                    caption: 'Data de Nascimento',
-                },
-                {
-                    dataField: 'creationDate',
-                    caption: 'Data de Criação',
-                },
-                {
-                    dataField: 'role.name',
-                    caption: 'Cargo',
-                },
-                {
-                    dataField: 'department.name',
-                    caption: 'Departamento',
-                },
-                {
-                    isDeleteCommand: true,
-                    // deleteFunction: self.delete
-                }
-            ];
+        public submit() {
+            if (this.userId != undefined) {
+                this.userDataService.update(this.user).then(
+                    (data) => {
+                        this.logService.success(data.message);
+                    },
+                    (error) => {
+                        this.logService.error(error.data.message);
+                    }
+                );
+            }
+            else {
+                this.userDataService.create(this.user).then(
+                    (data) => {
+                        this.logService.success(data.message);
+                    },
+                    (error) => {
+                        this.logService.error(error.data.message);
+                    }
+                );
+            }
+        }
+
+        public back() {
+            this.$location.path('/configuration/users');
         }
 
     }

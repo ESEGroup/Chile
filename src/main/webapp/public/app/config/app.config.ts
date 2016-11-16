@@ -18,7 +18,17 @@
 				controllerAs: 'loginCtrl'
 			})
 			// Configuration
-			.when('/configuration/user', {
+			.when('/configuration/users', {
+				templateUrl: 'public/app/components/configuration/user/users-configuration.html',
+				controller: App.Components.Configuration.User.UsersConfigurationController,
+				controllerAs: 'usersConfigCtrl'
+			})
+			.when('/configuration/user/new', {
+				templateUrl: 'public/app/components/configuration/user/user-configuration.html',
+				controller: App.Components.Configuration.User.UserConfigurationController,
+				controllerAs: 'userConfigCtrl'
+			})
+			.when('/configuration/user/:id', {
 				templateUrl: 'public/app/components/configuration/user/user-configuration.html',
 				controller: App.Components.Configuration.User.UserConfigurationController,
 				controllerAs: 'userConfigCtrl'

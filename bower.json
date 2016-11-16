@@ -32,9 +32,12 @@
     "angular-bootstrap": "^2.2.0",
     "angular-toastr": "^2.1.1",
     "angular-sanitize": "^1.5.8",
+    "angular-messages": "^1.5.8",
     "ngstorage": "^0.3.11",
     "bootstrap": "^3.3.7",
     "admin-lte": "^2.3.8",
-    "devextreme": "16.1.7"
+    "devextreme": "16.1.7",
+    "bootstrap-datepicker": "^1.6.4",
+    "moment": "^2.16.0"
   }
 }

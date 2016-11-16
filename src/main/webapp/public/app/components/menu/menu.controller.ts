@@ -6,8 +6,8 @@ namespace App.Components.Menu {
         private user: IUser;
 
         private GENERAL_ADMIN: number = 1;
-        private DEPARTMENT_ADMIN: number = 1;
-        private EMPLOYEE: number = 1;
+        private DEPARTMENT_ADMIN: number = 2;
+        private EMPLOYEE: number = 3;
 
         public static $inject: string[] = ['$localStorage', '$location'];
 
@@ -18,10 +18,6 @@ namespace App.Components.Menu {
         public isLogged() {
             this.user = this.$localStorage['user'];
             return !(this.user == null || this.user == undefined);
-        }
-
-        public goToUserConfiguration() {
-            this.$location.path('/configuration/user');
         }
 
         public signOut() {
