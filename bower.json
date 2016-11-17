@@ -1,9 +1,9 @@
 {
-  "name": "diretodafont",
+  "name": "manutencao-ufrj",
   "authors": [
     "Eric Reis Figueiredo <eric_reisfig@poli.ufrj.br>"
   ],
-  "description": "An internship and cientific iniciation offer web site.",
+  "description": "Sistema de agendamento de manutenção preventiva dos equipamentos da UFRJ.",
   "main": "src/main/webapp/index.html",
   "keywords": [
     "java",
