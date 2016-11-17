@@ -16,7 +16,7 @@
         <node_modules.loc>node_modules</node_modules.loc>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <glassfish.directory>/opt/glassfish4/glassfish</glassfish.directory>
+        <glassfish.directory>/home/glassfish</glassfish.directory>
     </properties>
 
     <distributionManagement>
