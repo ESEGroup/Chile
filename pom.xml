@@ -193,7 +193,7 @@
                 <version>2.1</version>
                 <configuration>
                     <force>true</force>
-                    <user>glassfish</user>
+                    <user>admin</user>
                     <glassfishDirectory>${glassfish.directory}</glassfishDirectory>
                     <domainDirectory>${glassfish.directory}/glassfish/domains/</domainDirectory>
                     <passwordFile>${basedir}/glassfishpasswordfile</passwordFile>
