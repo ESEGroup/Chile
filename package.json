@@ -1,9 +1,9 @@
 {
-  "name": "diretodafont",
+  "name": "manutencao-ufrj",
   "private": true,
   "version": "0.0.0",
-  "description": "An internship and cientific iniciation offer web site.",
-  "repository": "https://github.com/ericreis/diretodafont.git",
+  "description": "Sistema de agendamento de manutenção preventiva dos equipamentos da UFRJ.",
+  "repository": "https://github.com/ESEGroup/Chile.git",
   "devDependencies": {
     "typescript": "^2.0.3",
     "bower": "^1.7.9",

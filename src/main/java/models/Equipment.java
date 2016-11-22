@@ -83,7 +83,7 @@ public class Equipment
 		return department;
 	}
 	
-	public int setDepartment(Department department)
+	public void setDepartment(Department department)
 	{
 		this.department = department;	
 	}
