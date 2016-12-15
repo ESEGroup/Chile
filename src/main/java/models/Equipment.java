@@ -4,7 +4,8 @@ import java.util.Date;
 
 public class Equipment
 {
-	private int equipmentId;
+	private int id;
+	private String equipmentId;
 	private String description;
 	private Date lastMaintenance;
 	private String location;
@@ -17,12 +18,12 @@ public class Equipment
 		this.department = new Department();
 	}
 	
-	public int getEquipmentId()
+	public String getEquipmentId()
 	{
 		return equipmentId;
 	}
 	
-	public void setEquipmentId(int equipmentId)
+	public void setEquipmentId(String equipmentId)
 	{
 		this.equipmentId = equipmentId;	
 	}
@@ -88,4 +89,11 @@ public class Equipment
 		this.department = department;	
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }
