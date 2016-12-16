@@ -19,9 +19,9 @@ public class EquipmentRepository extends BaseRepository{
 
     public EquipmentRepository() { super(); }
 
-    public Equipment get(int equipmentId) throws SQLException{
+    public Equipment get(int id) throws SQLException{
         this.params = new HashMap<>();
-        this.params.put("equipment_id", equipmentId);
+        this.params.put("id", id);
 
         this.query = "SELECT * FROM Equipment e " +
                      "JOIN Department d ON e.department_id = d.department_id " +
@@ -51,6 +51,37 @@ public class EquipmentRepository extends BaseRepository{
         return equipment;
     }
 
+    public Equipment get(String equipmentId) throws SQLException{
+        this.params = new HashMap<>();
+        this.params.put("equipment_id", equipmentId);
+
+        this.query = "SELECT * FROM Equipment e " +
+                "JOIN Department d ON e.department_id = d.department_id " +
+                "WHERE equipment_id = :equipment_id AND is deleted = 0";
+
+        this.createNamedParameterStatement(this.query, this.params);
+
+        this.rs = this.namedStmt.executeQuery();
+
+        Equipment equipment = null;
+
+        while(this.rs.next()){
+            equipment = new Equipment();
+            equipment.setId(this.rs.getInt("id"));
+            equipment.setEquipmentId(this.rs.getString("equipment_Id"));
+            equipment.setDescription(this.rs.getString("description"));
+            equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
+            equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
+            equipment.setLocation(this.rs.getString("location"));
+            equipment.setStatus(this.rs.getBoolean("status"));
+
+            equipment.getDepartment().setId(this.rs.getInt("department_id"));
+            equipment.getDepartment().setName(this.rs.getString("d.name"));
+
+        }
+
+        return equipment;
+    }
 
     public List<Equipment> getAll() throws SQLException{
         this.params = new HashMap<>();
