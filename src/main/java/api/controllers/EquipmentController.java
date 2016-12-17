@@ -19,7 +19,8 @@ import java.util.List;
 
 @Path("/equipment")
 @RequestScoped
-public class EquipmentController {
+public class EquipmentController
+{
     public EquipmentService equipmentService;
 
     public EquipmentController() { this.equipmentService = new EquipmentService(); }
@@ -27,10 +28,12 @@ public class EquipmentController {
     @GET
     @Path("/get/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get(@PathParam("id") int id) {
+    public Response get(@PathParam("id") int id)
+    {
         HttpResponse response = new HttpResponse();
 
-        try{
+        try
+        {
             Equipment equipment = this.equipmentService.get(id);
 
             response.setStatus(Response.Status.OK.getStatusCode());
@@ -39,7 +42,8 @@ public class EquipmentController {
 
             return Response.status(response.getStatus()).entity(response).build();
         }
-        catch(Exception e){
+        catch(Exception e)
+        {
             response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
             response.setMessage(e.getMessage());
             return Response.status(response.getStatus()).entity(response).build();
@@ -49,10 +53,12 @@ public class EquipmentController {
     @GET
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll(){
+    public Response getAll()
+    {
         HttpResponse response = new HttpResponse();
 
-        try{
+        try
+        {
             List<Equipment> equipments = this.equipmentService.getAll();
 
             response.setStatus(Response.Status.OK.getStatusCode());
@@ -61,7 +67,8 @@ public class EquipmentController {
 
             return Response.status(response.getStatus()).entity(response).build();
         }
-        catch(Exception e) {
+        catch(Exception e)
+        {
             response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
             response.setMessage(e.getMessage());
             return Response.status(response.getStatus()).entity(response).build();
@@ -75,10 +82,12 @@ public class EquipmentController {
     public Response create(Equipment equipment){
         HttpResponse response = new HttpResponse();
 
-        try{
+        try
+        {
             int statusCode = this.equipmentService.create(equipment);
 
-            switch (statusCode){
+            switch (statusCode)
+            {
                 case EquipmentStatus.OK:
                     response.setStatus(Response.Status.OK.getStatusCode());
                     response.setMessage("Successfully created equipment");
@@ -91,7 +100,8 @@ public class EquipmentController {
 
             return Response.status(response.getStatus()).entity(response).build();
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
             response.setMessage(e.getMessage());
             return Response.status(response.getStatus()).entity(response).build();
@@ -102,13 +112,16 @@ public class EquipmentController {
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(Equipment equipment){
+    public Response update(Equipment equipment)
+    {
         HttpResponse response = new HttpResponse();
 
-        try{
+        try
+        {
             int statusCode = this.equipmentService.update(equipment);
 
-            switch (statusCode){
+            switch (statusCode)
+            {
                 case EquipmentStatus.OK:
                     response.setStatus(Response.Status.OK.getStatusCode());
                     response.setMessage("Successfully updated equipment");
@@ -121,7 +134,8 @@ public class EquipmentController {
 
             return Response.status(response.getStatus()).entity(response).build();
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
             response.setMessage(e.getMessage());
             return Response.status(response.getStatus()).entity(response).build();
@@ -131,7 +145,8 @@ public class EquipmentController {
     @GET
     @Path("/delete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("id") int id){
+    public Response update(@PathParam("id") int id)
+    {
         HttpResponse response = new HttpResponse();
 
         try

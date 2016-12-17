@@ -3,7 +3,8 @@ package models.status;
 /**
  * Created by antonio-galvao on 15/12/16.
  */
-public class EquipmentStatus {
+public class EquipmentStatus
+{
 
     public static final int OK = 200;
 

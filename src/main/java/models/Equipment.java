@@ -27,12 +27,12 @@ public class Equipment
 		this.id = id;
 	}
 
-	public String getEquipmentId()
+	public String getEquipmentRegistry()
 	{
 		return equipmentRegistry;
 	}
 	
-	public void setEquipmentId(String equipmentRegistry)
+	public void setEquipmentRegistry(String equipmentRegistry)
 	{
 		this.equipmentRegistry = equipmentRegistry;
 	}

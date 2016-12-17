@@ -11,13 +11,15 @@ import java.util.List;
 /**
  * Created by antonio-galvao on 15/12/16.
  */
-public class EquipmentService {
+public class EquipmentService
+{
 
     private EquipmentRepository equipmentRepository;
 
     private HashService hashService;
 
-    public EquipmentService(){
+    public EquipmentService()
+    {
         this.equipmentRepository = new EquipmentRepository();
 
         this.hashService = new HashService();
@@ -35,9 +37,10 @@ public class EquipmentService {
 
     public int create(Equipment equipment) throws  SQLException
     {
-        Equipment e = this.equipmentRepository.get(equipment.getEquipmentId());
+        Equipment e = this.equipmentRepository.get(equipment.getEquipmentRegistry());
 
-        if(e != null){
+        if(e != null)
+        {
             return EquipmentStatus.CONFLICT;
         }
 

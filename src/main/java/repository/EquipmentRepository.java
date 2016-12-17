@@ -19,7 +19,8 @@ public class EquipmentRepository extends BaseRepository{
 
     public EquipmentRepository() { super(); }
 
-    public Equipment get(int id) throws SQLException{
+    public Equipment get(int id) throws SQLException
+    {
         this.params = new HashMap<>();
         this.params.put("id", id);
 
@@ -33,10 +34,11 @@ public class EquipmentRepository extends BaseRepository{
 
         Equipment equipment = null;
 
-        while(this.rs.next()){
+        while(this.rs.next())
+        {
             equipment = new Equipment();
             equipment.setId(this.rs.getInt("id"));
-            equipment.setEquipmentId(this.rs.getString("equipment_Id"));
+            equipment.setEquipmentRegistry(this.rs.getString("equipment_Id"));
             equipment.setDescription(this.rs.getString("description"));
             equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
             equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
@@ -69,7 +71,7 @@ public class EquipmentRepository extends BaseRepository{
         {
             equipment = new Equipment();
             equipment.setId(this.rs.getInt("id"));
-            equipment.setEquipmentId(this.rs.getString("equipment_Id"));
+            equipment.setEquipmentRegistry(this.rs.getString("equipment_Id"));
             equipment.setDescription(this.rs.getString("description"));
             equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
             equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
@@ -83,7 +85,8 @@ public class EquipmentRepository extends BaseRepository{
         return equipment;
     }
 
-    public List<Equipment> getAll() throws SQLException{
+    public List<Equipment> getAll() throws SQLException
+    {
         this.params = new HashMap<>();
 
         this.query = "SELECT * FROM Equipment e" +
@@ -99,7 +102,7 @@ public class EquipmentRepository extends BaseRepository{
         while(this.rs.next()){
             equipment = new Equipment();
             equipment.setId(this.rs.getInt("id"));
-            equipment.setEquipmentId(this.rs.getString("equipment_id"));
+            equipment.setEquipmentRegistry(this.rs.getString("equipment_id"));
             equipment.setDescription(this.rs.getString("description"));
             equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
             equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
@@ -115,9 +118,10 @@ public class EquipmentRepository extends BaseRepository{
     }
 
 
-    public int insert(Equipment equipment) throws SQLException {
+    public int insert(Equipment equipment) throws SQLException
+    {
         this.params = new HashMap<>();
-        this.params.put("equipment_id", equipment.getEquipmentId());
+        this.params.put("equipment_id", equipment.getEquipmentRegistry());
         this.params.put("description", equipment.getDescription());
         this.params.put("last_maintenance", equipment.getLastMaintenance());
         this.params.put("maintenance_periodicity", equipment.getMaintenancePeriodicity());
@@ -134,9 +138,10 @@ public class EquipmentRepository extends BaseRepository{
         return this.namedStmt.executeUpdate();
     }
 
-    public int update(Equipment equipment) throws SQLException{
+    public int update(Equipment equipment) throws SQLException
+    {
         this.params = new HashMap<>();
-        this.params.put("equipment_id", equipment.getEquipmentId());
+        this.params.put("equipment_id", equipment.getEquipmentRegistry());
         this.params.put("description", equipment.getDescription());
         this.params.put("last_maintenance", equipment.getLastMaintenance());
         this.params.put("location", equipment.getLocation());
@@ -153,7 +158,8 @@ public class EquipmentRepository extends BaseRepository{
         return this.namedStmt.executeUpdate();
     }
 
-    public int softDelete(int id) throws SQLException{
+    public int softDelete(int id) throws SQLException
+    {
         this.params = new HashMap<>();
         this.params.put("equipment_id", id);
 
@@ -164,7 +170,6 @@ public class EquipmentRepository extends BaseRepository{
 
         return this.namedStmt.executeUpdate();
     }
-
 
 
 }
