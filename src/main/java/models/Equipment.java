@@ -12,6 +12,14 @@ public class Equipment
 	private int maintenancePeriodicity;
 	private boolean status; //could be a enum type or a EquipmentStatus type
 	private Department department;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public Equipment()
 	{
@@ -87,13 +95,5 @@ public class Equipment
 	public void setDepartment(Department department)
 	{
 		this.department = department;	
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 }

@@ -134,22 +134,27 @@ public class EquipmentController {
     public Response update(@PathParam("id") int id){
         HttpResponse response = new HttpResponse();
 
-        try{
-            int statusCode = this.equipmentService.softDelete();
-            switch (statusCode) {
+        try
+        {
+            int statusCode = this.equipmentService.softDelete(id);
+            switch (statusCode)
+            {
                 case EquipmentStatus.OK:
                     response.setStatus(Response.Status.OK.getStatusCode());
                     response.setMessage("Successfully deleted equipment");
                     break;
                 case EquipmentStatus.NOT_FOUND:
                     response.setStatus(Response.Status.NOT_FOUND.getStatusCode());
-                    response.setMessage();
+                    response.setMessage("Equipment not found");
             }
+
             return Response.status(response.getStatus()).entity(response).build();
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
             response.setMessage(e.getMessage());
+
             return Response.status(response.getStatus()).entity(response).build();
         }
     }

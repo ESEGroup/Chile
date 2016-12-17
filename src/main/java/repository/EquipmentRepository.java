@@ -50,7 +50,8 @@ public class EquipmentRepository extends BaseRepository{
         return equipment;
     }
 
-    public Equipment get(String equipmentId) throws SQLException{
+    public Equipment get(String equipmentId) throws SQLException
+    {
         this.params = new HashMap<>();
         this.params.put("equipment_id", equipmentId);
 
@@ -64,7 +65,8 @@ public class EquipmentRepository extends BaseRepository{
 
         Equipment equipment = null;
 
-        while(this.rs.next()){
+        while(this.rs.next())
+        {
             equipment = new Equipment();
             equipment.setId(this.rs.getInt("id"));
             equipment.setEquipmentId(this.rs.getString("equipment_Id"));
@@ -76,7 +78,6 @@ public class EquipmentRepository extends BaseRepository{
 
             equipment.getDepartment().setId(this.rs.getInt("department_id"));
             equipment.getDepartment().setName(this.rs.getString("d.name"));
-
         }
 
         return equipment;
@@ -146,6 +147,7 @@ public class EquipmentRepository extends BaseRepository{
         this.query = "UPDATE Equipment SET equipment_id = :equipment_id, description = :description, last_maintenance = :last_maintenance, " +
                                             "location = :location, status = :status, department_id = :department_id" +
                      "WHERE id = :id and is_deleted = 0" ;
+
         this.createNamedParameterStatement(this.query, this.params);
 
         return this.namedStmt.executeUpdate();
