@@ -5,13 +5,19 @@ import java.util.Date;
 public class Equipment
 {
 	private int id;
-	private String equipmentId;
+	private String equipmentRegistry;
 	private String description;
 	private Date lastMaintenance;
 	private String location;
-	private int maintenancePeriodicity;
-	private boolean status; //could be a enum type or a EquipmentStatus type
+	private int maintenancePeriodicity;		// days
+	private boolean status;					// could be a enum type or a EquipmentStatus type
+
 	private Department department;
+
+	public Equipment()
+	{
+		this.department = new Department();
+	}
 
 	public int getId() {
 		return id;
@@ -20,20 +26,15 @@ public class Equipment
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public Equipment()
-	{
-		this.department = new Department();
-	}
-	
+
 	public String getEquipmentId()
 	{
-		return equipmentId;
+		return equipmentRegistry;
 	}
 	
-	public void setEquipmentId(String equipmentId)
+	public void setEquipmentId(String equipmentRegistry)
 	{
-		this.equipmentId = equipmentId;	
+		this.equipmentRegistry = equipmentRegistry;
 	}
 	
 	public String getDescription()
@@ -65,7 +66,6 @@ public class Equipment
 	{
 		this.location = location;	
 	}
-
 
 	public int getMaintenancePeriodicity()
 	{
