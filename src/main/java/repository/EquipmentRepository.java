@@ -42,7 +42,6 @@ public class EquipmentRepository extends BaseRepository{
             equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setLocation(this.rs.getString("location"));
             equipment.setStatus(this.rs.getBoolean("status"));
-
             equipment.getDepartment().setId(this.rs.getInt("department_id"));
             equipment.getDepartment().setName(this.rs.getString("d.name"));
 
@@ -116,7 +115,7 @@ public class EquipmentRepository extends BaseRepository{
 
 
     public int insert(Equipment equipment) throws SQLException {
-        this.params = new HashMap<>;
+        this.params = new HashMap<>();
         this.params.put("equipment_id", equipment.getEquipmentId());
         this.params.put("description", equipment.getDescription());
         this.params.put("last_maintenance", equipment.getLastMaintenance());
@@ -135,7 +134,7 @@ public class EquipmentRepository extends BaseRepository{
     }
 
     public int update(Equipment equipment) throws SQLException{
-        this.params = new HashMap<>;
+        this.params = new HashMap<>();
         this.params.put("equipment_id", equipment.getEquipmentId());
         this.params.put("description", equipment.getDescription());
         this.params.put("last_maintenance", equipment.getLastMaintenance());
