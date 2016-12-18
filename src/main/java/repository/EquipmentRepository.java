@@ -78,7 +78,7 @@ public class EquipmentRepository extends BaseRepository{
             equipment.setLocation(this.rs.getString("location"));
             equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setStatus(this.rs.getBoolean("status"));
-            equipment.setStatus(this.rs.getBoolean("is_deleted"));
+            equipment.setIs_deleted(this.rs.getBoolean("is_deleted"));
 
             equipment.getDepartment().setId(this.rs.getInt("department_id"));
             equipment.getDepartment().setName(this.rs.getString("d.name"));
@@ -110,7 +110,7 @@ public class EquipmentRepository extends BaseRepository{
             equipment.setLocation(this.rs.getString("location"));
             equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setStatus(this.rs.getBoolean("status"));
-            equipment.setStatus(this.rs.getBoolean("is_deleted"));
+            equipment.setIs_deleted(this.rs.getBoolean("is_deleted"));
 
             equipment.getDepartment().setId(this.rs.getInt("department_id"));
             equipment.getDepartment().setName(this.rs.getString("d.name"));
@@ -145,7 +145,7 @@ public class EquipmentRepository extends BaseRepository{
             equipment.setLocation(this.rs.getString("location"));
             equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setStatus(this.rs.getBoolean("status"));
-            equipment.setStatus(this.rs.getBoolean("is_deleted"));
+            equipment.setIs_deleted(this.rs.getBoolean("is_deleted"));
 
             equipment.getDepartment().setId(this.rs.getInt("department_id"));
             equipment.getDepartment().setName(this.rs.getString("d.name"));
@@ -166,7 +166,6 @@ public class EquipmentRepository extends BaseRepository{
         this.params.put("location", equipment.getLocation());
         this.params.put("status", equipment.getStatus());
         this.params.put("department_id", equipment.getDepartment().getId());
-        this.params.put("is_deleted", equipment.getStatus());
 
         this.query = "INSERT INTO Equipment (equipment_registry, description, last_maintenance, maintenance_periodicity, location, status, department_id, is_deleted)" +
                      "VALUES (:equipment_registry, :description, :last_maintenance, :maintenance_periodicity, :location, :status, :department_id, :is_deleted)";
@@ -187,7 +186,6 @@ public class EquipmentRepository extends BaseRepository{
         this.params.put("location", equipment.getLocation());
         this.params.put("status", equipment.getStatus());
         this.params.put("department_id", equipment.getDepartment().getId());
-        this.params.put("is_deleted", equipment.getStatus());
 
         this.params.put("department_id", equipment.getDepartment().getId());
 
