@@ -120,6 +120,36 @@ public class EquipmentRepository extends BaseRepository{
         return equipments;
     }
 
+    public List<Equipment> getAllEquipmentWithUnscheduledMaintenance() throws SQLException
+    {
+        this.params = new HashMap<>();
+
+        this.query = "";
+
+        this.createNamedParameterStatement(this.query, this.params);
+
+        this.rs = this.namedStmt.executeQuery();
+
+        List<Equipment> equipments = new LinkedList<>();
+        Equipment equipment = null;
+        while(this.rs.next()){
+            equipment = new Equipment();
+            equipment.setId(this.rs.getInt("equipment_id"));
+            equipment.setEquipmentRegistry(this.rs.getString("equipment_registry"));
+            equipment.setDescription(this.rs.getString("description"));
+            equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
+            equipment.setLocation(this.rs.getString("location"));
+            equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
+            equipment.setStatus(this.rs.getBoolean("status"));
+            equipment.setStatus(this.rs.getBoolean("is_deleted"));
+
+            equipment.getDepartment().setId(this.rs.getInt("department_id"));
+            equipment.getDepartment().setName(this.rs.getString("d.name"));
+
+            equipments.add(equipment);
+        }
+        return equipments;
+    }
 
     public int insert(Equipment equipment) throws SQLException
     {

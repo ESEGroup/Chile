@@ -73,6 +73,31 @@ public class EquipmentController
         }
     }
 
+    @GET
+    @Path("/getAllEquipmentWithUnscheduledMaintenance")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllEquipmentWithUnscheduledMaintenance()
+    {
+        HttpResponse response = new HttpResponse();
+
+        try
+        {
+            List<Equipment> equipments = this.equipmentService.getAllEquipmentWithUnscheduledMaintenance();
+
+            response.setStatus(Response.Status.OK.getStatusCode());
+            response.setMessage("Successfully got all equipments");
+            response.setData(equipments);
+
+            return Response.status(response.getStatus()).entity(response).build();
+        }
+        catch(Exception e)
+        {
+            response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+            response.setMessage(e.getMessage());
+            return Response.status(response.getStatus()).entity(response).build();
+        }
+    }
+
     @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)

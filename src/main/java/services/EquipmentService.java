@@ -37,6 +37,11 @@ public class EquipmentService
         return this.equipmentRepository.getAll();
     }
 
+    public List<Equipment> getAllEquipmentWithUnscheduledMaintenance() throws SQLException
+    {
+        return this.equipmentRepository.getAllEquipmentWithUnscheduledMaintenance();
+    }
+
     public int create(Equipment equipment) throws  SQLException
     {
         Equipment e = this.equipmentRepository.get(equipment.getEquipmentRegistry());
