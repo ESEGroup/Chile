@@ -3,7 +3,6 @@ package services;
 import models.Equipment;
 import models.status.EquipmentStatus;
 import repository.EquipmentRepository;
-import services.util.HashService;
 
 import java.sql.SQLException;
 import java.util.List;

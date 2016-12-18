@@ -1,12 +1,9 @@
 package api.controllers;
 
 import models.User;
-import models.dto.LoginDTO;
 import models.status.UserStatus;
 import models.util.HttpResponse;
-import services.LoginService;
 import services.UserService;
-import services.util.HashService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;

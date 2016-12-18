@@ -1,12 +1,13 @@
 package repository;
 
-import models.*;
+import models.Equipment;
+import models.Maintenance;
+import models.User;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.LinkedList;

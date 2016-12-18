@@ -1,7 +1,6 @@
 package repository;
 
 import models.Role;
-import models.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

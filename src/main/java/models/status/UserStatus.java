@@ -1,7 +1,5 @@
 package models.status;
 
-import javax.ws.rs.core.Response;
-
 /**
  * Created by ericreis on 11/14/16.
  */

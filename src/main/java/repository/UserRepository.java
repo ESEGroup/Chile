@@ -1,7 +1,6 @@
 package repository;
 
 import models.User;
-import models.status.UserStatus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

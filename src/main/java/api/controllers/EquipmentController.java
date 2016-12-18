@@ -6,11 +6,9 @@ import models.util.HttpResponse;
 import services.EquipmentService;
 
 import javax.enterprise.context.RequestScoped;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
 import java.util.List;
 
 /**

@@ -1,13 +1,8 @@
 package services;
 
 import models.Maintenance;
-import models.User;
-import models.dto.LoginDTO;
 import models.status.MaintenanceStatus;
 import repository.MaintenanceRepository;
-import repository.UserRepository;
-import services.util.HashService;
-import sun.applet.Main;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,10 +1,8 @@
 package api.controllers;
 
 import models.Department;
-import models.Role;
 import models.util.HttpResponse;
 import services.DepartmentService;
-import services.RoleService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;

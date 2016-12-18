@@ -1,6 +1,5 @@
 package repository;
 
-import models.Department;
 import models.Role;
 import org.junit.After;
 import org.junit.Assert;
