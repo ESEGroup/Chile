@@ -131,6 +131,29 @@ public class EquipmentRepositoryTest {
     }
 
     @Test
+    public void getAllEquipmentWithUnscheduledMaintenanceTest() throws SQLException
+    {
+        List<Equipment> expected = new LinkedList<>();
+
+        Equipment equipment = new Equipment();
+        equipment.setId(1);
+        equipment.setEquipmentRegistry("1234567");
+        equipment.setDescription("This is a equipment description test");
+        equipment.setLastMaintenance(new Date());
+        equipment.setLocation("Equipment location test");
+        equipment.setMaintenancePeriodicity(30);
+        equipment.setStatus(true);
+        equipment.setDeleted(false);
+
+        Department department = new Department();
+        department.setId(1);
+        equipment.setDepartment(department);
+
+        expected.add(equipment);
+        Assert.assertEquals(expected.size(), this.equipmentRepository.getAll().size());
+    }
+
+    @Test
     public void softDeleteTest() throws SQLException
     {
         Equipment expected = null;
