@@ -32,6 +32,7 @@ public class MaintenanceRepository extends BaseRepository
                 "JOIN User u ON u.user_id = m.user_id " +
                 "JOIN Equipment e ON e.equipment_id = m.equipment_id " +
                 "JOIN Department d ON e.department_id = d.department_id " +
+                "JOIN Role r on u.user = r.user " +
                 "WHERE m.finished = 0 AND m.maintenance_id = :maintenance_id AND m.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
@@ -61,6 +62,9 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
             maintenance.getEmployee().setDeleted(this.rs.getBoolean("u.is_deleted"));
 
+            maintenance.getEmployee().getRole().setId(this.rs.getInt("r.role_id"));
+            maintenance.getEmployee().getRole().setName(this.rs.getString("r.name"));
+
             maintenance.getEquipment().setId(this.rs.getInt("e.equipment_id"));
             maintenance.getEquipment().setEquipmentRegistry(this.rs.getString("e.equipment_Id"));
             maintenance.getEquipment().setDescription(this.rs.getString("e.description"));
@@ -77,6 +81,44 @@ public class MaintenanceRepository extends BaseRepository
         return maintenance;
     }
 
+    public List<Maintenance> getAlert() throws SQLException
+    {
+        this.params = new HashMap<>();
+
+        // Select equipment that has maintenance proximity before today's data and up to 3 days after
+        this.query = "SELECT get_next_maintenance(e.equipment_id) next_maintenance, e.*,d.* from equipment e " +
+                "JOIN department d on e.department_id= d.department_id " +
+                "AND (get_next_maintenance(e.equipment_id) <= DATE_ADD(CURDATE(), INTERVAL + 3 DAY))";
+
+
+        this.createNamedParameterStatement(this.query, this.params);
+
+        this.rs = this.namedStmt.executeQuery();
+
+        List<Maintenance> maintenances = new LinkedList<>();
+        Maintenance maintenance = null;
+        while (this.rs.next())
+        {
+            maintenance = new Maintenance();
+            maintenance.setDate(this.rs.getDate("next_maintenance"));
+
+            maintenance.getEquipment().setId(this.rs.getInt("e.equipment_id"));
+            maintenance.getEquipment().setEquipmentRegistry(this.rs.getString("e.equipment_Id"));
+            maintenance.getEquipment().setDescription(this.rs.getString("e.description"));
+            maintenance.getEquipment().setLastMaintenance(this.rs.getDate("e.last_maintenance"));
+            maintenance.getEquipment().setLocation(this.rs.getString("e.location"));
+            maintenance.getEquipment().setMaintenancePeriodicity(this.rs.getInt("e.maintenance_periodicity"));
+            maintenance.getEquipment().setStatus(this.rs.getBoolean("e.status"));
+            maintenance.getEquipment().setIs_deleted(this.rs.getBoolean("e.is_deleted"));
+
+            maintenance.getEquipment().getDepartment().setId(this.rs.getInt("d.department_id"));
+            maintenance.getEquipment().getDepartment().setName(this.rs.getString("d.name"));
+
+            maintenances.add(maintenance);
+        }
+
+        return maintenances;
+    }
 
     public List<Maintenance> getAll() throws SQLException
     {
@@ -86,6 +128,7 @@ public class MaintenanceRepository extends BaseRepository
                 "JOIN User u ON u.user_id = m.user_id " +
                 "JOIN Equipment e ON e.equipment_id = m.equipment_id " +
                 "JOIN Department d ON e.department_id = d.department_id " +
+                "JOIN Role r on u.user = r.user " +
                 "WHERE m.finished = 0 AND m.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
@@ -116,6 +159,9 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
             maintenance.getEmployee().setDeleted(this.rs.getBoolean("u.is_deleted"));
 
+            maintenance.getEmployee().getRole().setId(this.rs.getInt("r.role_id"));
+            maintenance.getEmployee().getRole().setName(this.rs.getString("r.name"));
+
             maintenance.getEquipment().setId(this.rs.getInt("e.equipment_id"));
             maintenance.getEquipment().setEquipmentRegistry(this.rs.getString("e.equipment_Id"));
             maintenance.getEquipment().setDescription(this.rs.getString("e.description"));
@@ -144,6 +190,7 @@ public class MaintenanceRepository extends BaseRepository
                 "JOIN User u ON u.user_id = m.user_id " +
                 "JOIN Equipment e ON e.equipment_id = m.equipment_id " +
                 "JOIN Department d ON e.department_id = d.department_id " +
+                "JOIN Role r on u.user = r.user " +
                 "WHERE m.finished = 0 AND m.equipment_id = :equipment_id AND m.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
@@ -173,6 +220,9 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
             maintenance.getEmployee().setDeleted(this.rs.getBoolean("u.is_deleted"));
 
+            maintenance.getEmployee().getRole().setId(this.rs.getInt("r.role_id"));
+            maintenance.getEmployee().getRole().setName(this.rs.getString("r.name"));
+
             maintenance.getEquipment().setId(this.rs.getInt("e.equipment_id"));
             maintenance.getEquipment().setEquipmentRegistry(this.rs.getString("e.equipment_Id"));
             maintenance.getEquipment().setDescription(this.rs.getString("e.description"));
@@ -200,6 +250,7 @@ public class MaintenanceRepository extends BaseRepository
                 "JOIN User u ON u.user_id = m.user_id " +
                 "JOIN Equipment e ON e.equipment_id = m.equipment_id " +
                 "JOIN Department d ON e.department_id = d.department_id " +
+                "JOIN Role r on u.user = r.user " +
                 "WHERE m.equipment_id = :equipment_id AND m.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
@@ -229,6 +280,9 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setBirthDate(this.rs.getDate("u.birth_date"));
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
             maintenance.getEmployee().setDeleted(this.rs.getBoolean("u.is_deleted"));
+
+            maintenance.getEmployee().getRole().setId(this.rs.getInt("r.role_id"));
+            maintenance.getEmployee().getRole().setName(this.rs.getString("r.name"));
 
             maintenance.getEquipment().setId(this.rs.getInt("e.equipment_id"));
             maintenance.getEquipment().setEquipmentRegistry(this.rs.getString("e.equipment_Id"));

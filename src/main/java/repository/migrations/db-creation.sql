@@ -119,8 +119,8 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`Maintenance` (
   ENGINE = InnoDB;
 
 DELIMITER $$
-# The function returns the next_mainntenance of the equipment -> Input Parameter: equipment_id
-CREATE Function show_alert(equipment INT)
+# The function returns the next maintenance of the equipment -> Input Parameter: equipment_id
+CREATE Function get_next_maintenance(equipment INT)
   RETURNS DATETIME
   BEGIN
     Declare next_maintenance DATETIME;
@@ -130,13 +130,13 @@ CREATE Function show_alert(equipment INT)
       # Verify if the equipment has a maintenance done previously
       if exists(select m.finished_date from maintenance m where m.equipment_id = equipment) then
         # Set in the next_maintenance the sum of the finished_date of the last maintenance with the maintenance periodicity - 3
-        set next_maintenance = (select DATE_ADD(m.finished_date, interval e.maintenance_periodicity - 3 DAY) from maintenance m
+        set next_maintenance = (select DATE_ADD(m.finished_date, interval e.maintenance_periodicity DAY) from maintenance m
           JOIN Equipment e ON e.equipment_id = m.equipment_id
         where m.is_deleted = false AND m.equipment_id = equipment
                                 order by m.finished_date desc limit 1);
       #If the equipment doesn't have any registred maintenance
       else
-        set next_maintenance = (select DATE_ADD(e.last_maintenance, interval e.maintenance_periodicity - 3 DAY)
+        set next_maintenance = (select DATE_ADD(e.last_maintenance, interval e.maintenance_periodicity  DAY)
                                 from Equipment e  where e.equipment_id = equipment and e.is_deleted = false ORDER By e.last_maintenance desc limit 1);
       end if;
     end if;
@@ -169,6 +169,3 @@ VALUES('2016-12-15', '2017-01-02', 'Pilha trocada', false, false, 1,1);
 INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
 VALUES('2016-12-15', '2017-01-01', 'Pilha trocada', true, false, 2,1);
 
-select show_alert(1);
-
-select equipment_registry, show_alert(equipment_id) next_maintenance from equipment where is_deleted = false AND show_alert(equipment_id) != '0000-00-00';

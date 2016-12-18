@@ -176,6 +176,34 @@ public class MaintenanceRepositoryTest
     }
 
     @Test
+    public void getAlertTest() throws SQLException
+    {
+        List<Maintenance> expected = new LinkedList<>();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2016,11,8);
+
+        Maintenance maintenance = new Maintenance();
+        maintenance.setDate(calendar.getTime());
+        maintenance.setFinishedDate(calendar.getTime());
+        maintenance.setDescription("Maintenance Description Test");
+        maintenance.setFinished(true);
+        maintenance.setIs_deleted(false);
+
+        User employee = new User();
+        employee.setId(1);
+        maintenance.setEmployee(employee);
+
+        Equipment equipment = new Equipment();
+        equipment.setId(1);
+        maintenance.setEquipment(equipment);
+
+        expected.add(maintenance);
+
+        Assert.assertNotEquals(expected.size(), this.maintenanceRepository.getAlert().size());
+    }
+
+    @Test
     public void softDeleteTest() throws SQLException
     {
         Maintenance expected = null;
