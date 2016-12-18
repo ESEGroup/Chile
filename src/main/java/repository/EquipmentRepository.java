@@ -26,7 +26,7 @@ public class EquipmentRepository extends BaseRepository{
 
         this.query = "SELECT * FROM Equipment e " +
                      "JOIN Department d ON e.department_id = d.department_id " +
-                     "WHERE id = :id AND is deleted = 0";
+                     "WHERE e.departament_id = :id AND e.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -37,8 +37,8 @@ public class EquipmentRepository extends BaseRepository{
         while(this.rs.next())
         {
             equipment = new Equipment();
-            equipment.setId(this.rs.getInt("id"));
-            equipment.setEquipmentRegistry(this.rs.getString("equipment_Id"));
+            equipment.setId(this.rs.getInt("equipament_id"));
+            equipment.setEquipmentRegistry(this.rs.getString("equipment_registry"));
             equipment.setDescription(this.rs.getString("description"));
             equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
             equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
@@ -121,17 +121,17 @@ public class EquipmentRepository extends BaseRepository{
     public int insert(Equipment equipment) throws SQLException
     {
         this.params = new HashMap<>();
-        this.params.put("equipment_id", equipment.getEquipmentRegistry());
+        this.params.put("equipment_registry", equipment.getEquipmentRegistry());
         this.params.put("description", equipment.getDescription());
         this.params.put("last_maintenance", equipment.getLastMaintenance());
         this.params.put("maintenance_periodicity", equipment.getMaintenancePeriodicity());
         this.params.put("location", equipment.getLocation());
         this.params.put("status", equipment.getStatus());
-
         this.params.put("department_id", equipment.getDepartment().getId());
+        this.params.put("is_deleted", equipment.getStatus());
 
-        this.query = "INSERT INTO Equipment (equipment_id, description, last_maintenance, location, status, department_id)" +
-                     "VALUES (:equipment_id, :description, :last_maintenance, :maintenance_periodicity, :location, :status, :department_id)";
+        this.query = "INSERT INTO Equipment (equipment_registry, description, last_maintenance, maintenance_periodicity, location, status, department_id, is_deleted)" +
+                     "VALUES (:equipment_registry, :description, :last_maintenance, :maintenance_periodicity, :location, :status, :department_id, :is_deleted)";
 
         this.createNamedParameterStatement(this.query, this.params);
 

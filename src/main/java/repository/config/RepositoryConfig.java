@@ -12,6 +12,8 @@ public final class RepositoryConfig
     public static final String DB_URL = "jdbc:mysql://localhost:3306/manutencao-ufrj";
 
     //  Database credentials
-    public static final String USER = "sqluser";
-    public static final String PASSWORD = "sqluser";
+    //public static final String USER = "sqluser";
+    //public static final String PASSWORD = "sqluser";
+    public static final String USER = "root";
+    public static final String PASSWORD = "root";
 }

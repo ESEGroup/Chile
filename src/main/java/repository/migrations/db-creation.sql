@@ -69,6 +69,56 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`User` (
   ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `manutencao-ufrj`.`Equipment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`Equipment` (
+  `equipment_id` INT NOT NULL AUTO_INCREMENT,
+  `equipment_registry` VARCHAR(45) NOT NULL,
+  `last_maintenance` DATETIME NOT NULL,
+  `location` VARCHAR(45) NOT NULL,
+  `maintenance_periodicity` INT NOT NULL,
+  `status` TINYINT(1) NOT NULL,
+  `description` VARCHAR(8000) NULL,
+  `is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  `department_id` INT NOT NULL,
+  PRIMARY KEY (`equipment_id`, `department_id`),
+  CONSTRAINT `fk_Equipament_Department1`
+  FOREIGN KEY (`department_id`)
+  REFERENCES `manutencao-ufrj`.`Department` (`department_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `manutencao-ufrj`.`Maintenance`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`Maintenance` (
+  `id_maintenance` INT NOT NULL AUTO_INCREMENT,
+  `date` DATETIME NOT NULL,
+  `finished_date` DATETIME NULL,
+  `description` VARCHAR(8000) NOT NULL,
+  `finished` TINYINT(1) NOT NULL DEFAULT 0,
+  `is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  `equipment_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id_maintenance`, `equipment_id`, `user_id`),
+  INDEX `fk_Maintenance_User1_idx` (`user_id` ASC),
+  INDEX `fk_Maintenance_Equipament1_idx` (`equipment_id` ASC),
+  CONSTRAINT `fk_Maintenance_User1`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `manutencao-ufrj`.`User` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Maintenance_Equipament1`
+  FOREIGN KEY (`equipment_id`)
+  REFERENCES `manutencao-ufrj`.`Equipment` (`equipment_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -83,3 +133,9 @@ INSERT INTO `manutencao-ufrj`.Department(name)
 
 INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, rg_issuer, name, password, role_id, department_id)
     VALUES ('1234567', '16035256708', '277694709', 'DETRANRJ', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
+
+INSERT INTO `manutencao-ufrj`.equipment(equipment_registry,last_maintenance,location,maintenance_periodicity,status, description,is_deleted,department_id)
+VALUES('1111111','2016-02-27', 'Sala H204', 60, false, 'Muito bom', false, 1);
+
+INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
+VALUES('2016-04-27', '2016-05-30', 'Pilha trocada', true, false, 1,1);
