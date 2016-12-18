@@ -75,9 +75,8 @@ public class EquipmentRepositoryTest {
 
         Assert.assertEquals(expected, this.equipmentRepository.update(equipment));
 
-        expected = 0;
         equipment.setId(-1);
-        Assert.assertEquals(expected, this.equipmentRepository.update(equipment));
+        Assert.assertNotEquals(expected, this.equipmentRepository.update(equipment));
 
     }
 
@@ -91,7 +90,7 @@ public class EquipmentRepositoryTest {
         Assert.assertEquals(expected, this.equipmentRepository.get(equipmentId));
 
         equipmentId = "1111111";
-        Assert.assertEquals(expected, this.equipmentRepository.get(equipmentId));
+        Assert.assertNotEquals(expected, this.equipmentRepository.get(equipmentId));
     }
 
     @Test
@@ -126,21 +125,19 @@ public class EquipmentRepositoryTest {
         department.setId(1);
         equipment.setDepartment(department);
 
-        Assert.assertNotEquals(expected.size(), this.equipmentRepository.getAll().size());
+        expected.add(equipment);
+        Assert.assertEquals(expected.size(), this.equipmentRepository.getAll().size());
 
     }
 
     @Test
     public void softDeleteTest() throws SQLException
     {
-        int expected = 1;
+        Equipment expected = null;
 
         int equipmentId = 1;
-        Assert.assertEquals(expected, this.equipmentRepository.softDelete(equipmentId));
-
-        expected = 0;
-        equipmentId = 6;
-        Assert.assertEquals(expected, this.equipmentRepository.softDelete(equipmentId));
+        this.equipmentRepository.softDelete(equipmentId);
+        Assert.assertEquals(expected, this.equipmentRepository.get(equipmentId));
     }
 
 

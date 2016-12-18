@@ -30,8 +30,6 @@ public class EquipmentRepository extends BaseRepository{
 
         this.createNamedParameterStatement(this.query, this.params);
 
-        System.out.println(this.query);
-
         this.rs = this.namedStmt.executeQuery();
 
         Equipment equipment = null;
@@ -40,7 +38,7 @@ public class EquipmentRepository extends BaseRepository{
         {
             equipment = new Equipment();
             equipment.setId(this.rs.getInt("equipment_id"));
-            equipment.setEquipmentRegistry(this.rs.getString("equipment_Id"));
+            equipment.setEquipmentRegistry(this.rs.getString("equipment_registry"));
             equipment.setDescription(this.rs.getString("description"));
             equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
             equipment.setLocation(this.rs.getString("location"));
@@ -65,8 +63,6 @@ public class EquipmentRepository extends BaseRepository{
                 "WHERE e.equipment_registry = :equipment_registry AND e.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
-
-        System.out.println(this.query);
 
         this.rs = this.namedStmt.executeQuery();
 

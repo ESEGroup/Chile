@@ -1,9 +1,6 @@
 package repository;
 
-import models.Department;
-import models.Equipment;
-import models.Maintenance;
-import models.User;
+import models.*;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -65,7 +62,38 @@ public class MaintenanceRepositoryTest
     }
 
     @Test
-    public void getAllScheduledMaintenancesByEquipmentId() throws SQLException
+    public void updateMaintenanceTest() throws SQLException
+    {
+        int expected = 1;
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2016,11,8);
+
+        Maintenance maintenance = new Maintenance();
+        maintenance.setId(1);
+        maintenance.setDate(calendar.getTime());
+        maintenance.setFinishedDate(calendar.getTime());
+        maintenance.setDescription("Maintenance Description Test");
+        maintenance.setFinished(true);
+        maintenance.setIs_deleted(false);
+
+        User employee = new User();
+        employee.setId(1);
+        maintenance.setEmployee(employee);
+
+        Equipment equipment = new Equipment();
+        equipment.setId(1);
+        maintenance.setEquipment(equipment);
+
+        Assert.assertEquals(expected, this.maintenanceRepository.update(maintenance));
+
+        expected = 0;
+        maintenance.setId(-1);
+        Assert.assertEquals(expected, this.maintenanceRepository.update(maintenance));
+    }
+
+    @Test
+    public void getAllMaintenancesByEquipmentIdTest() throws SQLException
     {
         List<Maintenance> expected = new LinkedList<>();
 
@@ -89,8 +117,59 @@ public class MaintenanceRepositoryTest
 
         expected.add(maintenance);
 
-        Assert.assertNotEquals(0, this.maintenanceRepository.getScheduledMaintenancesByEquipmentId(1).size());
+        Assert.assertEquals(expected.size(), this.maintenanceRepository.getMaintenancesByEquipmentId(1).size());
 
     }
 
+    @Test
+    public void getMaintenancesByIdTest() throws SQLException
+    {
+        Maintenance expected = null;
+
+        int maintenanceId = 1;
+        Assert.assertNotEquals(expected, this.maintenanceRepository.get(maintenanceId));
+
+        maintenanceId = -1;
+        Assert.assertEquals(expected, this.maintenanceRepository.get(maintenanceId));
+
+    }
+
+    @Test
+    public void getAllMaintenancesTest() throws SQLException
+    {
+        List<Maintenance> expected = new LinkedList<>();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2016,11,8);
+
+        Maintenance maintenance = new Maintenance();
+        maintenance.setDate(calendar.getTime());
+        maintenance.setFinishedDate(calendar.getTime());
+        maintenance.setDescription("Maintenance Description Test");
+        maintenance.setFinished(true);
+        maintenance.setIs_deleted(false);
+
+        User employee = new User();
+        employee.setId(1);
+        maintenance.setEmployee(employee);
+
+        Equipment equipment = new Equipment();
+        equipment.setId(1);
+        maintenance.setEquipment(equipment);
+
+        expected.add(maintenance);
+
+        Assert.assertNotEquals(expected.size(), this.maintenanceRepository.getAll().size());
+    }
+
+
+    @Test
+    public void softDeleteTest() throws SQLException
+    {
+        Maintenance expected = null;
+
+        int maintenanceId = 1;
+        this.maintenanceRepository.softDelete(maintenanceId);
+        Assert.assertEquals(expected, this.maintenanceRepository.get(maintenanceId));
+    }
 }
