@@ -118,10 +118,32 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`Maintenance` (
     ON UPDATE NO ACTION)
   ENGINE = InnoDB;
 
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+DELIMITER $$
+# The function returns the next_mainntenance of the equipment -> Input Parameter: equipment_id
+CREATE Function show_alert(equipment INT)
+  RETURNS DATETIME
+  BEGIN
+    Declare next_maintenance DATETIME;
+    set next_maintenance = '0000-00-00';
+    # Verify if the equipment does not have a scheduled maintenance
+    if not exists(select m.finished_date from maintenance m where m.equipment_id = equipment and m.finished = false and m.is_deleted = false) THEN
+      # Verify if the equipment has a maintenance done previously
+      if exists(select m.finished_date from maintenance m where m.equipment_id = equipment) then
+        # Set in the next_maintenance the sum of the finished_date of the last maintenance with the maintenance periodicity - 3
+        set next_maintenance = (select DATE_ADD(m.finished_date, interval e.maintenance_periodicity - 3 DAY) from maintenance m
+          JOIN Equipment e ON e.equipment_id = m.equipment_id
+        where m.is_deleted = false AND m.equipment_id = equipment
+                                order by m.finished_date desc limit 1);
+      #If the equipment doesn't have any registred maintenance
+      else
+        set next_maintenance = (select DATE_ADD(e.last_maintenance, interval e.maintenance_periodicity - 3 DAY)
+                                from Equipment e  where e.equipment_id = equipment and e.is_deleted = false ORDER By e.last_maintenance desc limit 1);
+      end if;
+    end if;
+    return next_maintenance;
+  END;
+$$
+DELIMITER ;
 
 
 INSERT INTO `manutencao-ufrj`.Role (name)
@@ -135,6 +157,18 @@ INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, rg_issuer, name, passw
 
 INSERT INTO `manutencao-ufrj`.equipment(equipment_registry,last_maintenance,location,maintenance_periodicity,status, description,is_deleted,department_id)
 VALUES('1111111','2016-02-27', 'Sala H204', 60, false, 'Muito bom', false, 1);
+INSERT INTO `manutencao-ufrj`.equipment(equipment_registry,last_maintenance,location,maintenance_periodicity,status, description,is_deleted,department_id)
+VALUES('1111112','2016-10-02', 'Sala H204', 10, false, 'Ruim', false, 1);
 
 INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
-VALUES('2016-04-27', '2016-05-30', 'Pilha trocada', false, false, 1,1);
+VALUES('2016-04-27', '2016-05-30', 'Pilha trocada', true, false, 1,1);
+INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
+VALUES('2016-12-15', '2017-01-01', 'Pilha trocada', true, false, 1,1);
+INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
+VALUES('2016-12-15', '2017-01-02', 'Pilha trocada', false, false, 1,1);
+INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
+VALUES('2016-12-15', '2017-01-01', 'Pilha trocada', true, false, 2,1);
+
+select show_alert(1);
+
+select equipment_registry, show_alert(equipment_id) next_maintenance from equipment where is_deleted = false AND show_alert(equipment_id) != '0000-00-00';
