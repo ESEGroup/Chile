@@ -124,7 +124,10 @@ public class EquipmentRepository extends BaseRepository{
     {
         this.params = new HashMap<>();
 
-        this.query = "";
+        this.query = "Select * from Equipment e " +
+                "left join Maintenance m " +
+                "ON e.equipment_id  = m.equipment_id " +
+                "where m.equipment_id is null";
 
         this.createNamedParameterStatement(this.query, this.params);
 
