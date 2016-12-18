@@ -38,11 +38,11 @@ public class DepartmentController
 
         try
         {
-            List<Department> roles = this.departmentService.getAll();
+            List<Department> departments = this.departmentService.getAll();
 
             response.setStatus(Response.Status.OK.getStatusCode());
             response.setMessage("Successfully got all departments");
-            response.setData(roles);
+            response.setData(departments);
 
             return Response.status(response.getStatus()).entity(response).build();
         }
