@@ -124,10 +124,10 @@ public class EquipmentRepository extends BaseRepository{
     {
         this.params = new HashMap<>();
 
-        this.query = "Select * from Equipment e " +
-                "left join Maintenance m " +
-                "ON e.equipment_id  = m.equipment_id " +
-                "where m.equipment_id is null";
+        this.query = "SELECT * FROM Equipment e " +
+                "JOIN Department d ON e.department_id = d.department_id " +
+                "LEFT JOIN Maintenance m ON e.equipment_id = m.equipment_id " +
+                "WHERE m.equipment_id is null";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -135,7 +135,8 @@ public class EquipmentRepository extends BaseRepository{
 
         List<Equipment> equipments = new LinkedList<>();
         Equipment equipment = null;
-        while(this.rs.next()){
+        while(this.rs.next())
+        {
             equipment = new Equipment();
             equipment.setId(this.rs.getInt("equipment_id"));
             equipment.setEquipmentRegistry(this.rs.getString("equipment_registry"));
@@ -151,6 +152,7 @@ public class EquipmentRepository extends BaseRepository{
 
             equipments.add(equipment);
         }
+
         return equipments;
     }
 
