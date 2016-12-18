@@ -32,8 +32,8 @@ public class MaintenanceRepository extends BaseRepository
                 "JOIN User u ON u.user_id = m.user_id " +
                 "JOIN Equipment e ON e.equipment_id = m.equipment_id " +
                 "JOIN Department d ON e.department_id = d.department_id " +
-                "JOIN Role r on u.user = r.user " +
-                "WHERE m.finished = 0 AND m.maintenance_id = :maintenance_id AND m.is_deleted = 0";
+                "JOIN Role r on u.role_id = r.role_id " +
+                "WHERE m.maintenance_id = :maintenance_id AND m.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -88,6 +88,7 @@ public class MaintenanceRepository extends BaseRepository
         // Select equipment that has maintenance proximity before today's data and up to 3 days after
         this.query = "SELECT get_next_maintenance(e.equipment_id) next_maintenance, e.*,d.* from equipment e " +
                 "JOIN department d on e.department_id= d.department_id " +
+                "WHERE is_deleted = false AND get_next_maintenance(e.equipment_id) != '0000-00-00' " +
                 "AND (get_next_maintenance(e.equipment_id) <= DATE_ADD(CURDATE(), INTERVAL + 3 DAY))";
 
 
@@ -120,6 +121,7 @@ public class MaintenanceRepository extends BaseRepository
         return maintenances;
     }
 
+    // Maintenances done
     public List<Maintenance> getAll() throws SQLException
     {
         this.params = new HashMap<>();
@@ -128,8 +130,8 @@ public class MaintenanceRepository extends BaseRepository
                 "JOIN User u ON u.user_id = m.user_id " +
                 "JOIN Equipment e ON e.equipment_id = m.equipment_id " +
                 "JOIN Department d ON e.department_id = d.department_id " +
-                "JOIN Role r on u.user = r.user " +
-                "WHERE m.finished = 0 AND m.is_deleted = 0";
+                "JOIN Role r on u.role_id = r.role_id " +
+                "WHERE m.finished = 1 AND m.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -190,7 +192,7 @@ public class MaintenanceRepository extends BaseRepository
                 "JOIN User u ON u.user_id = m.user_id " +
                 "JOIN Equipment e ON e.equipment_id = m.equipment_id " +
                 "JOIN Department d ON e.department_id = d.department_id " +
-                "JOIN Role r on u.user = r.user " +
+                "JOIN Role r on u.role_id = r.role_id " +
                 "WHERE m.finished = 0 AND m.equipment_id = :equipment_id AND m.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
@@ -250,7 +252,7 @@ public class MaintenanceRepository extends BaseRepository
                 "JOIN User u ON u.user_id = m.user_id " +
                 "JOIN Equipment e ON e.equipment_id = m.equipment_id " +
                 "JOIN Department d ON e.department_id = d.department_id " +
-                "JOIN Role r on u.user = r.user " +
+                "JOIN Role r on u.role_id = r.role_id " +
                 "WHERE m.equipment_id = :equipment_id AND m.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
@@ -346,7 +348,6 @@ public class MaintenanceRepository extends BaseRepository
 
         this.createNamedParameterStatement(this.query, this.params);
 
-        System.out.println(query);
         return this.namedStmt.executeUpdate();
     }
 

@@ -1,5 +1,4 @@
 package repository;
-
 import models.Equipment;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,8 +91,8 @@ public class EquipmentRepository extends BaseRepository{
         this.params = new HashMap<>();
 
         this.query = "SELECT * FROM Equipment e " +
-                     "JOIN Department d ON e.department_id = d.department_id " +
-                     "WHERE e.is_deleted = 0";
+                "JOIN Department d ON e.department_id = d.department_id " +
+                "WHERE e.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -168,7 +167,7 @@ public class EquipmentRepository extends BaseRepository{
         this.params.put("department_id", equipment.getDepartment().getId());
 
         this.query = "INSERT INTO Equipment (equipment_registry, description, last_maintenance, maintenance_periodicity, location, status, department_id, is_deleted)" +
-                     "VALUES (:equipment_registry, :description, :last_maintenance, :maintenance_periodicity, :location, :status, :department_id, :is_deleted)";
+                "VALUES (:equipment_registry, :description, :last_maintenance, :maintenance_periodicity, :location, :status, :department_id, :is_deleted)";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -188,8 +187,8 @@ public class EquipmentRepository extends BaseRepository{
         this.params.put("department_id", equipment.getDepartment().getId());
 
         this.query = "UPDATE Equipment SET equipment_registry = :equipment_registry, description = :description, last_maintenance = :last_maintenance, " +
-                                            "maintenance_periodicity = :maintenance_periodicity, location = :location, status = :status, department_id = :department_id, is_deleted = :is_deleted " +
-                     "WHERE equipment_id = :equipment_id and is_deleted = 0" ;
+                "maintenance_periodicity = :maintenance_periodicity, location = :location, status = :status, department_id = :department_id, is_deleted = :is_deleted " +
+                "WHERE equipment_id = :equipment_id and is_deleted = 0" ;
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -202,7 +201,7 @@ public class EquipmentRepository extends BaseRepository{
         this.params.put("equipment_id", id);
 
         this.query = "UPDATE Equipment SET is_deleted = 1 " +
-                     "WHERE equipment_id = :equipment_id";
+                "WHERE equipment_id = :equipment_id";
 
         this.createNamedParameterStatement(this.query, this.params);
 
