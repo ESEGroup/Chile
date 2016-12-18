@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`Maintenance` (
   `maintenance_id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
   `finished_date` DATETIME NULL,
-  `description` VARCHAR(8000) NOT NULL,
+  `description` VARCHAR(8000),
   `finished` TINYINT(1) NOT NULL DEFAULT 0,
   `is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
   `equipment_id` INT NOT NULL,
