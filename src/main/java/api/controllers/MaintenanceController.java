@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -24,6 +25,29 @@ public class MaintenanceController
     public MaintenanceController()
     {
         this.maintenanceService = new MaintenanceService();
+    }
+
+    @GET
+    @Path("/getAlert")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAlert()
+    {
+        HttpResponse response = new HttpResponse();
+        try{
+            List<Maintenance> maintenances = maintenanceService.getAlert();
+
+            response.setStatus(Response.Status.OK.getStatusCode());
+            response.setMessage("Successfully got all maintenances");
+            response.setData(maintenances);
+
+            return Response.status(response.getStatus()).entity(response).build();
+        }
+        catch(Exception e)
+        {
+            response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+            response.setMessage(e.getMessage());
+            return Response.status(response.getStatus()).entity(response).build();
+        }
     }
 
     @GET

@@ -20,6 +20,12 @@ public class MaintenanceService
     }
 
 
+    public List<Maintenance> getAlert() throws SQLException
+    {
+        return this.maintenanceRepository.getAlert();
+    }
+
+
     public Maintenance get(int id) throws SQLException
     {
         return this.maintenanceRepository.get(id);
