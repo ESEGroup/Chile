@@ -93,7 +93,19 @@ public class MaintenanceRepositoryTest
     }
 
     @Test
-    public void getAllMaintenancesByEquipmentIdTest() throws SQLException
+    public void getMaintenanceByEquipmentIdTest() throws SQLException
+    {
+        Maintenance expected = null;
+
+        int maintenanceId = 1;
+        Assert.assertNotEquals(expected, this.maintenanceRepository.getMaintenanceByEquipmentId(maintenanceId));
+
+        maintenanceId = -1;
+        Assert.assertEquals(expected, this.maintenanceRepository.getMaintenanceByEquipmentId(maintenanceId));
+    }
+
+    @Test
+    public void getMaintenancesByEquipmentIdTest() throws SQLException
     {
         List<Maintenance> expected = new LinkedList<>();
 
@@ -161,7 +173,6 @@ public class MaintenanceRepositoryTest
 
         Assert.assertNotEquals(expected.size(), this.maintenanceRepository.getAll().size());
     }
-
 
     @Test
     public void softDeleteTest() throws SQLException

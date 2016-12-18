@@ -16,19 +16,22 @@ public class EquipmentService
 
     private EquipmentRepository equipmentRepository;
 
-    private HashService hashService;
-
     public EquipmentService()
     {
         this.equipmentRepository = new EquipmentRepository();
 
-        this.hashService = new HashService();
     }
 
     public Equipment get(int id) throws SQLException
     {
         return this.equipmentRepository.get(id);
     }
+
+    public Equipment get(String equipmentRegistry) throws SQLException
+    {
+        return this.equipmentRepository.get(equipmentRegistry);
+    }
+
 
     public List<Equipment> getAll() throws SQLException
     {
@@ -51,22 +54,28 @@ public class EquipmentService
 
     public int update(Equipment equipment) throws SQLException
     {
-        switch (this.equipmentRepository.update(equipment))
+        Equipment e = this.equipmentRepository.get(equipment.getId());
+
+        if (e == null)
         {
-            case 0:
-                return EquipmentStatus.NOT_FOUND;
+            return EquipmentStatus.NOT_FOUND;
         }
+
+        this.equipmentRepository.update(equipment);
 
         return EquipmentStatus.OK;
     }
 
     public int softDelete(int id) throws SQLException
     {
-        switch (this.equipmentRepository.softDelete(id))
+        Equipment e = this.equipmentRepository.get(id);
+
+        if (e == null)
         {
-            case 0:
-                return EquipmentStatus.NOT_FOUND;
+            return EquipmentStatus.NOT_FOUND;
         }
+
+        this.equipmentRepository.softDelete(id);
 
         return EquipmentStatus.OK;
     }

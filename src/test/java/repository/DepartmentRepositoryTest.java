@@ -42,7 +42,8 @@ public class DepartmentRepositoryTest
         Department department = new Department();
         department.setName("Department Test Name");
 
-        Assert.assertNotEquals(expected.size(), this.departmentRepository.getAll().size());
+        expected.add(department);
+        Assert.assertEquals(expected.size(), this.departmentRepository.getAll().size());
 
     }
 }
