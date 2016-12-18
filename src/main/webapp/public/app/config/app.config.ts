@@ -33,6 +33,11 @@
 				controller: App.Components.Configuration.User.UserConfigurationController,
 				controllerAs: 'userConfigCtrl'
 			})
+			.when('/scheduling', {
+				templateUrl: 'public/app/components/scheduling/scheduling.html',
+				controller: App.Components.Scheduling.SchedulingController,
+				controllerAs: 'schedulingCtrl'
+			})
 			.otherwise({
 	            redirectTo: '/'
 	        });

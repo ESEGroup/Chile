@@ -34,14 +34,14 @@ namespace App.Components.Configuration.User {
         private init() {
             this.columnList = [
                 {
+                    isEditCommand: true,
+                    editFunction: this.editFunc
+                },
+                {
                     alignment: 'center',
                     dataField: 'id',
                     caption: 'Id',
                     visible: false,
-                },
-                {
-                    isEditCommand: true,
-                    editFunction: this.editFunc
                 },
                 {
                     dataField: 'name',

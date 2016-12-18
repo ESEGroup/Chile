@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{scheduleMaintenanceCtrl.Title}}</h3>
+</div>
+<form class="form-horizontal" name="scheduleMaintenanceForm" novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="birthDate" class="col-sm-3 control-label">Data do Agendamento</label>
+            <div class="col-sm-9">
+                <sta-date-picker ng-model="scheduleMaintenanceCtrl.maintenance.date" id="birthDate"></sta-date-picker>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="employee" class="col-sm-3 control-label">Funcionário Responsável</label>
+            <div class="col-sm-9">
+                <select id="employee"
+                        class="form-control"
+                        ng-model="scheduleMaintenanceCtrl.maintenance.employee"
+                        ng-options="employee as employee.name for employee in scheduleMaintenanceCtrl.employees" required >
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger pull-right multiple-pull-right-buttons-margin" ng-click="$dismiss()">Cancelar</button>
+        <button class="btn btn-success pull-right multiple-pull-right-buttons-margin" ng-disabled="scheduleMaintenanceForm.$invalid" ng-click="scheduleMaintenanceCtrl.submit()">Agendar</button>
+    </div>
+</form>

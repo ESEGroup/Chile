@@ -137,6 +137,14 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="header">MENU PRINCIPAL</li>
+                <li>
+                    <a href="#/scheduling">
+                        <i class="fa fa-calendar"></i> <span>Agendamento</span>
+                        <!--<span class="pull-right-container">-->
+                            <!--<small class="label pull-right bg-green">new</small>-->
+                        <!--</span>-->
+                    </a>
+                </li>
                 <li class="treeview" ng-if="menuCtrl.user.role.id <= menuCtrl.DEPARTMENT_ADMIN">
                     <a href="javascript:void(0)">
                         <i class="fa fa-dashboard"></i> <span>Configuração</span>
@@ -151,28 +159,6 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span>Layout Options</span>
-                        <span class="pull-right-container">
-                            <span class="label label-primary pull-right">4</span>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0)">
-                        <i class="fa fa-th"></i> <span>Widgets</span>
-                        <span class="pull-right-container">
-                            <small class="label pull-right bg-green">new</small>
-                        </span>
-                    </a>
                 </li>
             </ul>
         </section>
@@ -249,6 +235,8 @@
 <script src="public/app/services/http/login.data-service.js"></script>
 <script src="public/app/services/http/role.data-service.js"></script>
 <script src="public/app/services/http/department.data-service.js"></script>
+<script src="public/app/services/http/equipment.data-service.js"></script>
+<script src="public/app/services/http/maintenance.data-service.js"></script>
 
 <!-- components base -->
 <script src="public/app/components/base.controller.js"></script>
@@ -259,6 +247,8 @@
 <script src="public/app/components/login/login.controller.js"></script>
 <script src="public/app/components/configuration/user/users-configuration.controller.js"></script>
 <script src="public/app/components/configuration/user/user-configuration.controller.js"></script>
+<script src="public/app/components/scheduling/scheduling.controller.js"></script>
+<script src="public/app/components/scheduling/modal/schedule-maintenance.controller.js  "></script>
 
 <!-- directives -->
 <script src="public/app/directives/sta-dx-grid/sta-dx-grid.controller.js"></script>

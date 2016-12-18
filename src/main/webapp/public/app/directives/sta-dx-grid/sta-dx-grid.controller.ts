@@ -59,7 +59,7 @@ namespace App.Directives.STADxGrid {
                                 .addClass("fa-plus")
                                 .addClass("cursor-pointer")
                                 .addClass("add-button")
-                                .appendTo(header)
+                                .appendTo(header);
                             header.parent().on("dxclick", function () { info.column.addFunction() });
                         };
 
