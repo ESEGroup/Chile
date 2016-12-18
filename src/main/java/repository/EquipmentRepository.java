@@ -22,13 +22,15 @@ public class EquipmentRepository extends BaseRepository{
     public Equipment get(int id) throws SQLException
     {
         this.params = new HashMap<>();
-        this.params.put("id", id);
+        this.params.put("equipment_id", id);
 
         this.query = "SELECT * FROM Equipment e " +
-                     "JOIN Department d ON e.department_id = d.department_id " +
-                     "WHERE e.departament_id = :id AND e.is_deleted = 0";
+                "JOIN Department d ON e.department_id = d.department_id " +
+                "WHERE e.equipment_id = :equipment_id AND e.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
+
+        System.out.println(this.query);
 
         this.rs = this.namedStmt.executeQuery();
 
@@ -37,31 +39,34 @@ public class EquipmentRepository extends BaseRepository{
         while(this.rs.next())
         {
             equipment = new Equipment();
-            equipment.setId(this.rs.getInt("equipament_id"));
-            equipment.setEquipmentRegistry(this.rs.getString("equipment_registry"));
+            equipment.setId(this.rs.getInt("equipment_id"));
+            equipment.setEquipmentRegistry(this.rs.getString("equipment_Id"));
             equipment.setDescription(this.rs.getString("description"));
             equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
-            equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setLocation(this.rs.getString("location"));
+            equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setStatus(this.rs.getBoolean("status"));
+            equipment.setStatus(this.rs.getBoolean("is_deleted"));
+
             equipment.getDepartment().setId(this.rs.getInt("department_id"));
             equipment.getDepartment().setName(this.rs.getString("d.name"));
-
         }
 
         return equipment;
     }
 
-    public Equipment get(String equipmentId) throws SQLException
+    public Equipment get(String equipmentRegistry) throws SQLException
     {
         this.params = new HashMap<>();
-        this.params.put("equipment_id", equipmentId);
+        this.params.put("equipment_registry", equipmentRegistry);
 
         this.query = "SELECT * FROM Equipment e " +
                 "JOIN Department d ON e.department_id = d.department_id " +
-                "WHERE equipment_id = :equipment_id AND is deleted = 0";
+                "WHERE e.equipment_registry = :equipment_registry AND e.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
+
+        System.out.println(this.query);
 
         this.rs = this.namedStmt.executeQuery();
 
@@ -70,13 +75,14 @@ public class EquipmentRepository extends BaseRepository{
         while(this.rs.next())
         {
             equipment = new Equipment();
-            equipment.setId(this.rs.getInt("id"));
-            equipment.setEquipmentRegistry(this.rs.getString("equipment_Id"));
+            equipment.setId(this.rs.getInt("equipment_id"));
+            equipment.setEquipmentRegistry(this.rs.getString("equipment_registry"));
             equipment.setDescription(this.rs.getString("description"));
             equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
-            equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setLocation(this.rs.getString("location"));
+            equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setStatus(this.rs.getBoolean("status"));
+            equipment.setStatus(this.rs.getBoolean("is_deleted"));
 
             equipment.getDepartment().setId(this.rs.getInt("department_id"));
             equipment.getDepartment().setName(this.rs.getString("d.name"));
@@ -89,9 +95,9 @@ public class EquipmentRepository extends BaseRepository{
     {
         this.params = new HashMap<>();
 
-        this.query = "SELECT * FROM Equipment e" +
-                     "JOIN Department ON e.department_id = d.department_id" +
-                     "WHERE is_deleted = 0";
+        this.query = "SELECT * FROM Equipment e " +
+                     "JOIN Department d ON e.department_id = d.department_id " +
+                     "WHERE e.is_deleted = 0";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -101,13 +107,14 @@ public class EquipmentRepository extends BaseRepository{
         Equipment equipment = null;
         while(this.rs.next()){
             equipment = new Equipment();
-            equipment.setId(this.rs.getInt("id"));
-            equipment.setEquipmentRegistry(this.rs.getString("equipment_id"));
+            equipment.setId(this.rs.getInt("equipment_id"));
+            equipment.setEquipmentRegistry(this.rs.getString("equipment_registry"));
             equipment.setDescription(this.rs.getString("description"));
             equipment.setLastMaintenance(this.rs.getDate("last_maintenance"));
-            equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setLocation(this.rs.getString("location"));
+            equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setStatus(this.rs.getBoolean("status"));
+            equipment.setStatus(this.rs.getBoolean("is_deleted"));
 
             equipment.getDepartment().setId(this.rs.getInt("department_id"));
             equipment.getDepartment().setName(this.rs.getString("d.name"));
@@ -141,17 +148,21 @@ public class EquipmentRepository extends BaseRepository{
     public int update(Equipment equipment) throws SQLException
     {
         this.params = new HashMap<>();
-        this.params.put("equipment_id", equipment.getEquipmentRegistry());
+        this.params.put("equipment_id", equipment.getId());
+        this.params.put("equipment_registry", equipment.getEquipmentRegistry());
         this.params.put("description", equipment.getDescription());
         this.params.put("last_maintenance", equipment.getLastMaintenance());
+        this.params.put("maintenance_periodicity", equipment.getMaintenancePeriodicity());
         this.params.put("location", equipment.getLocation());
         this.params.put("status", equipment.getStatus());
+        this.params.put("department_id", equipment.getDepartment().getId());
+        this.params.put("is_deleted", equipment.getStatus());
 
         this.params.put("department_id", equipment.getDepartment().getId());
 
-        this.query = "UPDATE Equipment SET equipment_id = :equipment_id, description = :description, last_maintenance = :last_maintenance, " +
-                                            "location = :location, status = :status, department_id = :department_id" +
-                     "WHERE id = :id and is_deleted = 0" ;
+        this.query = "UPDATE Equipment SET equipment_registry = :equipment_registry, description = :description, last_maintenance = :last_maintenance, " +
+                                            "maintenance_periodicity = :maintenance_periodicity, location = :location, status = :status, department_id = :department_id, is_deleted = :is_deleted " +
+                     "WHERE equipment_id = :equipment_id and is_deleted = 0" ;
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -164,7 +175,7 @@ public class EquipmentRepository extends BaseRepository{
         this.params.put("equipment_id", id);
 
         this.query = "UPDATE Equipment SET is_deleted = 1 " +
-                     "WHERE id = :id";
+                     "WHERE equipment_id = :equipment_id";
 
         this.createNamedParameterStatement(this.query, this.params);
 

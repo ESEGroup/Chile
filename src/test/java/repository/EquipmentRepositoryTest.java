@@ -10,17 +10,17 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by antonio-galvao on 17/12/16.
  */
-public class EquipmentRepositoryTest
-{
+public class EquipmentRepositoryTest {
     private EquipmentRepository equipmentRepository;
 
     @Before
-    public void setUp() throws SQLException
-    {
+    public void setUp() throws SQLException {
         this.equipmentRepository = new EquipmentRepository();
 
         String query = "SET AUTOCOMMIT = 0;";
@@ -28,24 +28,24 @@ public class EquipmentRepositoryTest
     }
 
     @After
-    public void tearDown() throws SQLException
-    {
+    public void tearDown() throws SQLException {
         String query = "ROLLBACK;";
         this.equipmentRepository.stmt.execute(query);
     }
 
     @Test
-    public void insertEquipmentTest() throws SQLException
-    {
+    public void insertEquipmentTest() throws SQLException {
         int expected = 1;
 
         Equipment equipment = new Equipment();
+        equipment.setId(1);
         equipment.setEquipmentRegistry("1234567");
         equipment.setDescription("This is a equipment description test.");
         equipment.setLastMaintenance(new Date());
         equipment.setLocation("Equipment location test");
         equipment.setMaintenancePeriodicity(30);
         equipment.setStatus(true);
+        equipment.setIs_deleted(false);
 
         Department department = new Department();
         department.setId(1);
@@ -54,4 +54,95 @@ public class EquipmentRepositoryTest
         Assert.assertEquals(expected, this.equipmentRepository.insert(equipment));
 
     }
+
+    @Test
+    public void updateEquipmentTest() throws SQLException {
+        int expected = 1;
+
+        Equipment equipment = new Equipment();
+        equipment.setId(1);
+        equipment.setEquipmentRegistry("1234567");
+        equipment.setDescription("This is a equipment description test.");
+        equipment.setLastMaintenance(new Date());
+        equipment.setLocation("Equipment location test");
+        equipment.setMaintenancePeriodicity(30);
+        equipment.setStatus(true);
+        equipment.setIs_deleted(false);
+
+        Department department = new Department();
+        department.setId(1);
+        equipment.setDepartment(department);
+
+        Assert.assertEquals(expected, this.equipmentRepository.update(equipment));
+
+        expected = 0;
+        equipment.setId(-1);
+        Assert.assertEquals(expected, this.equipmentRepository.update(equipment));
+
+    }
+
+    @Test
+    public void getEquipmentByEquipmentRegistryTest() throws SQLException
+    {
+        Equipment expected = null;
+
+
+        String equipmentId = "abcdefg";
+        Assert.assertEquals(expected, this.equipmentRepository.get(equipmentId));
+
+        equipmentId = "1111111";
+        Assert.assertEquals(expected, this.equipmentRepository.get(equipmentId));
+    }
+
+    @Test
+    public void getEquipmentByIdTest() throws SQLException
+    {
+        Equipment expected = null;
+
+        int equipmentId = 1;
+        Assert.assertNotEquals(expected, this.equipmentRepository.get(equipmentId));
+
+        equipmentId = -1;
+        Assert.assertNotEquals(expected, this.equipmentRepository.get(equipmentId));
+
+    }
+
+    @Test
+    public void getAllEquipamentsTest() throws SQLException
+    {
+        List<Equipment> expected = new LinkedList<>();
+
+        Equipment equipment = new Equipment();
+        equipment.setId(1);
+        equipment.setEquipmentRegistry("1234567");
+        equipment.setDescription("This is a equipment description test.");
+        equipment.setLastMaintenance(new Date());
+        equipment.setLocation("Equipment location test");
+        equipment.setMaintenancePeriodicity(30);
+        equipment.setStatus(true);
+        equipment.setIs_deleted(false);
+
+        Department department = new Department();
+        department.setId(1);
+        equipment.setDepartment(department);
+
+        Assert.assertNotEquals(expected.size(), this.equipmentRepository.getAll().size());
+
+    }
+
+    @Test
+    public void softDeleteTest() throws SQLException
+    {
+        int expected = 1;
+
+        int equipmentId = 1;
+        Assert.assertEquals(expected, this.equipmentRepository.softDelete(equipmentId));
+
+        expected = 0;
+        equipmentId = 6;
+        Assert.assertEquals(expected, this.equipmentRepository.softDelete(equipmentId));
+    }
+
+
+
 }
