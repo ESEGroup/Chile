@@ -187,8 +187,6 @@ public class EquipmentRepository extends BaseRepository{
         this.params.put("status", equipment.getStatus());
         this.params.put("department_id", equipment.getDepartment().getId());
 
-        this.params.put("department_id", equipment.getDepartment().getId());
-
         this.query = "UPDATE Equipment SET equipment_registry = :equipment_registry, description = :description, last_maintenance = :last_maintenance, " +
                                             "maintenance_periodicity = :maintenance_periodicity, location = :location, status = :status, department_id = :department_id, is_deleted = :is_deleted " +
                      "WHERE equipment_id = :equipment_id and is_deleted = 0" ;
