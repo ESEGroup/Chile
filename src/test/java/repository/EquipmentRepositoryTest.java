@@ -51,7 +51,7 @@ public class EquipmentRepositoryTest
         department.setId(1);
         equipment.setDepartment(department);
 
-        Assert.assertEquals(expected, this.equipmentRepository.update(equipment));
+        Assert.assertEquals(expected, this.equipmentRepository.insert(equipment));
 
     }
 }
