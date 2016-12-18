@@ -32,7 +32,7 @@ public class MaintenanceService
             // return MaintenanceStatus.CONFLICT;
         }
 
-        this.maintenanceRepository.insert();
+        this.maintenanceRepository.insert(maintenance);
 
         //return MaintenanceStatus.OK;
     }

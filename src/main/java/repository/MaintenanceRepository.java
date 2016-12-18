@@ -1,8 +1,6 @@
 package repository;
 
-import models.Equipment;
 import models.Maintenance;
-import models.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,9 +23,22 @@ public class MaintenanceRepository extends BaseRepository
         super();
     }
 
-    public void insert() throws SQLException
+    public int insert(Maintenance maintenance) throws SQLException
     {
+        this.params = new HashMap<>();
+        this.params.put("date", maintenance.getDate());
+        this.params.put("finished_date", maintenance.getFinishedDate());
+        this.params.put("description", maintenance.getDescription());
+        this.params.put("finished", maintenance.isFinished());
 
+        this.params.put("user_id", maintenance.getEmployee().getId());
+        this.params.put("equipment_id", maintenance.getEquipment().getId());
+
+        this.query = "";
+
+        this.createNamedParameterStatement(this.query, this.params);
+
+        return this.namedStmt.executeUpdate();
     }
 
     public Maintenance getScheduledMaintenanceByEquipmentId(int equipmentId) throws SQLException
@@ -44,10 +55,14 @@ public class MaintenanceRepository extends BaseRepository
         while (this.rs.next())
         {
             maintenance = new Maintenance();
-            // ...
+            maintenance.setId(this.rs.getInt("maintenance_id"));
+            maintenance.setDate(this.rs.getDate("date"));
+            maintenance.setFinishedDate(this.rs.getDate("finished_date"));
+            maintenance.setDescription(this.rs.getString("description"));
+            maintenance.setFinished(this.rs.getBoolean("finished"));
         }
-
 
         return maintenance;
     }
+
 }
