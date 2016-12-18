@@ -72,7 +72,7 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEquipment().setLocation(this.rs.getString("e.location"));
             maintenance.getEquipment().setMaintenancePeriodicity(this.rs.getInt("e.maintenance_periodicity"));
             maintenance.getEquipment().setStatus(this.rs.getBoolean("e.status"));
-            maintenance.getEquipment().setIs_deleted(this.rs.getBoolean("e.is_deleted"));
+            maintenance.getEquipment().setDeleted(this.rs.getBoolean("e.is_deleted"));
 
             maintenance.getEquipment().getDepartment().setId(this.rs.getInt("d.department_id"));
             maintenance.getEquipment().getDepartment().setName(this.rs.getString("d.name"));
@@ -109,7 +109,7 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEquipment().setLocation(this.rs.getString("e.location"));
             maintenance.getEquipment().setMaintenancePeriodicity(this.rs.getInt("e.maintenance_periodicity"));
             maintenance.getEquipment().setStatus(this.rs.getBoolean("e.status"));
-            maintenance.getEquipment().setIs_deleted(this.rs.getBoolean("e.is_deleted"));
+            maintenance.getEquipment().setDeleted(this.rs.getBoolean("e.is_deleted"));
 
             maintenance.getEquipment().getDepartment().setId(this.rs.getInt("d.department_id"));
             maintenance.getEquipment().getDepartment().setName(this.rs.getString("d.name"));
@@ -169,7 +169,7 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEquipment().setLocation(this.rs.getString("e.location"));
             maintenance.getEquipment().setMaintenancePeriodicity(this.rs.getInt("e.maintenance_periodicity"));
             maintenance.getEquipment().setStatus(this.rs.getBoolean("e.status"));
-            maintenance.getEquipment().setIs_deleted(this.rs.getBoolean("e.is_deleted"));
+            maintenance.getEquipment().setDeleted(this.rs.getBoolean("e.is_deleted"));
 
             maintenance.getEquipment().getDepartment().setId(this.rs.getInt("d.department_id"));
             maintenance.getEquipment().getDepartment().setName(this.rs.getString("d.name"));
@@ -230,7 +230,7 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEquipment().setLocation(this.rs.getString("e.location"));
             maintenance.getEquipment().setMaintenancePeriodicity(this.rs.getInt("e.maintenance_periodicity"));
             maintenance.getEquipment().setStatus(this.rs.getBoolean("e.status"));
-            maintenance.getEquipment().setIs_deleted(this.rs.getBoolean("e.is_deleted"));
+            maintenance.getEquipment().setDeleted(this.rs.getBoolean("e.is_deleted"));
 
             maintenance.getEquipment().getDepartment().setId(this.rs.getInt("d.department_id"));
             maintenance.getEquipment().getDepartment().setName(this.rs.getString("d.name"));
@@ -291,7 +291,7 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEquipment().setLocation(this.rs.getString("e.location"));
             maintenance.getEquipment().setMaintenancePeriodicity(this.rs.getInt("e.maintenance_periodicity"));
             maintenance.getEquipment().setStatus(this.rs.getBoolean("e.status"));
-            maintenance.getEquipment().setIs_deleted(this.rs.getBoolean("e.is_deleted"));
+            maintenance.getEquipment().setDeleted(this.rs.getBoolean("e.is_deleted"));
 
             maintenance.getEquipment().getDepartment().setId(this.rs.getInt("d.department_id"));
             maintenance.getEquipment().getDepartment().setName(this.rs.getString("d.name"));

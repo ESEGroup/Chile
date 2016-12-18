@@ -45,7 +45,7 @@ public class EquipmentRepositoryTest {
         equipment.setLocation("Equipment location test");
         equipment.setMaintenancePeriodicity(30);
         equipment.setStatus(true);
-        equipment.setIs_deleted(false);
+        equipment.setDeleted(false);
 
         Department department = new Department();
         department.setId(1);
@@ -67,7 +67,7 @@ public class EquipmentRepositoryTest {
         equipment.setLocation("Equipment location test");
         equipment.setMaintenancePeriodicity(30);
         equipment.setStatus(true);
-        equipment.setIs_deleted(false);
+        equipment.setDeleted(false);
 
         Department department = new Department();
         department.setId(1);
@@ -119,7 +119,7 @@ public class EquipmentRepositoryTest {
         equipment.setLocation("Equipment location test");
         equipment.setMaintenancePeriodicity(30);
         equipment.setStatus(true);
-        equipment.setIs_deleted(false);
+        equipment.setDeleted(false);
 
         Department department = new Department();
         department.setId(1);

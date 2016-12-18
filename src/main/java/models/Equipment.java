@@ -11,7 +11,7 @@ public class Equipment
 	private String location;
 	private int maintenancePeriodicity;		// days
 	private boolean status;					// could be a enum type or a EquipmentStatus type
-	private boolean is_deleted;
+	private boolean isDeleted;
 
 	private Department department;
 
@@ -88,6 +88,16 @@ public class Equipment
 		this.status = status;
 	}
 
+	public boolean isDeleted()
+	{
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean deleted)
+	{
+		isDeleted = deleted;
+	}
+
 	public Department getDepartment()
 	{
 		return department;
@@ -96,13 +106,5 @@ public class Equipment
 	public void setDepartment(Department department)
 	{
 		this.department = department;
-	}
-
-	public boolean is_deleted() {
-		return is_deleted;
-	}
-
-	public void setIs_deleted(boolean is_deleted) {
-		this.is_deleted = is_deleted;
 	}
 }
