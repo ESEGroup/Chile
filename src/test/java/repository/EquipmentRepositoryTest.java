@@ -108,7 +108,7 @@ public class EquipmentRepositoryTest {
     }
 
     @Test
-    public void getAllEquipamentsTest() throws SQLException
+    public void getAllEquipmentsTest() throws SQLException
     {
         List<Equipment> expected = new LinkedList<>();
 

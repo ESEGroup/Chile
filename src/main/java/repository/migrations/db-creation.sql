@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`Equipment` (
 -- Table `manutencao-ufrj`.`Maintenance`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`Maintenance` (
-  `id_maintenance` INT NOT NULL AUTO_INCREMENT,
+  `maintenance_id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
   `finished_date` DATETIME NULL,
   `description` VARCHAR(8000) NOT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`Maintenance` (
   `is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
   `equipment_id` INT NOT NULL,
   `user_id` INT NOT NULL,
-  PRIMARY KEY (`id_maintenance`, `equipment_id`, `user_id`),
+  PRIMARY KEY (`maintenance_id`, `equipment_id`, `user_id`),
   INDEX `fk_Maintenance_User1_idx` (`user_id` ASC),
   INDEX `fk_Maintenance_Equipament1_idx` (`equipment_id` ASC),
   CONSTRAINT `fk_Maintenance_User1`
@@ -124,7 +124,6 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-
 INSERT INTO `manutencao-ufrj`.Role (name)
   VALUES ('Administrador Geral'), ('Administrador de Departamento'), ('Funcionário');
 
@@ -138,4 +137,4 @@ INSERT INTO `manutencao-ufrj`.equipment(equipment_registry,last_maintenance,loca
 VALUES('1111111','2016-02-27', 'Sala H204', 60, false, 'Muito bom', false, 1);
 
 INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
-VALUES('2016-04-27', '2016-05-30', 'Pilha trocada', true, false, 1,1);
+VALUES('2016-04-27', '2016-05-30', 'Pilha trocada', false, false, 1,1);

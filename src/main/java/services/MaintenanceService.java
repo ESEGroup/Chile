@@ -24,9 +24,9 @@ public class MaintenanceService
     public void create(Maintenance maintenance) throws SQLException
     {
         // nome a ser decidido
-        Maintenance m = this.maintenanceRepository.getScheduledMaintenanceByEquipmentId(maintenance.getEquipment().getId());
+        //Maintenance m = this.maintenanceRepository.getScheduledMaintenancesByEquipmentId(maintenance.getEquipment().getId());
 
-        if (m != null)
+        //if (m != null)
         {
             // nao deixa criar pois ja tem uma manutencao agendada em andamento para este equipamento
             // return MaintenanceStatus.CONFLICT;

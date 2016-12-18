@@ -46,7 +46,7 @@ public class EquipmentRepository extends BaseRepository{
             equipment.setLocation(this.rs.getString("location"));
             equipment.setMaintenancePeriodicity(this.rs.getInt("maintenance_periodicity"));
             equipment.setStatus(this.rs.getBoolean("status"));
-            equipment.setStatus(this.rs.getBoolean("is_deleted"));
+            equipment.setIs_deleted(this.rs.getBoolean("is_deleted"));
 
             equipment.getDepartment().setId(this.rs.getInt("department_id"));
             equipment.getDepartment().setName(this.rs.getString("d.name"));

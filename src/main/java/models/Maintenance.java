@@ -13,6 +13,7 @@ public class Maintenance
     private Date finishedDate;
     private String description;
     private boolean finished;
+    private boolean is_deleted;
 
     private User employee;
     private Equipment equipment;
@@ -89,6 +90,14 @@ public class Maintenance
     public void setEquipment(Equipment equipment)
     {
         this.equipment = equipment;
+    }
+
+    public boolean is_deleted() {
+        return is_deleted;
+    }
+
+    public void setIs_deleted(boolean is_deleted) {
+        this.is_deleted = is_deleted;
     }
 }
 
