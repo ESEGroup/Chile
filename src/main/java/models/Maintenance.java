@@ -12,7 +12,7 @@ public class Maintenance
     private Date date;
     private Date finishedDate;
     private String description;
-    private boolean finished;
+    private boolean isFinished;
     private boolean isDeleted;
 
     private User employee;
@@ -64,12 +64,12 @@ public class Maintenance
 
     public boolean isFinished()
     {
-        return finished;
+        return isFinished;
     }
 
-    public void setFinished(boolean finished)
+    public void setFinished(boolean isFinished)
     {
-        this.finished = finished;
+        this.isFinished = isFinished;
     }
 
     public User getEmployee()
