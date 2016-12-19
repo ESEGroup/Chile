@@ -80,6 +80,7 @@ namespace App.Components.Configuration.User {
                 this.userDataService.update(this.user).then(
                     (data) => {
                         this.logService.success(data.message);
+                        this.$location.path('configuration/users');
                     },
                     (error) => {
                         this.logService.error(error.data.message);
@@ -90,6 +91,7 @@ namespace App.Components.Configuration.User {
                 this.userDataService.create(this.user).then(
                     (data) => {
                         this.logService.success(data.message);
+                        this.$location.path('configuration/users');
                     },
                     (error) => {
                         this.logService.error(error.data.message);
