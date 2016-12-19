@@ -123,10 +123,16 @@ public class EquipmentRepository extends BaseRepository{
     {
         this.params = new HashMap<>();
 
-        this.query = "SELECT * FROM Equipment e " +
-                "JOIN Department d ON e.department_id = d.department_id " +
-                "LEFT JOIN Maintenance m ON e.equipment_id = m.equipment_id " +
-                "WHERE m.equipment_id is null OR m.finished = 1";
+//        this.query = "SELECT * FROM Equipment e " +
+//                "JOIN Department d ON e.department_id = d.department_id " +
+//                "LEFT JOIN Maintenance m ON e.equipment_id = m.equipment_id " +
+//                "WHERE m.equipment_id is null OR m.finished = 1";
+
+        this.query = "SELECT    * " +
+                     "FROM      Equipment e " +
+                     "JOIN      Department d    ON e.department_id = d.department_id " +
+                     "LEFT JOIN Maintenance m   ON e.equipment_id = m.equipment_id AND m.finished != 1 " +
+                     "WHERE     m.maintenance_id is null";
 
         this.createNamedParameterStatement(this.query, this.params);
 
