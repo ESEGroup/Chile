@@ -1,0 +1,38 @@
+<section class="content-header">
+    <h1>
+        Histórico de Equipamentos
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li>Historico</li>
+        <li class="active">Equipamentos</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Histórico de Equipamentos</h3>
+                </div>
+                <div class="portlet">
+                    <div class="portlet-body form">
+                        <div class="form-body">
+                            <div class="box-body" style="display: block;">
+                                <sta-dx-grid id="equipmentHistoricGrid"
+                                             field-list="equipmentHistoricCtrl.maintenances"
+                                             column-list="equipmentHistoricCtrl.columnList"
+                                             grouping="true"
+                                             filtering="true"
+                                             export-enabled="true"
+                                             export-file-name="{{equipmentHistoricCtrl.filename}}">
+                                </sta-dx-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

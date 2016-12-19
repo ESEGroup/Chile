@@ -148,6 +148,20 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="treeview-menu">
+                        <li ng-if="menuCtrl.user.role.id <= menuCtrl.DEPARTMENT_ADMIN">
+                            <a href="#/historic/maintenance">
+                                <i class="fa fa-calendar-check-o"></i> Manutenções Realizadas
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li ng-if="menuCtrl.user.role.id <= menuCtrl.DEPARTMENT_ADMIN">
+                            <a href="#/historic/equipment">
+                                <i class="fa fa-wrench"></i> Equipamentos
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#/maintenance">
@@ -216,6 +230,9 @@
 <!-- admin lte -->
 <script src="vendor/admin-lte/dist/js/app.min.js"></script>
 
+<!-- jszip -->
+<script src="vendor/jszip/dist/jszip.min.js"></script>
+
 <!-- dev extreme -->
 <script src="vendor/devextreme/js/dx.all.js"></script>
 
@@ -259,7 +276,10 @@
 <script src="public/app/components/scheduling/scheduling.controller.js"></script>
 <script src="public/app/components/scheduling/modal/schedule-maintenance.controller.js"></script>
 <script src="public/app/components/historic/scheduled-maintenance/scheduled-maintenance-historic.controller.js"></script>
+<script src="public/app/components/historic/maintenance/maintenance-historic.controller.js"></script>
+<script src="public/app/components/historic/equipment/equipment-historic.controller.js"></script>
 <script src="public/app/components/maintenance/maintenances.controller.js"></script>
+
 
 <!-- directives -->
 <script src="public/app/directives/sta-dx-grid/sta-dx-grid.controller.js"></script>
