@@ -17,6 +17,7 @@ import java.util.List;
 
 @Path("/maintenance")
 @RequestScoped
+@SuppressWarnings("Duplicates")
 public class MaintenanceController
 {
     private MaintenanceService maintenanceService;
@@ -84,6 +85,56 @@ public class MaintenanceController
         try
         {
             List<Maintenance> maintenances = this.maintenanceService.getAll();
+
+            response.setStatus(Response.Status.OK.getStatusCode());
+            response.setMessage("Successfully got all maintenances");
+            response.setData(maintenances);
+
+            return Response.status(response.getStatus()).entity(response).build();
+        }
+        catch (Exception e)
+        {
+            response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+            response.setMessage(e.getMessage());
+            return Response.status(response.getStatus()).entity(response).build();
+        }
+    }
+
+    @GET
+    @Path("/getAllFinished")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllFinished()
+    {
+        HttpResponse response = new HttpResponse();
+
+        try
+        {
+            List<Maintenance> maintenances = this.maintenanceService.getAllFinished();
+
+            response.setStatus(Response.Status.OK.getStatusCode());
+            response.setMessage("Successfully got all maintenances");
+            response.setData(maintenances);
+
+            return Response.status(response.getStatus()).entity(response).build();
+        }
+        catch (Exception e)
+        {
+            response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+            response.setMessage(e.getMessage());
+            return Response.status(response.getStatus()).entity(response).build();
+        }
+    }
+
+    @GET
+    @Path("/getAllNotFinished")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllNotFinished()
+    {
+        HttpResponse response = new HttpResponse();
+
+        try
+        {
+            List<Maintenance> maintenances = this.maintenanceService.getAllNotFinished();
 
             response.setStatus(Response.Status.OK.getStatusCode());
             response.setMessage("Successfully got all maintenances");
@@ -247,4 +298,5 @@ public class MaintenanceController
             response.setMessage(e.getMessage());
             return Response.status(response.getStatus()).entity(response).build();
         }
-    }}
+    }
+}
