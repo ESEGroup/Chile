@@ -126,7 +126,7 @@ public class EquipmentRepository extends BaseRepository{
         this.query = "SELECT * FROM Equipment e " +
                 "JOIN Department d ON e.department_id = d.department_id " +
                 "LEFT JOIN Maintenance m ON e.equipment_id = m.equipment_id " +
-                "WHERE m.equipment_id is null";
+                "WHERE m.equipment_id is null OR m.finished = 1";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -187,7 +187,7 @@ public class EquipmentRepository extends BaseRepository{
         this.params.put("department_id", equipment.getDepartment().getId());
 
         this.query = "UPDATE Equipment SET equipment_registry = :equipment_registry, description = :description, last_maintenance = :last_maintenance, " +
-                "maintenance_periodicity = :maintenance_periodicity, location = :location, status = :status, department_id = :department_id, is_deleted = :is_deleted " +
+                "maintenance_periodicity = :maintenance_periodicity, location = :location, status = :status, department_id = :department_id " +
                 "WHERE equipment_id = :equipment_id and is_deleted = 0" ;
 
         this.createNamedParameterStatement(this.query, this.params);
