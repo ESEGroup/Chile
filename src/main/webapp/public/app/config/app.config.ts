@@ -29,6 +29,12 @@
 				controller: App.Components.Historic.ScheduledMaintenance.ScheduledMaintenanceHistoricController,
 				controllerAs: 'scheduledMaintenanceHistoricCtrl'
 			})
+			// Maintenance
+			.when('/maintenance', {
+				templateUrl: 'public/app/components/maintenance/maintenances.html',
+				controller: App.Components.Maintenance.MaintenancesController,
+				controllerAs: 'maintenanceCtrl'
+			})
 			// Configuration
 			.when('/configuration/users', {
 				templateUrl: 'public/app/components/configuration/user/users-configuration.html',

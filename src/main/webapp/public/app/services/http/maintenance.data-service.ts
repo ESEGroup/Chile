@@ -21,6 +21,10 @@ namespace App.Services.Http {
             return super.get('getAllNotFinished');
         }
 
+        public getAllNotFinishedByUserId(userId : number) : ng.IPromise<IResponse> {
+            return super.get(`getAllNotFinishedByUserId/${userId}`);
+        }
+
         public update(maintenance : IMaintenance) : ng.IPromise<IResponse> {
             return super.post('update', maintenance);
         }

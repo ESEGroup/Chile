@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{maintenanceCtrl.title}}</h3>
+</div>
+<form class="form-horizontal" name="maintenanceForm" novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="maintenanceDescription" class="col-sm-3 control-label">Descrição da manutenção</label>
+            <div class="col-sm-9">
+                <textarea id="maintenanceDescription" class="form-control" rows="4" cols="50"
+                          ng-model="maintenanceCtrl.maintenance.description" required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="equipmentDescription" class="col-sm-3 control-label">Descrição do Equipamento</label>
+            <div class="col-sm-9">
+                <textarea id="equipmentDescription" class="form-control" rows="4" cols="50"
+                          ng-model="maintenanceCtrl.maintenance.equipment.description" required></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger pull-right multiple-pull-right-buttons-margin" ng-click="$dismiss()">Cancelar</button>
+        <button class="btn btn-success pull-right multiple-pull-right-buttons-margin" ng-disabled="maintenanceForm.$invalid" ng-click="maintenanceCtrl.submit()">Confirmar</button>
+    </div>
+</form>
