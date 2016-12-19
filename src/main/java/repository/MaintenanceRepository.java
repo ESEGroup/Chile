@@ -439,8 +439,8 @@ public class MaintenanceRepository extends BaseRepository
         this.params.put("user_id", maintenance.getEmployee().getId());
         this.params.put("equipment_id", maintenance.getEquipment().getId());
 
-        this.query = "INSERT INTO maintenance (date, finished_date, description, user_id, equipment_id, finished, is_deleted)" +
-                "VALUES (:date, :finished_date, :description, :user_id, :equipment_id, :finished, :is_deleted)";
+        this.query = "INSERT INTO maintenance (date, finished_date, description, user_id, equipment_id, finished)" +
+                "VALUES (:date, :finished_date, :description, :user_id, :equipment_id, :finished)";
 
         this.createNamedParameterStatement(this.query, this.params);
 
