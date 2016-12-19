@@ -36,13 +36,9 @@ public class DepartmentRepositoryTest
     @Test
     public void getAllDepartmentsTest() throws SQLException
     {
-        List<Department> expected = new LinkedList<>();
+        List<Department> expected = null;
 
-        Department department = new Department();
-        department.setName("Department Test Name");
-
-        expected.add(department);
-        Assert.assertEquals(expected.size(), this.departmentRepository.getAll().size());
+        Assert.assertNotEquals(expected, this.departmentRepository.getAll());
 
     }
 }

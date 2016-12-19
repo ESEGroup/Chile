@@ -45,7 +45,6 @@ public class EquipmentRepositoryTest {
         equipment.setLocation("Equipment location test");
         equipment.setMaintenancePeriodicity(30);
         equipment.setStatus(true);
-        equipment.setDeleted(false);
 
         Department department = new Department();
         department.setId(1);
@@ -67,7 +66,6 @@ public class EquipmentRepositoryTest {
         equipment.setLocation("Equipment location test");
         equipment.setMaintenancePeriodicity(30);
         equipment.setStatus(true);
-        equipment.setDeleted(false);
 
         Department department = new Department();
         department.setId(1);
@@ -102,55 +100,22 @@ public class EquipmentRepositoryTest {
         Assert.assertNotEquals(expected, this.equipmentRepository.get(equipmentId));
 
         equipmentId = -1;
-        Assert.assertNotEquals(expected, this.equipmentRepository.get(equipmentId));
+        Assert.assertEquals(expected, this.equipmentRepository.get(equipmentId));
 
     }
 
     @Test
     public void getAllEquipmentsTest() throws SQLException
     {
-        List<Equipment> expected = new LinkedList<>();
-
-        Equipment equipment = new Equipment();
-        equipment.setId(1);
-        equipment.setEquipmentRegistry("1234567");
-        equipment.setDescription("This is a equipment description test.");
-        equipment.setLastMaintenance(new Date());
-        equipment.setLocation("Equipment location test");
-        equipment.setMaintenancePeriodicity(30);
-        equipment.setStatus(true);
-        equipment.setDeleted(false);
-
-        Department department = new Department();
-        department.setId(1);
-        equipment.setDepartment(department);
-
-        expected.add(equipment);
-        Assert.assertEquals(expected.size(), this.equipmentRepository.getAll().size());
-
+        List<Equipment> expected = null;
+        Assert.assertNotEquals(expected, this.equipmentRepository.getAll());
     }
 
     @Test
     public void getAllEquipmentWithUnscheduledMaintenanceTest() throws SQLException
     {
-        List<Equipment> expected = new LinkedList<>();
-
-        Equipment equipment = new Equipment();
-        equipment.setId(1);
-        equipment.setEquipmentRegistry("1234567");
-        equipment.setDescription("This is a equipment description test");
-        equipment.setLastMaintenance(new Date());
-        equipment.setLocation("Equipment location test");
-        equipment.setMaintenancePeriodicity(30);
-        equipment.setStatus(true);
-        equipment.setDeleted(false);
-
-        Department department = new Department();
-        department.setId(1);
-        equipment.setDepartment(department);
-
-        expected.add(equipment);
-        Assert.assertEquals(expected.size(), this.equipmentRepository.getAll().size());
+        List<Equipment> expected = null;
+        Assert.assertNotEquals(expected, this.equipmentRepository.getAll());
     }
 
     @Test

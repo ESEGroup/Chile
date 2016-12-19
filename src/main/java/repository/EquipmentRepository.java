@@ -172,8 +172,8 @@ public class EquipmentRepository extends BaseRepository{
         this.params.put("status", equipment.getStatus());
         this.params.put("department_id", equipment.getDepartment().getId());
 
-        this.query = "INSERT INTO Equipment (equipment_registry, description, last_maintenance, maintenance_periodicity, location, status, department_id, is_deleted)" +
-                "VALUES (:equipment_registry, :description, :last_maintenance, :maintenance_periodicity, :location, :status, :department_id, :is_deleted)";
+        this.query = "INSERT INTO Equipment (equipment_registry, description, last_maintenance, maintenance_periodicity, location, status, department_id)" +
+                "VALUES (:equipment_registry, :description, :last_maintenance, :maintenance_periodicity, :location, :status, :department_id)";
 
         this.createNamedParameterStatement(this.query, this.params);
 

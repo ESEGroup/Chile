@@ -97,7 +97,7 @@ public class UserRepositoryTest
     {
         User expected = null;
 
-        String employeeId = "1234567";
+        String employeeId = "admin";
         Assert.assertNotEquals(expected, this.userRepository.get(employeeId));
 
         employeeId = "abcdefg";
