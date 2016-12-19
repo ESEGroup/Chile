@@ -365,7 +365,7 @@ public class MaintenanceRepository extends BaseRepository
     }
 
     //Return all the maintenances according to the equipment
-    public List<Maintenance> getMaintenancesByEquipmentId(int equipmentId) throws SQLException
+    public List<Maintenance> getAllMaintenanceByEquipmentId(int equipmentId) throws SQLException
     {
         this.params = new HashMap<>();
         this.params.put("equipment_id", equipmentId);

@@ -9,7 +9,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -179,13 +178,13 @@ public class MaintenanceController
     @GET
     @Path("/getMaintenancesByEquipmentId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getMaintenancesByEquipmentId(@PathParam("id") int id)
+    public Response getAllMaintenanceByEquipmentId(@PathParam("id") int id)
     {
         HttpResponse response = new HttpResponse();
 
         try
         {
-            List<Maintenance> maintenances = this.maintenanceService.getMaintenancesByEquipmentId(id);
+            List<Maintenance> maintenances = this.maintenanceService.getAllMaintenanceByEquipmentId(id);
 
             response.setStatus(Response.Status.OK.getStatusCode());
             response.setMessage("Successfully got maintenance");

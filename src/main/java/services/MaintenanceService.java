@@ -51,9 +51,9 @@ public class MaintenanceService
         return this.maintenanceRepository.getMaintenanceByEquipmentId(equipmentId);
     }
 
-    public List<Maintenance> getMaintenancesByEquipmentId(int equipmentId) throws SQLException
+    public List<Maintenance> getAllMaintenanceByEquipmentId(int equipmentId) throws SQLException
     {
-        return this.maintenanceRepository.getMaintenancesByEquipmentId(equipmentId);
+        return this.maintenanceRepository.getAllMaintenanceByEquipmentId(equipmentId);
     }
 
     public int create(Maintenance maintenance) throws SQLException
