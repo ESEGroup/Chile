@@ -36,6 +36,16 @@ public class MaintenanceService
         return this.maintenanceRepository.getAll();
     }
 
+    public List<Maintenance> getAllFinished() throws SQLException
+    {
+        return this.maintenanceRepository.getAllFinished();
+    }
+
+    public List<Maintenance> getAllNotFinished() throws SQLException
+    {
+        return this.maintenanceRepository.getAllNotFinished();
+    }
+
     public Maintenance getMaintenanceByEquipmentId(int equipmentId) throws SQLException
     {
         return this.maintenanceRepository.getMaintenanceByEquipmentId(equipmentId);

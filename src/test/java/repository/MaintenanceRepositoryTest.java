@@ -49,7 +49,7 @@ public class MaintenanceRepositoryTest
         maintenance.setFinishedDate(calendar.getTime());
         maintenance.setDescription("Maintenance Description Test");
         maintenance.setFinished(true);
-        maintenance.setIs_deleted(false);
+        maintenance.setDeleted(false);
 
         User employee = new User();
         employee.setId(1);
@@ -76,7 +76,7 @@ public class MaintenanceRepositoryTest
         maintenance.setFinishedDate(calendar.getTime());
         maintenance.setDescription("Maintenance Description Test");
         maintenance.setFinished(true);
-        maintenance.setIs_deleted(false);
+        maintenance.setDeleted(false);
 
         User employee = new User();
         employee.setId(1);
@@ -118,7 +118,7 @@ public class MaintenanceRepositoryTest
         maintenance.setFinishedDate(calendar.getTime());
         maintenance.setDescription("Maintenance Description Test");
         maintenance.setFinished(true);
-        maintenance.setIs_deleted(false);
+        maintenance.setDeleted(false);
 
         User employee = new User();
         employee.setId(1);
@@ -160,7 +160,7 @@ public class MaintenanceRepositoryTest
         maintenance.setFinishedDate(calendar.getTime());
         maintenance.setDescription("Maintenance Description Test");
         maintenance.setFinished(true);
-        maintenance.setIs_deleted(false);
+        maintenance.setDeleted(false);
 
         User employee = new User();
         employee.setId(1);
@@ -188,7 +188,7 @@ public class MaintenanceRepositoryTest
         maintenance.setFinishedDate(calendar.getTime());
         maintenance.setDescription("Maintenance Description Test");
         maintenance.setFinished(true);
-        maintenance.setIs_deleted(false);
+        maintenance.setDeleted(false);
 
         User employee = new User();
         employee.setId(1);
