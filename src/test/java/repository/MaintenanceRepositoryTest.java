@@ -106,7 +106,7 @@ public class MaintenanceRepositoryTest
     }
 
     @Test
-    public void getMaintenancesByEquipmentIdTest() throws SQLException
+    public void getAllMaintenanceByEquipmentIdTest() throws SQLException
     {
         List<Maintenance> expected = new LinkedList<>();
 
@@ -130,12 +130,12 @@ public class MaintenanceRepositoryTest
 
         expected.add(maintenance);
 
-        Assert.assertEquals(expected.size(), this.maintenanceRepository.getMaintenancesByEquipmentId(1).size());
+        Assert.assertEquals(expected.size(), this.maintenanceRepository.getAllMaintenanceByEquipmentId(1).size());
 
     }
 
     @Test
-    public void getMaintenancesByIdTest() throws SQLException
+    public void getAllMaintenanceByIdTest() throws SQLException
     {
         Maintenance expected = null;
 
@@ -148,7 +148,7 @@ public class MaintenanceRepositoryTest
     }
 
     @Test
-    public void getAllMaintenancesTest() throws SQLException
+    public void getAllMaintenanceTest() throws SQLException
     {
         List<Maintenance> expected = new LinkedList<>();
 
