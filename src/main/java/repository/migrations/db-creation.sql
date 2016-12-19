@@ -154,7 +154,7 @@ INSERT INTO `manutencao-ufrj`.Department(name)
 
 INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, rg_issuer, name, password, role_id, department_id)
     VALUES ('admin', '16035256708', '277694709', 'DETRAN/RJ', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1),
-           ('1234567', '12345678901', '123456789', 'DETRA/NRJ', 'Funcionário Teste', '$2a$12$hM7.xRYlCbDYcAWkU09P6uYV3DIBg6tEyJFG2QZnlgPactTvN9YhG', 3, 1);
+           ('1234567', '12345678901', '123456789', 'DETRAN/RJ', 'Funcionário Teste', '$2a$12$hM7.xRYlCbDYcAWkU09P6uYV3DIBg6tEyJFG2QZnlgPactTvN9YhG', 3, 1);
 
 INSERT INTO `manutencao-ufrj`.equipment(equipment_registry,last_maintenance,location,maintenance_periodicity,status, description,is_deleted,department_id)
 VALUES('1111111','2016-02-27', 'Sala H204', 60, false, 'Muito bom', false, 1);
