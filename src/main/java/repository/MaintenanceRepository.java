@@ -226,7 +226,7 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().getRole().setName(this.rs.getString("r.name"));
 
             maintenance.getEquipment().setId(this.rs.getInt("e.equipment_id"));
-            maintenance.getEquipment().setEquipmentRegistry(this.rs.getString("e.equipment_Id"));
+            maintenance.getEquipment().setEquipmentRegistry(this.rs.getString("e.equipment_registry"));
             maintenance.getEquipment().setDescription(this.rs.getString("e.description"));
             maintenance.getEquipment().setLastMaintenance(this.rs.getDate("e.last_maintenance"));
             maintenance.getEquipment().setLocation(this.rs.getString("e.location"));
