@@ -15,7 +15,7 @@
                 <select id="employee"
                         class="form-control"
                         ng-model="scheduleMaintenanceCtrl.maintenance.employee"
-                        ng-options="employee as employee.name for employee in scheduleMaintenanceCtrl.employees" required >
+                        ng-options="employee as employee.name for employee in scheduleMaintenanceCtrl.employees track by employee.id" required >
                 </select>
             </div>
         </div>

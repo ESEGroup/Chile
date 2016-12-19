@@ -17,6 +17,18 @@
 				controller: App.Components.Login.LoginController,
 				controllerAs: 'loginCtrl'
 			})
+			// Scheduling
+			.when('/scheduling', {
+				templateUrl: 'public/app/components/scheduling/scheduling.html',
+				controller: App.Components.Scheduling.SchedulingController,
+				controllerAs: 'schedulingCtrl'
+			})
+			// Historic
+			.when('/historic/scheduled-maintenance', {
+				templateUrl: 'public/app/components/historic/scheduled-maintenance/scheduled-maintenance-historic.html',
+				controller: App.Components.Historic.ScheduledMaintenance.ScheduledMaintenanceHistoricController,
+				controllerAs: 'scheduledMaintenanceHistoricCtrl'
+			})
 			// Configuration
 			.when('/configuration/users', {
 				templateUrl: 'public/app/components/configuration/user/users-configuration.html',
@@ -32,11 +44,6 @@
 				templateUrl: 'public/app/components/configuration/user/user-configuration.html',
 				controller: App.Components.Configuration.User.UserConfigurationController,
 				controllerAs: 'userConfigCtrl'
-			})
-			.when('/scheduling', {
-				templateUrl: 'public/app/components/scheduling/scheduling.html',
-				controller: App.Components.Scheduling.SchedulingController,
-				controllerAs: 'schedulingCtrl'
 			})
 			.otherwise({
 	            redirectTo: '/'

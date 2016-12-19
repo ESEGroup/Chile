@@ -17,6 +17,14 @@ namespace App.Services.Http {
             return super.post('create', maintenance);
         }
 
+        public getAllNotFinished() : ng.IPromise<IResponse> {
+            return super.get('getAllNotFinished');
+        }
+
+        public update(maintenance : IMaintenance) : ng.IPromise<IResponse> {
+            return super.post('update', maintenance);
+        }
+
     }
 
     angular.module(App.Config.MODULE_NAME).service('MaintenanceDataService', MaintenanceDataService);

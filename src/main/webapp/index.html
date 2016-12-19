@@ -147,7 +147,22 @@
                 </li>
                 <li class="treeview" ng-if="menuCtrl.user.role.id <= menuCtrl.DEPARTMENT_ADMIN">
                     <a href="javascript:void(0)">
-                        <i class="fa fa-dashboard"></i> <span>Configuração</span>
+                        <i class="fa fa-history"></i> <span>Histórico</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li ng-if="menuCtrl.user.role.id <= menuCtrl.DEPARTMENT_ADMIN">
+                            <a href="#/historic/scheduled-maintenance">
+                                <i class="fa fa-calendar-plus-o"></i> Manutenções Agendadas
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" ng-if="menuCtrl.user.role.id <= menuCtrl.DEPARTMENT_ADMIN">
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-cogs"></i> <span>Configuração</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -155,7 +170,7 @@
                     <ul class="treeview-menu">
                         <li ng-if="menuCtrl.user.role.id <= menuCtrl.GENERAL_ADMIN">
                             <a href="#/configuration/users">
-                                <i class="fa fa-circle-o"></i> Usuários
+                                <i class="fa fa-users"></i> Usuários
                             </a>
                         </li>
                     </ul>
@@ -248,7 +263,8 @@
 <script src="public/app/components/configuration/user/users-configuration.controller.js"></script>
 <script src="public/app/components/configuration/user/user-configuration.controller.js"></script>
 <script src="public/app/components/scheduling/scheduling.controller.js"></script>
-<script src="public/app/components/scheduling/modal/schedule-maintenance.controller.js  "></script>
+<script src="public/app/components/scheduling/modal/schedule-maintenance.controller.js"></script>
+<script src="public/app/components/historic/scheduled-maintenance/scheduled-maintenance-historic.controller.js"></script>
 
 <!-- directives -->
 <script src="public/app/directives/sta-dx-grid/sta-dx-grid.controller.js"></script>

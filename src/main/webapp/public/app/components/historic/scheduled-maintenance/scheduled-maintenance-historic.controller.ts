@@ -1,4 +1,4 @@
-namespace App.Components.Scheduling {
+namespace App.Components.Historic.ScheduledMaintenance {
     "use strict";
 
     import LogService = App.Services.Util.LogService;
@@ -9,22 +9,19 @@ namespace App.Components.Scheduling {
     import IMaintenance = App.Interfaces.IMaintenance;
     import MaintenanceDataService = App.Services.Http.MaintenanceDataService;
 
-    export class SchedulingController extends BaseController {
+    export class ScheduledMaintenanceHistoricController extends BaseController {
 
-        public equipments : IEquipment[];
+        public maintenances : IMaintenance[];
 
         public fieldList: any;
         public columnList: any;
 
-        public maintenance : IMaintenance;
-
-        public static $inject: string[] = ['$location', '$route', '$uibModal', 'LogService', 'EquipmentDataService', 'MaintenanceDataService'];
+        public static $inject: string[] = ['$location', '$route', '$uibModal', 'LogService', 'MaintenanceDataService'];
 
         constructor(private $location : ng.ILocationService,
                     private $route : angular.route.IRouteService,
                     private $uibModal: ng.ui.bootstrap.IModalService,
                     private logService : LogService,
-                    private equipmentDataService : EquipmentDataService,
                     private maintenanceDataService : MaintenanceDataService) {
             super();
 
@@ -33,11 +30,12 @@ namespace App.Components.Scheduling {
         }
 
         private init() {
-            this.equipmentDataService.getAllEquipmentWithUnscheduledMaintenance().then(
+            this.maintenanceDataService.getAllNotFinished().then(
                 (data) => {
-                    this.equipments = <IEquipment[]> data.data;
-                    this.equipments.forEach((value, index, array) => {
-                        value.lastMaintenance = value.lastMaintenance != null ? new Date(value.lastMaintenance.toString()) : null;
+                    this.maintenances = <IMaintenance[]> data.data;
+                    this.maintenances.forEach((value, index, array) => {
+                        value.date = new Date(value.date.toString());
+                        value.equipment.lastMaintenance = value.equipment.lastMaintenance != null ? new Date(value.equipment.lastMaintenance.toString()) : null;
                     });
                     this.logService.success(data.message);
                 },
@@ -50,16 +48,8 @@ namespace App.Components.Scheduling {
         private initColumns() {
             this.columnList = [
                 {
-                    width: 70,
-                    alignment: 'center',
-                    cellTemplate: (container, options) => {
-                        $('<i/>')
-                            .addClass('fa fa-calendar cursor-pointer')
-                            .on('dxclick', () => {
-                                this.scheduleMaintenance(options.data)
-                            })
-                            .appendTo(container)
-                    },
+                    isEditCommand: true,
+                    editFunction: this.editFunc
                 },
                 {
                     alignment: 'center',
@@ -68,31 +58,39 @@ namespace App.Components.Scheduling {
                     visible: false,
                 },
                 {
-                    dataField: 'equipmentRegistry',
-                    caption: 'Registro do equipamento',
+                    dataField: 'date',
+                    format: 'dd/MM/yyyy',
+                    caption: 'Data agendada',
                 },
                 {
-                    dataField: 'description',
-                    caption: 'Descrição',
+                    dataField: 'employee.name',
+                    caption: 'Funcionário responsável',
                 },
                 {
-                    dataField: 'location',
-                    caption: 'Local',
+                    dataField: 'equipment.equipmentRegistry',
+                    caption: 'Resgistro do equipamento',
+
                 },
                 {
-                    dataField: 'lastMaintenance',
-                    caption: 'Última manutenção',
-                    dataType: 'date',
-                    format: 'dd/MM/yyyy'
+                    dataField: 'equipment.description',
+                    caption: 'Descrição do equipamento',
+
                 },
                 {
-                    dataField: 'department.name',
-                    caption: 'Departamento',
+                    dataField: 'equipment.location',
+                    caption: 'Local do equipamento',
+
+                },
+                {
+                    dataField: 'equipment.lastMaintenance',
+                    format: 'dd/MM/yyyy',
+                    caption: 'Data da ultima manutenção',
                 }
             ];
         }
 
-        private scheduleMaintenance(equipment : IEquipment) {
+        private editFunc = (maintenance : IMaintenance) =>
+        {
             var modalOptions = {
                 templateUrl: 'public/app/components/scheduling/modal/schedule-maintenance.modal.html',
                 controller: App.Components.Scheduling.Modal.ScheduleMaintenanceController,
@@ -100,16 +98,15 @@ namespace App.Components.Scheduling {
                 backdrop: 'static',
                 resolve: <{ [name: string]: Function }> {
                     data: () => {
-                        return null;
+                        return maintenance;
                     }
                 }
             };
 
             this.$uibModal.open(modalOptions).result.then(
                 (data : IMaintenance) => {
-                    this.maintenance = data;
-                    this.maintenance.equipment = equipment;
-                    this.maintenanceDataService.create(this.maintenance).then(
+                    maintenance = data;
+                    this.maintenanceDataService.update(maintenance).then(
                         (data) => {
                             this.logService.success(data.message);
                             this.$route.reload();
@@ -123,5 +120,5 @@ namespace App.Components.Scheduling {
 
     }
 
-    angular.module(App.Config.MODULE_NAME).controller('SchedulingController', SchedulingController);
+    angular.module(App.Config.MODULE_NAME).controller('ScheduledMaintenanceHistoricController', ScheduledMaintenanceHistoricController);
 }

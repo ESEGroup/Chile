@@ -12,14 +12,17 @@ namespace App.Components.Scheduling.Modal {
 
         public employees : IUser[];
 
-        public static $inject: string[] = ['$uibModalInstance', 'LogService', 'UserDataService'];
+        public static $inject: string[] = ['$uibModalInstance', 'LogService', 'UserDataService', 'data'];
 
         constructor(private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance,
                     private logService : LogService,
-                    private userDataService : UserDataService) {
+                    private userDataService : UserDataService,
+                    private data : IMaintenance) {
             super();
 
             this.title = 'Agendamento de manutenção';
+
+            this.maintenance = this.data ? this.data : <IMaintenance> {};
 
             this.userDataService.getAll().then(
                 (data) => {
