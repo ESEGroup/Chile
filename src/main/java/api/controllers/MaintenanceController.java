@@ -151,6 +151,31 @@ public class MaintenanceController
     }
 
     @GET
+    @Path("/getAllNotFinishedByUserId/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllNotFinished(@PathParam("id") int id)
+    {
+        HttpResponse response = new HttpResponse();
+
+        try
+        {
+            List<Maintenance> maintenances = this.maintenanceService.getAllNotFinishedByUserId(id);
+
+            response.setStatus(Response.Status.OK.getStatusCode());
+            response.setMessage("Successfully got all maintenances");
+            response.setData(maintenances);
+
+            return Response.status(response.getStatus()).entity(response).build();
+        }
+        catch (Exception e)
+        {
+            response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+            response.setMessage(e.getMessage());
+            return Response.status(response.getStatus()).entity(response).build();
+        }
+    }
+
+    @GET
     @Path("/getMaintenanceByEquipmentId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMaintenanceByEquipmentId(@PathParam("id") int id)

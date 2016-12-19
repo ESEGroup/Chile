@@ -2,6 +2,7 @@ package services;
 
 import models.Maintenance;
 import models.status.MaintenanceStatus;
+import repository.EquipmentRepository;
 import repository.MaintenanceRepository;
 
 import java.sql.SQLException;
@@ -13,10 +14,12 @@ import java.util.List;
 public class MaintenanceService
 {
     private MaintenanceRepository maintenanceRepository;
+    private EquipmentRepository equipmentRepository;
 
     public MaintenanceService()
     {
         this.maintenanceRepository = new MaintenanceRepository();
+        this.equipmentRepository = new EquipmentRepository();
     }
 
 
@@ -44,6 +47,11 @@ public class MaintenanceService
     public List<Maintenance> getAllNotFinished() throws SQLException
     {
         return this.maintenanceRepository.getAllNotFinished();
+    }
+
+    public List<Maintenance> getAllNotFinishedByUserId(int userId) throws SQLException
+    {
+        return this.maintenanceRepository.getAllNotFinishedByUserId(userId);
     }
 
     public Maintenance getMaintenanceByEquipmentId(int equipmentId) throws SQLException
@@ -80,6 +88,7 @@ public class MaintenanceService
         }
 
         this.maintenanceRepository.update(maintenance);
+        this.equipmentRepository.update(maintenance.getEquipment());
 
         return MaintenanceStatus.OK;
     }
