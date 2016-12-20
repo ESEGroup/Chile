@@ -132,8 +132,7 @@ CREATE Function get_next_maintenance(equipment INT)
 $$
 DELIMITER ;
 
-INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, email, telephone, rg_issuer, name, password, role_id, department_id)
-    VALUES ('1234567', '16035256708', '277694709', 'DETRANRJ', 'eric@gmail.com', '98240-9999', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
+
 
 INSERT INTO `manutencao-ufrj`.Role (name)
     VALUES ('Administrador Geral'), ('Administrador de Departamento'), ('Funcionário');
@@ -142,7 +141,7 @@ INSERT INTO `manutencao-ufrj`.Department(name)
     VALUES ('Geral');
 
 INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, email, telephone, rg_issuer, name, password, role_id, department_id)
-    VALUES ('1234567', '16035256708', '277694709', 'DETRANRJ', 'eric@gmail.com', '98240-9999', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
+    VALUES ('admin', '16035256708', '277694709', 'DETRANRJ', 'eric@gmail.com', '98240-9999', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
 
 INSERT INTO `manutencao-ufrj`.`Equipment` (equipment_registry, location, maintenance_periodicity, status, description, department_id)
     VALUES ('000001', 'Sala H204', 60, false, 'Ar condicionado em péssimas condições', 1),
