@@ -1,19 +1,3 @@
--- MySQL Workbench Forward Engineering
-
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema manutencao-ufrj
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema manutencao-ufrj
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `manutencao-ufrj` ;
 USE `manutencao-ufrj` ;
 
@@ -48,6 +32,8 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`User` (
   `rg_issuer` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `password` CHAR(60) NOT NULL,
+  `telephone` VARCHAR(20) NULL,
+  `email` VARCHAR(60) NOT NULL,
   `birth_date` DATETIME NULL,
   `creation_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
@@ -67,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`User` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
   ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -145,16 +132,17 @@ CREATE Function get_next_maintenance(equipment INT)
 $$
 DELIMITER ;
 
+INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, email, telephone rg_issuer, name, password, role_id, department_id)
+    VALUES ('1234567', '16035256708', '277694709', 'DETRANRJ', 'eric@gmail.com', '98240-9999 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
 
 INSERT INTO `manutencao-ufrj`.Role (name)
   VALUES ('Administrador Geral'), ('Administrador de Departamento'), ('Funcionário');
 
 INSERT INTO `manutencao-ufrj`.Department(name)
     VALUES ('Geral');
-
-INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, rg_issuer, name, password, role_id, department_id)
-    VALUES ('admin', '16035256708', '277694709', 'DETRAN/RJ', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1),
-           ('1234567', '12345678901', '123456789', 'DETRAN/RJ', 'Funcionário Teste', '$2a$12$hM7.xRYlCbDYcAWkU09P6uYV3DIBg6tEyJFG2QZnlgPactTvN9YhG', 3, 1);
+    
+INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, email, telephone, rg_issuer, name, password, role_id, department_id)
+VALUES ('1234567', '16035256708', '277694709', 'DETRANRJ', 'eric@gmail.com', '98240-9999', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
 
 INSERT INTO `manutencao-ufrj`.equipment(equipment_registry,last_maintenance,location,maintenance_periodicity,status, description,is_deleted,department_id)
 VALUES('1111111','2016-02-27', 'Sala H204', 60, false, 'Muito bom', false, 1);
@@ -169,4 +157,3 @@ INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, fini
 VALUES('2016-12-15', '2017-01-02', 'Pilha trocada', false, false, 1,1);
 INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
 VALUES('2016-12-15', '2017-01-01', 'Pilha trocada', true, false, 2,1);
-
