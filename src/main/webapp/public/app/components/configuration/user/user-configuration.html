@@ -142,6 +142,40 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.email.$touched && userConfigurationForm.email.$invalid }">
+                                        <label for="email" class="col-sm-2 control-label">E-mail</label>
+                                        <div class="col-sm-9">
+                                            <input ng-model="userConfigCtrl.user.email"
+                                                   ng-pattern="userConfigCtrl.emailRegex"
+                                                   type="email"
+                                                   class="form-control"
+                                                   id="email"
+                                                   name="email"
+                                                   placeholder="E-mail"
+                                                   required>
+                                            <div class="help-block" ng-messages="userConfigurationForm.email.$error" ng-if="userConfigurationForm.email.$touched">
+                                                <p ng-message="pattern">Digite um e-mail válido.</p>
+                                                <p ng-message="required">E-mail obrigatório.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.telephone.$touched && userConfigurationForm.telephone.$invalid }">
+                                        <label for="telephone" class="col-sm-2 control-label">Telefone para contato</label>
+                                        <div class="col-sm-9">
+                                            <input ng-model="userConfigCtrl.user.telephone"
+                                                   ng-pattern="userConfigCtrl.numbersOnlyRegex"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="telephone"
+                                                   name="telephone"
+                                                   placeholder="Telefone">
+                                            <div class="help-block" ng-messages="userConfigurationForm.telephone.$error" ng-if="userConfigurationForm.telephone.$touched">
+                                                <p ng-message="pattern">Telefone para contato pode conter somente números.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group" ng-class="{ 'has-error': userConfigurationForm.password.$touched && userConfigurationForm.password.$invalid }">
                                         <label for="birthDate" class="col-sm-2 control-label">Data de Nascimento</label>
                                         <div class="col-sm-9">

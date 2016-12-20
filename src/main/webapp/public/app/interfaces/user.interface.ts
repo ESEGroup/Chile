@@ -8,6 +8,8 @@ namespace App.Interfaces {
         rgIssuer: string;
         employeeId: string;
         password: string;
+        email: string;
+        telephone: string;
         birthDate: Date;
         creationDate: Date;
         isDeleted: boolean;

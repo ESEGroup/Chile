@@ -18,6 +18,7 @@ namespace App.Components.Configuration.User {
         public departments: IDepartment[];
 
         public numbersOnlyRegex: RegExp;
+        public emailRegex: RegExp;
 
         private userId: number;
 
@@ -33,6 +34,7 @@ namespace App.Components.Configuration.User {
 
             this.title = "Criação de novo usuário";
             this.numbersOnlyRegex = /^\d+$/;
+            this.emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
             this.userId = this.$routeParam['id'];
 
