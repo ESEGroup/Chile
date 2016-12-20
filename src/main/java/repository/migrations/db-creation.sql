@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`User` (
 CREATE TABLE IF NOT EXISTS `manutencao-ufrj`.`Equipment` (
   `equipment_id` INT NOT NULL AUTO_INCREMENT,
   `equipment_registry` VARCHAR(45) NOT NULL,
-  `last_maintenance` DATETIME NOT NULL,
+  `last_maintenance` DATETIME,
   `location` VARCHAR(45) NOT NULL,
   `maintenance_periodicity` INT NOT NULL,
   `status` TINYINT(1) NOT NULL,
@@ -132,28 +132,35 @@ CREATE Function get_next_maintenance(equipment INT)
 $$
 DELIMITER ;
 
-INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, email, telephone rg_issuer, name, password, role_id, department_id)
-    VALUES ('1234567', '16035256708', '277694709', 'DETRANRJ', 'eric@gmail.com', '98240-9999 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
+INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, email, telephone, rg_issuer, name, password, role_id, department_id)
+    VALUES ('1234567', '16035256708', '277694709', 'DETRANRJ', 'eric@gmail.com', '98240-9999', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
 
 INSERT INTO `manutencao-ufrj`.Role (name)
-  VALUES ('Administrador Geral'), ('Administrador de Departamento'), ('Funcionário');
+    VALUES ('Administrador Geral'), ('Administrador de Departamento'), ('Funcionário');
 
 INSERT INTO `manutencao-ufrj`.Department(name)
     VALUES ('Geral');
-    
+
 INSERT INTO `manutencao-ufrj`.User (employee_id, cpf, rg, email, telephone, rg_issuer, name, password, role_id, department_id)
-VALUES ('1234567', '16035256708', '277694709', 'DETRANRJ', 'eric@gmail.com', '98240-9999', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
+    VALUES ('1234567', '16035256708', '277694709', 'DETRANRJ', 'eric@gmail.com', '98240-9999', 'Eric Reis Figueiredo', '$2a$04$Vz8LR1pmPF22weI2rgEcX.rc9GSeDkxcyxI3Uwymm8/u4mYU02xDK', 1, 1);
 
-INSERT INTO `manutencao-ufrj`.equipment(equipment_registry,last_maintenance,location,maintenance_periodicity,status, description,is_deleted,department_id)
-VALUES('1111111','2016-02-27', 'Sala H204', 60, false, 'Muito bom', false, 1);
-INSERT INTO `manutencao-ufrj`.equipment(equipment_registry,last_maintenance,location,maintenance_periodicity,status, description,is_deleted,department_id)
-VALUES('1111112','2016-10-02', 'Sala H204', 10, false, 'Ruim', false, 1);
+INSERT INTO `manutencao-ufrj`.`Equipment` (equipment_registry, location, maintenance_periodicity, status, description, department_id)
+    VALUES ('000001', 'Sala H204', 60, false, 'Ar condicionado em péssimas condições', 1),
+           ('000002', 'Sala H204', 10, false, 'Projetor em boas condições', 1),
+           ('000003', 'Sala H204', 30, false, 'Carteiras em excelentes condições', 1),
+           ('000004', 'Sala H214', 20, false, 'Quadro-branco em péssimo estado', 1),
+           ('000005', 'Sala H214', 20, false, 'Projetor em condição mediana', 1),
+           ('000006', 'Sala H208', 30, false, 'Luzes com defeito', 1),
+           ('000007', 'Sala H208', 10, false, 'Ar condicionado com defeito', 1),
+           ('000008', 'Sala H209', 10, false, 'Projetor com mal contato', 1),
+           ('000009', 'Sala H217', 40, false, 'Carteiras quebradas', 1),
+           ('000010', 'Sala H215', 40, false, 'Porta com defeito', 1);
 
-INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
-VALUES('2016-04-27', '2016-05-30', 'Pilha trocada', true, false, 1,1);
-INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
-VALUES('2016-12-15', '2017-01-01', 'Pilha trocada', true, false, 1,1);
-INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
-VALUES('2016-12-15', '2017-01-02', 'Pilha trocada', false, false, 1,1);
-INSERT INTO `manutencao-ufrj`.maintenance(date, finished_date, description, finished, is_deleted, equipment_id, user_id)
-VALUES('2016-12-15', '2017-01-01', 'Pilha trocada', true, false, 2,1);
+# INSERT INTO `manutencao-ufrj`.`Maintenance` (date, finished_date, description, finished, equipment_id, user_id)
+# VALUES('2016-04-27', '2016-05-30', 'Pilha trocada', true, 1,1);
+# INSERT INTO `manutencao-ufrj`.`Maintenance` (date, finished_date, description, finished, equipment_id, user_id)
+# VALUES('2016-12-15', '2017-01-01', 'Pilha trocada', true, 1,1);
+# INSERT INTO `manutencao-ufrj`.`Maintenance` (date, finished_date, description, finished, equipment_id, user_id)
+# VALUES('2016-12-15', '2017-01-02', 'Pilha trocada', false, 1,1);
+# INSERT INTO `manutencao-ufrj`.`Maintenance` (date, finished_date, description, finished, equipment_id, user_id)
+# VALUES('2016-12-15', '2017-01-01', 'Pilha trocada', true, 2,1);
