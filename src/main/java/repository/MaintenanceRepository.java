@@ -57,6 +57,8 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setRg(this.rs.getString("u.rg"));
             maintenance.getEmployee().setRgIssuer(this.rs.getString("u.rg_issuer"));
             maintenance.getEmployee().setName(this.rs.getString("u.name"));
+            maintenance.getEmployee().setEmail(this.rs.getString("u.email"));
+            maintenance.getEmployee().setTelephone(this.rs.getString("u.telephone"));
             maintenance.getEmployee().setPassword(this.rs.getString("u.password"));
             maintenance.getEmployee().setBirthDate(this.rs.getDate("u.birth_date"));
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
@@ -156,6 +158,8 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setRg(this.rs.getString("u.rg"));
             maintenance.getEmployee().setRgIssuer(this.rs.getString("u.rg_issuer"));
             maintenance.getEmployee().setName(this.rs.getString("u.name"));
+            maintenance.getEmployee().setEmail(this.rs.getString("u.email"));
+            maintenance.getEmployee().setTelephone(this.rs.getString("u.telephone"));
             maintenance.getEmployee().setPassword(this.rs.getString("u.password"));
             maintenance.getEmployee().setBirthDate(this.rs.getDate("u.birth_date"));
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
@@ -217,6 +221,8 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setRg(this.rs.getString("u.rg"));
             maintenance.getEmployee().setRgIssuer(this.rs.getString("u.rg_issuer"));
             maintenance.getEmployee().setName(this.rs.getString("u.name"));
+            maintenance.getEmployee().setEmail(this.rs.getString("u.email"));
+            maintenance.getEmployee().setTelephone(this.rs.getString("u.telephone"));
             maintenance.getEmployee().setPassword(this.rs.getString("u.password"));
             maintenance.getEmployee().setBirthDate(this.rs.getDate("u.birth_date"));
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
@@ -278,6 +284,8 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setRg(this.rs.getString("u.rg"));
             maintenance.getEmployee().setRgIssuer(this.rs.getString("u.rg_issuer"));
             maintenance.getEmployee().setName(this.rs.getString("u.name"));
+            maintenance.getEmployee().setEmail(this.rs.getString("u.email"));
+            maintenance.getEmployee().setTelephone(this.rs.getString("u.telephone"));
             maintenance.getEmployee().setPassword(this.rs.getString("u.password"));
             maintenance.getEmployee().setBirthDate(this.rs.getDate("u.birth_date"));
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
@@ -339,6 +347,8 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setRg(this.rs.getString("u.rg"));
             maintenance.getEmployee().setRgIssuer(this.rs.getString("u.rg_issuer"));
             maintenance.getEmployee().setName(this.rs.getString("u.name"));
+            maintenance.getEmployee().setEmail(this.rs.getString("u.email"));
+            maintenance.getEmployee().setTelephone(this.rs.getString("u.telephone"));
             maintenance.getEmployee().setPassword(this.rs.getString("u.password"));
             maintenance.getEmployee().setBirthDate(this.rs.getDate("u.birth_date"));
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
@@ -400,6 +410,8 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setRg(this.rs.getString("u.rg"));
             maintenance.getEmployee().setRgIssuer(this.rs.getString("u.rg_issuer"));
             maintenance.getEmployee().setName(this.rs.getString("u.name"));
+            maintenance.getEmployee().setEmail(this.rs.getString("u.email"));
+            maintenance.getEmployee().setTelephone(this.rs.getString("u.telephone"));
             maintenance.getEmployee().setPassword(this.rs.getString("u.password"));
             maintenance.getEmployee().setBirthDate(this.rs.getDate("u.birth_date"));
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
@@ -461,6 +473,8 @@ public class MaintenanceRepository extends BaseRepository
             maintenance.getEmployee().setRg(this.rs.getString("u.rg"));
             maintenance.getEmployee().setRgIssuer(this.rs.getString("u.rg_issuer"));
             maintenance.getEmployee().setName(this.rs.getString("u.name"));
+            maintenance.getEmployee().setEmail(this.rs.getString("u.email"));
+            maintenance.getEmployee().setTelephone(this.rs.getString("u.telephone"));
             maintenance.getEmployee().setPassword(this.rs.getString("u.password"));
             maintenance.getEmployee().setBirthDate(this.rs.getDate("u.birth_date"));
             maintenance.getEmployee().setCreationDate(this.rs.getDate("u.creation_date"));
