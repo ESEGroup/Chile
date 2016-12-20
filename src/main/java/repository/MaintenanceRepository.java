@@ -88,8 +88,8 @@ public class MaintenanceRepository extends BaseRepository
         this.params = new HashMap<>();
 
         // Select equipment that has maintenance proximity before today's data and up to 3 days after
-        this.query = "SELECT get_next_maintenance(e.equipment_id) next_maintenance, e.*,d.* from equipment e " +
-                "JOIN department d on e.department_id= d.department_id " +
+        this.query = "SELECT get_next_maintenance(e.equipment_id) next_maintenance, e.*,d.* from Equipment e " +
+                "JOIN Department d on e.department_id= d.department_id " +
                 "WHERE is_deleted = false AND get_next_maintenance(e.equipment_id) != '0000-00-00' " +
                 "AND (get_next_maintenance(e.equipment_id) <= DATE_ADD(CURDATE(), INTERVAL + 3 DAY))";
 
@@ -514,7 +514,7 @@ public class MaintenanceRepository extends BaseRepository
         this.params.put("user_id", maintenance.getEmployee().getId());
         this.params.put("equipment_id", maintenance.getEquipment().getId());
 
-        this.query = "INSERT INTO maintenance (date, finished_date, description, user_id, equipment_id, finished)" +
+        this.query = "INSERT INTO Maintenance (date, finished_date, description, user_id, equipment_id, finished)" +
                 "VALUES (:date, :finished_date, :description, :user_id, :equipment_id, :finished)";
 
         this.createNamedParameterStatement(this.query, this.params);
