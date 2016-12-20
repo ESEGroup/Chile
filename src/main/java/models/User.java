@@ -14,7 +14,7 @@ public class User
     private String rgIssuer;
     private String name;
     private String email;
-    private String phone;
+    private String telephone;
     private String password;
     private Date birthDate;
     private Date creationDate;
@@ -97,12 +97,12 @@ public class User
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelephone(String phone) {
+        this.telephone = telephone;
     }
 
     public String getPassword()

@@ -47,6 +47,8 @@ public class UserRepository extends BaseRepository
             user.setRg(this.rs.getString("rg"));
             user.setRgIssuer(this.rs.getString("rg_issuer"));
             user.setName(this.rs.getString("u.name"));
+            user.setEmail(this.rs.getString("email"));
+            user.setTelephone(this.rs.getString("telephone"));
             user.setPassword(this.rs.getString("password"));
             user.setBirthDate(this.rs.getDate("birth_date"));
             user.setCreationDate(this.rs.getDate("creation_date"));
@@ -85,6 +87,8 @@ public class UserRepository extends BaseRepository
             user.setCpf(this.rs.getString("cpf"));
             user.setRg(this.rs.getString("rg"));
             user.setRgIssuer(this.rs.getString("rg_issuer"));
+            user.setEmail(this.rs.getString("email"));
+            user.setTelephone(this.rs.getString("telephone"));
             user.setName(this.rs.getString("u.name"));
             user.setPassword(this.rs.getString("password"));
             user.setBirthDate(this.rs.getDate("birth_date"));
@@ -125,6 +129,8 @@ public class UserRepository extends BaseRepository
             user.setRg(this.rs.getString("rg"));
             user.setRgIssuer(this.rs.getString("rg_issuer"));
             user.setName(this.rs.getString("u.name"));
+            user.setEmail(this.rs.getString("email"));
+            user.setTelephone(this.rs.getString("telephone"));
             user.setPassword(this.rs.getString("password"));
             user.setBirthDate(this.rs.getDate("birth_date"));
             user.setCreationDate(this.rs.getDate("creation_date"));
@@ -150,6 +156,8 @@ public class UserRepository extends BaseRepository
         this.params.put("rg", user.getRg());
         this.params.put("rg_issuer", user.getRgIssuer());
         this.params.put("name", user.getName());
+        this.params.put("email", user.getEmail());
+        this.params.put("phone", user.getTelephone());
         this.params.put("password", user.getPassword());
         this.params.put("birth_date", user.getBirthDate());
 
@@ -157,8 +165,8 @@ public class UserRepository extends BaseRepository
 
         this.params.put("department_id", user.getDepartment().getId());
 
-        this.query = "INSERT INTO User (employee_id, cpf, rg, rg_issuer, name, password, birth_date, role_id, department_id) " +
-                     "VALUES (:employee_id, :cpf, :rg, :rg_issuer, :name, :password, :birth_date, :role_id, :department_id)";
+        this.query = "INSERT INTO User (employee_id, cpf, rg, rg_issuer, name, email, telephone, password, birth_date, role_id, department_id) " +
+                     "VALUES (:employee_id, :cpf, :rg, :rg_issuer, :name, :email, :telephone, :password, :birth_date, :role_id, :department_id)";
 
         this.createNamedParameterStatement(this.query, this.params);
 
@@ -174,6 +182,8 @@ public class UserRepository extends BaseRepository
         this.params.put("rg", user.getRg());
         this.params.put("rg_issuer", user.getRgIssuer());
         this.params.put("name", user.getName());
+        this.params.put("email", user.getEmail());
+        this.params.put("telephone", user.getTelephone());
         this.params.put("password", user.getPassword());
         this.params.put("birth_date", user.getBirthDate());
 
@@ -182,7 +192,8 @@ public class UserRepository extends BaseRepository
         this.params.put("department_id", user.getDepartment().getId());
 
         this.query = "UPDATE User SET employee_id = :employee_id, cpf = :cpf, rg = :rg, rg_issuer = :rg_issuer, name = :name, " +
-                                     "password = :password, birth_date = :birth_date, role_id = :role_id, department_id = :department_id " +
+                                     "email = :email, telephone = :telephone, password = :password, birth_date = :birth_date, " +
+                                     "role_id = :role_id, department_id = :department_id " +
                      "WHERE user_id = :user_id and is_deleted = 0";
 
 

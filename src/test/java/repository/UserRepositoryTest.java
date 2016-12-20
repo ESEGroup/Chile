@@ -48,6 +48,8 @@ public class UserRepositoryTest
         user.setRg("123456789");
         user.setRgIssuer("DETRAN-RJ");
         user.setName("teste");
+        user.setTelephone("50123456789");
+        user.setEmail("user@email.com");
         user.setPassword("teste");
         user.setBirthDate(new Date());
 
@@ -74,6 +76,8 @@ public class UserRepositoryTest
         user.setRg("123456789");
         user.setRgIssuer("DETRAN-RJ");
         user.setName("teste");
+        user.setEmail("user@email.com");
+        user.setTelephone("50123456789");
         user.setPassword("teste");
         user.setBirthDate(new Date());
 
@@ -127,6 +131,8 @@ public class UserRepositoryTest
         user.setRg("123456789");
         user.setRgIssuer("DETRAN-RJ");
         user.setName("teste");
+        user.setEmail("user@email.com");
+        user.setTelephone("55123456789");
         user.setPassword("teste");
         user.setBirthDate(new Date());
 
