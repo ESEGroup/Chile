@@ -157,7 +157,7 @@ public class UserRepository extends BaseRepository
         this.params.put("rg_issuer", user.getRgIssuer());
         this.params.put("name", user.getName());
         this.params.put("email", user.getEmail());
-        this.params.put("phone", user.getTelephone());
+        this.params.put("telephone", user.getTelephone());
         this.params.put("password", user.getPassword());
         this.params.put("birth_date", user.getBirthDate());
 
