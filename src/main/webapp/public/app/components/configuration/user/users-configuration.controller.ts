@@ -64,6 +64,14 @@ namespace App.Components.Configuration.User {
                     caption: 'ID Funcionário',
                 },
                 {
+                    dataField: 'email',
+                    caption: 'E-mail',
+                },
+                {
+                    dataField: 'telephone',
+                    caption: 'Telefone para contato',
+                },
+                {
                     dataField: 'birthDate',
                     caption: 'Data de Nascimento',
                     dataType: 'date',
